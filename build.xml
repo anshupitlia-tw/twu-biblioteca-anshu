@@ -45,6 +45,11 @@
                 <pathelement location="lib/hamcrest-all-1.1.jar"/>
                 <pathelement location="out"/>
             </classpath>
+            <batchtest fork="yes">
+                <fileset dir="test">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
         </junit>
     </target>
 </project>
