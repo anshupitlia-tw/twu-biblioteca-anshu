@@ -1,0 +1,51 @@
+<?xml version = "1.0"?>
+
+<project name="Biblioteca" default="runjUnit" basedir=".">
+
+    <property name = "project.name" value="Biblioteca" />
+    <property name = "main.name" value="BibliotecaApp" />
+    <property name = "package.name" value="com.twu.biblioteca" />
+
+    <target name="build" depends="clean">
+        <mkdir dir="out"/>
+        <javac destdir="out">
+            <src path="src;test"/>
+            <classpath location="lib/junit-4.12.jar"/>
+        </javac>
+    </target>
+
+    <target name="clean" description="clean previous output directory">
+        <delete dir="out"/>
+    </target>
+
+    <target name="build-jar" depends="build">
+        <jar destfile="lib/${project.name}.jar"
+             basedir="out"
+             excludes="**/Test.class">
+            <manifest>
+                <attribute name="Main-Class" value="${package.name}.${main.name}"/>
+            </manifest>
+
+        </jar>
+    </target>
+
+    <target name="run" depends="build-jar">
+        <java fork="true" failonerror="yes" classname="${package.name}.${main.name}">
+            <classpath>
+                <path location="lib/${project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+
+    <target name="runjUnit" depends="build" description="runs the junit test cases">
+        <junit printsummary="yes" haltonfailure="true"  showoutput="true">
+            <classpath>
+                <pathelement location="lib/junit-4.12.jar"/>
+                <pathelement location="lib/hamcrest-all-1.1.jar"/>
+                <pathelement location="out"/>
+            </classpath>
+        </junit>
+    </target>
+</project>
+
