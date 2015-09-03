@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.HashMap;
 
-//The Bangalore Public Library
+//The Bangalore Public Library Application
 public class LibraryApplication {
     private UserInterface userInterface;
     private Messages messages;
