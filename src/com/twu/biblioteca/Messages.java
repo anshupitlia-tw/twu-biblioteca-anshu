@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Messages {
     private HashMap<String, String> messages;
 
-    Messages(HashMap messages) {
+    public Messages(HashMap messages) {
         this.messages = messages;
     }
 
