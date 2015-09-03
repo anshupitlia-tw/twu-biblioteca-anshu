@@ -10,6 +10,6 @@ public class Messages {
     }
 
     public String getUXMessage(String applicationMessage) {
-        return "Welcome! Biblioteca at your service";
+        return messages.get(applicationMessage);
     }
 }

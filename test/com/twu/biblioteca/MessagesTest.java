@@ -15,4 +15,13 @@ public class MessagesTest {
 
         assertEquals("Welcome! Biblioteca at your service", messages.getUXMessage("welcome_message"));
     }
+
+    @Test
+    public void shouldGiveNoUXMessageWhenIncorrectMessage() {
+        HashMap<String, String> testMessages = new HashMap<>();
+        testMessages.put("welcome_message", "Welcome! Biblioteca at your service");
+        Messages messages = new Messages(testMessages);
+
+        assertEquals(null, messages.getUXMessage("no_message"));
+    }
 }
