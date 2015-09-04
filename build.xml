@@ -1,6 +1,10 @@
 <?xml version = "1.0"?>
 
-<project name="Biblioteca" default="runjUnit" basedir=".">
+<project name="Biblioteca" default="report" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="lib/jacocoant.jar"/>
+    </taskdef>
 
     <property name = "project.name" value="Biblioteca" />
     <property name = "main.name" value="BibliotecaApp" />
@@ -13,6 +17,12 @@
             <classpath location="lib/junit-4.12.jar"/>
             <classpath location="lib/hamcrest-all-1.1.jar"/>
             <classpath location="lib/mockito-all-1.9.5.jar"/>
+            <classpath location="lib/jacocoagent.jar"/>
+            <classpath location="lib/jacocoant.jar"/>
+            <classpath location="lib/org.jacoco.agent-0.7.5.201505241946.jar"/>
+            <classpath location="lib/org.jacoco.ant-0.7.5.201505241946.jar"/>
+            <classpath location="lib/org.jacoco.core-0.7.5.201505241946.jar"/>
+            <classpath location="lib/org.jacoco.report-0.7.5.201505241946.jar"/>
         </javac>
     </target>
 
@@ -32,16 +42,19 @@
     </target>
 
     <target name="run" depends="build-jar">
+        <jacoco:coverage>
         <java fork="true" failonerror="yes" classname="${package.name}.${main.name}">
             <classpath>
                 <path location="lib/${project.name}.jar"/>
             </classpath>
         </java>
+        </jacoco:coverage>
     </target>
 
 
     <target name="runjUnit" depends="build" description="runs the junit test cases">
-        <junit printsummary="yes" haltonfailure="true"  showoutput="true">
+        <jacoco:coverage>
+        <junit printsummary="yes" haltonfailure="true" fork="true" forkmode="once" showoutput="true">
             <classpath>
                 <pathelement location="lib/junit-4.12.jar"/>
                 <pathelement location="lib/hamcrest-all-1.1.jar"/>
@@ -54,6 +67,28 @@
                 </fileset>
             </batchtest>
         </junit>
+        </jacoco:coverage>
+    </target>
+
+    <target name="report" depends="runjUnit">
+    <jacoco:report>
+
+        <executiondata>
+            <file file="jacoco.exec"/>
+        </executiondata>
+
+        <structure name="Biblioteca Project">
+            <classfiles>
+                <fileset dir="out"/>
+            </classfiles>
+            <sourcefiles encoding="UTF-8">
+                <fileset dir="src"/>
+            </sourcefiles>
+        </structure>
+
+        <html destdir="report"/>
+
+    </jacoco:report>
     </target>
 </project>
 
