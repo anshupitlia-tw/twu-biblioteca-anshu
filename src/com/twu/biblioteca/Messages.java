@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.HashMap;
 
+//Have Messages and return them.
 public class Messages {
     private HashMap<String, String> messages;
 

@@ -1,17 +1,13 @@
 package com.twu.biblioteca;
 
-import java.util.HashMap;
-
 //The Bangalore Public Library Application
 public class LibraryApplication {
     private UserInterface userInterface;
     private Messages messages;
 
-    public LibraryApplication(UserInterface userInterface) {
+    public LibraryApplication(UserInterface userInterface, Messages messages) {
         this.userInterface = userInterface;
-        HashMap<String, String> setUpMessages = new HashMap<>();
-        setUpMessages.put("welcome_message", "Welcome! Biblioteca at your service");
-        messages = new Messages(setUpMessages);
+        this.messages = messages;
     }
 
     public void start() {
