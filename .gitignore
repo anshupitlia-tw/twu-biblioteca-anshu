@@ -4,3 +4,4 @@ Biblioteca.iml
 .idea
 lib/Biblioteca.jar
 report/
+jacoco.exec
