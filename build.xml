@@ -11,6 +11,8 @@
         <javac destdir="out">
             <src path="src;test"/>
             <classpath location="lib/junit-4.12.jar"/>
+            <classpath location="lib/hamcrest-all-1.1.jar"/>
+            <classpath location="lib/mockito-all-1.9.5.jar"/>
         </javac>
     </target>
 
@@ -43,6 +45,7 @@
             <classpath>
                 <pathelement location="lib/junit-4.12.jar"/>
                 <pathelement location="lib/hamcrest-all-1.1.jar"/>
+                <pathelement location="lib/mockito-all-1.9.5.jar"/>
                 <pathelement location="out"/>
             </classpath>
             <batchtest fork="yes">
