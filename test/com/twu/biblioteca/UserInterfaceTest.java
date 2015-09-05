@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -23,9 +25,19 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldBeAbleToPrintAMessageGivenToIt() {
-        UserInterface ui = new UserInterface();
-        ui.print("Welcome!");
+        UserInterface userInterface = new UserInterface();
+        userInterface.print("Welcome!");
 
         assertEquals("Welcome!\n", outContent.toString());
+    }
+
+    @Test
+    public void shouldBeAbleToGetUserChoiceOfMenuWhenUserEntersAValidNumber() {
+        UserInterface userInterface = new UserInterface();
+        String userChoice = "1";
+        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
+        System.setIn(inContent);
+
+        assertEquals(1, userInterface.getMenuChoice());
     }
 }
