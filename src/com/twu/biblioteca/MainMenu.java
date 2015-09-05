@@ -24,6 +24,6 @@ public class MainMenu {
     }
 
     public boolean hasMenu(int choice) {
-        return true;
+        return mainMenu.containsKey(choice);
     }
 }

@@ -36,4 +36,13 @@ public class MainMenuTest {
 
         assertEquals(true, mainMenu.hasMenu(1));
     }
+
+    @Test
+    public void shouldReturnFalseIfTheMenuNumberIsNotValid() {
+        HashMap<Integer, String> mainMenuList = new HashMap<>();
+        mainMenuList.put(1, "List Books");
+        MainMenu mainMenu = new MainMenu(mainMenuList);
+
+        assertEquals(false, mainMenu.hasMenu(2));
+    }
 }
