@@ -53,16 +53,4 @@ public class UserInterfaceTest {
         userInterface.getMenuChoice();
         assertEquals("NOT AN INTEGER\n", outContent.toString());
     }
-
-    @Test
-    public void shouldBeAbleToCatchAnExceptionAndExitWhenUserEntersNotANumberForMenu() {
-        UserInterface userInterface = new UserInterface();
-        System system = mock(System.class);
-        String userChoice = "abc";
-        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
-        System.setIn(inContent);
-        userInterface.getMenuChoice();
-
-        verify(system, times(1)).exit(0);
-    }
 }

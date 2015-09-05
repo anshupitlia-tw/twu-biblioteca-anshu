@@ -22,12 +22,22 @@ public class LibraryApplication {
         userInterface.print(mainMenu.getListOfMenuForDisplay());
     }
 
-    public void getUserChoice() {
-        int choice = userInterface.getMenuChoice();
+    public int getUserChoice() {
+        int choice;
+            choice = userInterface.getMenuChoice();
+            if (!mainMenu.hasMenu(choice)) {
+                userInterface.print(messages.getUXMessage("select_a_valid_option"));
+                choice = 1;
+            }
+        return choice;
+    }
+
+    public void parse(int choice) {
         if (mainMenu.getMenu(choice).equals(messages.getUXMessage("list_books"))) {
               listBooks();
         }
     }
+
     private void listBooks() {
         userInterface.print(library.getBookListForDisplay());
     }

@@ -14,7 +14,7 @@ public class UserInterface {
     public int getMenuChoice() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
-        int inputChoice = 0;
+        int inputChoice;
         try {
            input = br.readLine();
         }
@@ -26,7 +26,7 @@ public class UserInterface {
         }
         catch(NumberFormatException nfe) {
             System.out.println("NOT AN INTEGER");
-            inputChoice = 1;
+            inputChoice = 0;
         }
         return inputChoice;
     }

@@ -12,6 +12,7 @@ public class Setup {
         HashMap<String, String> setUpMessages = new HashMap<>();
         setUpMessages.put("welcome_message", "Welcome! Biblioteca at your service");
         setUpMessages.put("list_books", "List Books");
+        setUpMessages.put("select_a_valid_option", "Select a valid option!");
         Messages messages = new Messages(setUpMessages);
 
         HashMap<Integer, String> mainMenuList = new HashMap<>();
