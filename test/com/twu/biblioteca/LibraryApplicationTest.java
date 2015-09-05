@@ -35,4 +35,18 @@ public class LibraryApplicationTest {
 
         verify(userInterface, times(1)).print("Book1\nBook2");
     }
+
+    @Test
+    public void shouldDisplayTheMainMenuList() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Library library = mock(Library.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        when(mainMenu.getListOfMenuForDisplay()).thenReturn("1. List Books");
+
+        libraryApplication.listMainMenu();
+
+        verify(userInterface, times(1)).print(mainMenu.getListOfMenuForDisplay());
+    }
 }
