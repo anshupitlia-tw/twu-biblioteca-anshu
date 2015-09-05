@@ -12,6 +12,6 @@ public class Book {
     }
 
     public String getBookDetailsForDisplay() {
-       return "Anna Karenina\tLeoTolstoy\t1878";
+       return this.name + "\t" + this.author + "\t" + this.yearPublished;
     }
 }
