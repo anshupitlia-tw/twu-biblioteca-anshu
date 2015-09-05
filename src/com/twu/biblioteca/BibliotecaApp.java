@@ -7,6 +7,6 @@ public class BibliotecaApp {
         Setup setup = new Setup();
         LibraryApplication libraryApplication = setup.setTheLibraryUp();
         libraryApplication.start();
-        libraryApplication.listBooks();
+        libraryApplication.listMainMenu();
     }
 }
