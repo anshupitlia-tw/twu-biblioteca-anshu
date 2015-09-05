@@ -2,8 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.mockito.Mockito.*;
 
 public class LibraryApplicationTest {
