@@ -10,11 +10,11 @@ public class LibraryApplicationTest {
     public void shouldStartWithAWelcomeMessageAndPrintItOnTheUserInterface() {
         UserInterface ui = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Books books = mock(Books.class);
+        Library library = mock(Library.class);
 
         when(messages.getUXMessage("welcome_message")).thenReturn("Welcome! Biblioteca at your service");
 
-        LibraryApplication libraryApplication = new LibraryApplication(ui, messages, books);
+        LibraryApplication libraryApplication = new LibraryApplication(ui, messages, library);
         libraryApplication.start();
 
         verify(ui, times(1)).print("Welcome! Biblioteca at your service");
@@ -24,11 +24,11 @@ public class LibraryApplicationTest {
     public void shouldDisplayTheListOfBooksOnUserInterface() {
         UserInterface ui = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Books books = mock(Books.class);
+        Library library = mock(Library.class);
 
-        when(books.getBookListForDisplay()).thenReturn("Book1\nBook2");
+        when(library.getBookListForDisplay()).thenReturn("Book1\nBook2");
 
-        LibraryApplication libraryApplication = new LibraryApplication(ui, messages, books);
+        LibraryApplication libraryApplication = new LibraryApplication(ui, messages, library);
         libraryApplication.listBooks();
 
         verify(ui, times(1)).print("Book1\nBook2");

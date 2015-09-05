@@ -7,15 +7,15 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class BooksTest {
+public class LibraryTest {
     @Test
     public void shouldReturnTheListOfBooksForDisplay() {
         List<String> booksList = new ArrayList<>();
         booksList.add("Anna Karenina");
         booksList.add("Madame Bovary");
-        Books books = new Books(booksList);
+        Library library = new Library(booksList);
         String expectedList = "Anna Karenina\nMadame Bovary\n";
 
-        assertEquals(expectedList, books.getBookListForDisplay());
+        assertEquals(expectedList, library.getBookListForDisplay());
     }
 }

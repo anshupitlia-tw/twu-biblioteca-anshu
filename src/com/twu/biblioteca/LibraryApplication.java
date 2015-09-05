@@ -4,12 +4,12 @@ package com.twu.biblioteca;
 public class LibraryApplication {
     private UserInterface userInterface;
     private Messages messages;
-    private Books books;
+    private Library library;
 
-    public LibraryApplication(UserInterface userInterface, Messages messages, Books books) {
+    public LibraryApplication(UserInterface userInterface, Messages messages, Library library) {
         this.userInterface = userInterface;
         this.messages = messages;
-        this.books = books;
+        this.library = library;
     }
 
     public void start() {
@@ -17,6 +17,6 @@ public class LibraryApplication {
     }
 
     public void listBooks() {
-        userInterface.print(books.getBookListForDisplay());
+        userInterface.print(library.getBookListForDisplay());
     }
 }
