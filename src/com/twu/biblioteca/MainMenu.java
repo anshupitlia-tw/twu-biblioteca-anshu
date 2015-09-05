@@ -18,4 +18,8 @@ public class MainMenu {
         }
         return listOfMenus;
     }
+
+    public String getMenu(int menuNumber ) {
+        return mainMenu.get(menuNumber);
+    }
 }

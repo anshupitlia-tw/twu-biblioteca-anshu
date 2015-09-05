@@ -17,4 +17,14 @@ public class MainMenuTest {
 
         assertEquals(mainMenuToBeDisplayed, mainMenu.getListOfMenuForDisplay());
     }
+
+    @Test
+    public void shouldReturnMenuFromMenuNumber() {
+        HashMap<Integer, String> mainMenuList = new HashMap<>();
+        mainMenuList.put(1, "List Books");
+        MainMenu mainMenu = new MainMenu(mainMenuList);
+        String menu = "List Books";
+
+        assertEquals(menu, mainMenu.getMenu(1));
+    }
 }
