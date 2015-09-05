@@ -26,6 +26,7 @@ public class UserInterface {
         }
         catch(NumberFormatException nfe) {
             System.out.println("NOT AN INTEGER");
+            inputChoice = 1;
         }
         return inputChoice;
     }

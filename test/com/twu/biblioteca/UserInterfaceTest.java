@@ -9,6 +9,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class UserInterfaceTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -49,5 +52,17 @@ public class UserInterfaceTest {
         System.setIn(inContent);
         userInterface.getMenuChoice();
         assertEquals("NOT AN INTEGER\n", outContent.toString());
+    }
+
+    @Test
+    public void shouldBeAbleToCatchAnExceptionAndExitWhenUserEntersNotANumberForMenu() {
+        UserInterface userInterface = new UserInterface();
+        System system = mock(System.class);
+        String userChoice = "abc";
+        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
+        System.setIn(inContent);
+        userInterface.getMenuChoice();
+
+        verify(system, times(1)).exit(0);
     }
 }
