@@ -40,4 +40,14 @@ public class UserInterfaceTest {
 
         assertEquals(1, userInterface.getMenuChoice());
     }
+
+    @Test
+    public void shouldBeAbleToCatchAnExceptionAndPrintAMessageWhenUserEntersNotANumberForMenu() {
+        UserInterface userInterface = new UserInterface();
+        String userChoice = "abc";
+        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
+        System.setIn(inContent);
+        userInterface.getMenuChoice();
+        assertEquals("NOT AN INTEGER\n", outContent.toString());
+    }
 }
