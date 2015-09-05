@@ -1,10 +1,15 @@
 package com.twu.biblioteca;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 import static org.mockito.Mockito.*;
 
 public class LibraryApplicationTest {
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
     public void shouldStartWithAWelcomeMessageAndPrintItOnTheUserInterface() {
@@ -53,23 +58,6 @@ public class LibraryApplicationTest {
     }
 
     @Test
-    public void shouldDisplaySelectAValidOptionWhenTheOptionIsNotValid() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-
-        when(userInterface.getMenuChoice()).thenReturn(0);
-        when(mainMenu.hasMenu(0)).thenReturn(false);
-        when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
-
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.getUserChoice();
-
-        verify(userInterface, times(1)).print("Select a valid option!");
-    }
-
-    @Test
     public void shouldAskUserForInputAgainAndAgainUntilValidOptionComes() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
@@ -85,5 +73,20 @@ public class LibraryApplicationTest {
         libraryApplication.getUserChoice();
 
         verify(userInterface, times(1)).print("Select a valid option!");
+    }
+
+    @Test
+    public void shouldBeAbleToExitTheApplicationOnQuit() {
+        exit.expectSystemExitWithStatus(0);
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Library library = mock(Library.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+
+        when(mainMenu.getMenu(2)).thenReturn("Quit");
+        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
+
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        libraryApplication.parse(2);
     }
 }

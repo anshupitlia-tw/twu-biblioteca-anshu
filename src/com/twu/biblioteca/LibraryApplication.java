@@ -36,6 +36,8 @@ public class LibraryApplication {
     public void parse(int choice) {
         if (mainMenu.getMenu(choice).equals(messages.getUXMessage("list_books"))) {
               listBooks();
+        } else if (mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option"))) {
+            System.exit(0);
         }
     }
 

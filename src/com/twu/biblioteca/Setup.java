@@ -13,10 +13,12 @@ public class Setup {
         setUpMessages.put("welcome_message", "Welcome! Biblioteca at your service");
         setUpMessages.put("list_books", "List Books");
         setUpMessages.put("select_a_valid_option", "Select a valid option!");
+        setUpMessages.put("quit_option", "Quit");
         Messages messages = new Messages(setUpMessages);
 
         HashMap<Integer, String> mainMenuList = new HashMap<>();
         mainMenuList.put(1, messages.getUXMessage("list_books"));
+        mainMenuList.put(2, messages.getUXMessage("quit_option"));
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
         List<Book> listOfBooks = new ArrayList<>();
