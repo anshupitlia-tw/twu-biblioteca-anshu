@@ -24,11 +24,12 @@ public class LibraryApplication {
 
     public int getUserChoice() {
         int choice;
+        do {
             choice = userInterface.getMenuChoice();
             if (!mainMenu.hasMenu(choice)) {
                 userInterface.print(messages.getUXMessage("select_a_valid_option"));
-                choice = 1;
             }
+        }while(!mainMenu.hasMenu(choice));
         return choice;
     }
 
