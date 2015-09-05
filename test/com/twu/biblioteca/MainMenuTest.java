@@ -27,4 +27,13 @@ public class MainMenuTest {
 
         assertEquals(menu, mainMenu.getMenu(1));
     }
+
+    @Test
+    public void shouldReturnTrueIfTheMenuNumberIsValid() {
+        HashMap<Integer, String> mainMenuList = new HashMap<>();
+        mainMenuList.put(1, "List Books");
+        MainMenu mainMenu = new MainMenu(mainMenuList);
+
+        assertEquals(true, mainMenu.hasMenu(1));
+    }
 }

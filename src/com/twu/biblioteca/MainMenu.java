@@ -22,4 +22,8 @@ public class MainMenu {
     public String getMenu(int menuNumber ) {
         return mainMenu.get(menuNumber);
     }
+
+    public boolean hasMenu(int choice) {
+        return true;
+    }
 }
