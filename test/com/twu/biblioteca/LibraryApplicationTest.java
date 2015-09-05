@@ -22,21 +22,6 @@ public class LibraryApplicationTest {
     }
 
     @Test
-    public void shouldDisplayTheListOfBooksOnUserInterface() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-
-        when(library.getBookListForDisplay()).thenReturn("Book1\nBook2");
-
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.listBooks();
-
-        verify(userInterface, times(1)).print("Book1\nBook2");
-    }
-
-    @Test
     public void shouldDisplayTheMainMenuList() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
@@ -48,5 +33,23 @@ public class LibraryApplicationTest {
         libraryApplication.listMainMenu();
 
         verify(userInterface, times(1)).print(mainMenu.getListOfMenuForDisplay());
+    }
+
+    @Test
+    public void shouldDisplayTheListOfBooksOnUserInterfaceWhenUserSelectsToDisplayListBooks() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Library library = mock(Library.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+
+        when(library.getBookListForDisplay()).thenReturn("Book1\nBook2");
+        when(userInterface.getMenuChoice()).thenReturn(1);
+        when(mainMenu.getMenu(1)).thenReturn("List Books");
+        when(messages.getUXMessage("list_books")).thenReturn("List Books");
+
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        libraryApplication.getUserChoice();
+
+        verify(userInterface, times(1)).print("Book1\nBook2");
     }
 }
