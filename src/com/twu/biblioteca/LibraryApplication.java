@@ -22,7 +22,7 @@ public class LibraryApplication {
         userInterface.print(mainMenu.getListOfMenuForDisplay());
     }
 
-    public void getUserChoice() {
+    public void getUserChoiceAndDelegate() {
         int choice;
         do {
             do {

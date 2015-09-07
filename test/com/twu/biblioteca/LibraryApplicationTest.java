@@ -75,7 +75,7 @@ public class LibraryApplicationTest {
         when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
 
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.getUserChoice();
+        libraryApplication.getUserChoiceAndDelegate();
 
         verify(userInterface, times(2)).print("Select a valid option!");
         verify(libraryApplication, times(1)).delegate(1);
@@ -114,7 +114,7 @@ public class LibraryApplicationTest {
         when(mainMenu.getMenu(2)).thenReturn("Quit");
 
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.getUserChoice();
+        libraryApplication.getUserChoiceAndDelegate();
 
         verify(userInterface, times(4)).getMenuChoice();
     }
