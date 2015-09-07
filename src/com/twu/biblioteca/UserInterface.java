@@ -30,4 +30,16 @@ public class UserInterface {
         }
         return inputChoice;
     }
+
+    public String getBookName() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = "";
+        try {
+            input = br.readLine();
+        }
+        catch(IOException ioe) {
+            System.out.println("ERROR");
+        }
+        return input;
+    }
 }

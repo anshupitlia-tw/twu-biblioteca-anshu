@@ -93,4 +93,21 @@ public class ParserTest {
         AMenu assignedMenu = parser.assignADelegateMenu(2);
         assertEquals(assignedMenu.getClass(), QuitMenu.class);
     }
+
+    @Test
+    public void shouldDelegateToCheckoutMenuIfUserGoesForCheckoutOption() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Library library = mock(Library.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+
+        when(mainMenu.hasMenu(3)).thenReturn(true);
+        when(mainMenu.getMenu(3)).thenReturn("Checkout A Book");
+        when(messages.getUXMessage("checkout_book")).thenReturn("Checkout A Book");
+        when(userInterface.getBookName()).thenReturn("Anna Karenina");
+
+        AMenu assignedMenu = parser.assignADelegateMenu(3);
+        assertEquals(assignedMenu.getClass(), CheckoutBookMenu.class);
+    }
 }

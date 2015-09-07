@@ -26,7 +26,11 @@ public class Parser {
         if (isValidMenuChoice(choice)) {
             if (mainMenu.getMenu(choice).equals(messages.getUXMessage("list_books"))) {
                 menu = new ListBooksMenu(userInterface, library);
-            } else if (isQuitting(choice)) {
+            } else if (mainMenu.getMenu(choice).equals(messages.getUXMessage("checkout_book"))) {
+                String bookName = userInterface.getBookName();
+                menu = new CheckoutBookMenu(library, bookName, userInterface, messages);
+            }
+            else if (isQuitting(choice)) {
                 menu = new QuitMenu();
             }
         }

@@ -21,4 +21,35 @@ public class LibraryTest {
 
         assertEquals(expectedList, library.getBookListForDisplay());
     }
+
+    @Test
+    public void shouldReturnTrueIfBookFoundInLibraryAndCheckedOut() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+
+        Library library = new Library(booksList);
+        assertEquals(true, library.findTheBookAndCheckout("Anna Karenina"));
+    }
+
+    @Test
+    public void shouldReturnFalseIfBookFoundInLibraryButCanNotBeCheckedOutBecauseItIsAlreadyCheckedOut() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+
+        Library library = new Library(booksList);
+        library.findTheBookAndCheckout("Anna Karenina");
+        assertEquals(false, library.findTheBookAndCheckout("Anna Karenina"));
+    }
+
+    @Test
+    public void shouldReturnFalseIfBookNotFoundInTheLibrary() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+
+        Library library = new Library(booksList);
+        assertEquals(false, library.findTheBookAndCheckout("Any other book"));
+    }
 }

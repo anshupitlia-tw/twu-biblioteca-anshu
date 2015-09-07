@@ -6,12 +6,11 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class UserInterfaceTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -52,5 +51,15 @@ public class UserInterfaceTest {
         System.setIn(inContent);
         userInterface.getMenuChoice();
         assertEquals("NOT AN INTEGER\n", outContent.toString());
+    }
+
+    @Test
+    public void shouldBeAbleToReadTheBookNameProvidedByUser() {
+        UserInterface userInterface = new UserInterface();
+        String userChoice = "Anna Karenina";
+        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
+        System.setIn(inContent);
+
+        assertEquals("Anna Karenina", userInterface.getBookName());
     }
 }

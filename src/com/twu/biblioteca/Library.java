@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.List;
 
 public class Library {
-    List<Book> books;
+    private List<Book> books;
 
     public Library(List<Book> books) {
         this.books = books;
@@ -15,5 +15,17 @@ public class Library {
             bookList += book.getBookDetailsForDisplay() + "\n";
         }
         return bookList;
+    }
+
+    public boolean findTheBookAndCheckout(String bookName) {
+        boolean found = false, checkedOut = false;
+        for (Book book: books) {
+            if (book.match(bookName)) {
+                found = true;
+                checkedOut = book.checkOut();
+                break;
+            }
+        }
+        return found && checkedOut;
     }
 }
