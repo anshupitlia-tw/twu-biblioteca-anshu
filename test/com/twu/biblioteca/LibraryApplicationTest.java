@@ -58,24 +58,6 @@ public class LibraryApplicationTest {
     }
 
     @Test
-    public void shouldAskUserForInputAgainAndAgainUntilValidOptionComes() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-
-        when(userInterface.getMenuChoice()).thenReturn(0).thenReturn(1);
-        when(mainMenu.hasMenu(0)).thenReturn(false);
-        when(mainMenu.hasMenu(1)).thenReturn(true);
-        when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
-
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.getUserChoice();
-
-        verify(userInterface, times(1)).print("Select a valid option!");
-    }
-
-    @Test
     public void shouldBeAbleToExitTheApplicationOnQuit() {
         exit.expectSystemExitWithStatus(0);
         UserInterface userInterface = mock(UserInterface.class);
