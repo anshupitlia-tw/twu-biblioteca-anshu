@@ -4,6 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class LibraryApplicationTest {
@@ -41,81 +42,77 @@ public class LibraryApplicationTest {
     }
 
     @Test
-    public void shouldDisplayTheListOfBooksOnUserInterfaceWhenUserSelectsToDisplayListBooks() {
+    public void shouldReturnTrueIfNeedToGetUserChoiceAgainOnInvalidChoice() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-
-        when(library.getBookListForDisplay()).thenReturn("Book1\nBook2");
-        when(mainMenu.getMenu(1)).thenReturn("List Books");
-        when(messages.getUXMessage("list_books")).thenReturn("List Books");
-
+        Parser parser = mock(Parser.class);
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.delegate(1);
 
-        verify(userInterface, times(1)).print("Book1\nBook2");
+        when(parser.isValidMenuChoice(0)).thenReturn(false);
+
+        assertEquals(true, libraryApplication.shouldGetChoiceAgain(0, parser));
     }
 
     @Test
-    public void shouldAskUserForInputAgainAndAgainUntilValidOptionComes() {
-        exit.expectSystemExitWithStatus(0);
+    public void shouldReturnTrueIfNeedToGetUserChoiceAgainIfNotQuitting() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-
-        when(userInterface.getMenuChoice()).thenReturn(0).thenReturn(1).thenReturn(2);
-        when(mainMenu.hasMenu(0)).thenReturn(false);
-        when(mainMenu.hasMenu(1)).thenReturn(true);
-        when(mainMenu.hasMenu(2)).thenReturn(true);
-        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
-        when(mainMenu.getMenu(1)).thenReturn("List Books");
-        when(mainMenu.getMenu(2)).thenReturn("Quit");
-        when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
-
+        Parser parser = mock(Parser.class);
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.getUserChoiceAndDelegate();
 
-        verify(userInterface, times(2)).print("Select a valid option!");
-        verify(libraryApplication, times(1)).delegate(1);
-        verify(libraryApplication, times(1)).delegate(2);
+        when(parser.isQuitting(1)).thenReturn(false);
+
+        assertEquals(true, libraryApplication.shouldGetChoiceAgain(1, parser));
     }
 
     @Test
-    public void shouldBeAbleToExitTheApplicationOnQuit() {
-        exit.expectSystemExitWithStatus(0);
+    public void shouldReturnFalseIfNoNeedToGetUserChoiceAgainIfQuitting() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-
-        when(mainMenu.getMenu(2)).thenReturn("Quit");
-        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
-
+        Parser parser = mock(Parser.class);
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.delegate(2);
+
+        when(parser.isQuitting(2)).thenReturn(true);
+
+        assertEquals(true, libraryApplication.shouldGetChoiceAgain(2, parser));
     }
 
     @Test
-    public void shouldTakeInputFromUserForMenuUntilQuitIsSelected() {
-        exit.expectSystemExitWithStatus(0);
+    public void shouldAssignAValidDelegateMenuWithTheHelpOfParserAndExecuteIt() {
         UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
-
-        when(userInterface.getMenuChoice()).thenReturn(0).thenReturn(1).thenReturn(1).thenReturn(2);
-        when(mainMenu.hasMenu(0)).thenReturn(false);
-        when(mainMenu.hasMenu(1)).thenReturn(true);
-        when(mainMenu.hasMenu(2)).thenReturn(true);
-        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
-        when(mainMenu.getMenu(1)).thenReturn("List Books");
-        when(mainMenu.getMenu(2)).thenReturn("Quit");
-
+        Parser parser = mock(Parser.class);
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.getUserChoiceAndDelegate();
+        ListBooksMenu listBooksMenu = mock(ListBooksMenu.class);
 
-        verify(userInterface, times(4)).getMenuChoice();
+        when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
+        libraryApplication.executeMenu(parser, 1);
+
+        verify(parser, times(1)).assignADelegateMenu(1);
+        verify(listBooksMenu, times(1)).execute();
+    }
+
+    @Test
+    public void shouldGetChoiceAndAskForExecution() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        ListBooksMenu listBooksMenu = mock(ListBooksMenu.class);
+
+        when(userInterface.getMenuChoice()).thenReturn(1);
+        when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
+
+        assertEquals(1, libraryApplication.getChoiceAndExecute(parser));
     }
 }

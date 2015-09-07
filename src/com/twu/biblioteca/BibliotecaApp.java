@@ -4,10 +4,10 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        Setup setup = new Setup();
-        LibraryApplication libraryApplication = setup.setTheLibraryUp();
+        EstablishLibrary setup = new EstablishLibrary();
+        LibraryApplication libraryApplication = setup.getTheEstablishedLibrary();
         libraryApplication.start();
         libraryApplication.listMainMenu();
-        libraryApplication.getUserChoiceAndDelegate();
+        libraryApplication.controlUserChoiceAndExecution();
     }
 }

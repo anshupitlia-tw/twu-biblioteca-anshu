@@ -22,28 +22,27 @@ public class LibraryApplication {
         userInterface.print(mainMenu.getListOfMenuForDisplay());
     }
 
-    public void getUserChoiceAndDelegate() {
+    public void controlUserChoiceAndExecution() {
         int choice;
+        Parser parser = new Parser(userInterface, messages, library, mainMenu);
         do {
-            do {
-                choice = userInterface.getMenuChoice();
-                if (!mainMenu.hasMenu(choice)) {
-                    userInterface.print(messages.getUXMessage("select_a_valid_option"));
-                }
-               }while(!mainMenu.hasMenu(choice));
-            delegate(choice);
-        }while( !mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option")));
+            choice = getChoiceAndExecute(parser);
+        }while(shouldGetChoiceAgain(choice, parser));
     }
 
-    public void delegate(int choice) {
-        if (mainMenu.getMenu(choice).equals(messages.getUXMessage("list_books"))) {
-              listBooks();
-        } else if (mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option"))) {
-            System.exit(0);
-        }
+    public int getChoiceAndExecute(Parser parser) {
+        int choice;
+        choice = userInterface.getMenuChoice();
+        executeMenu(parser, choice);
+        return choice;
     }
 
-    private void listBooks() {
-        userInterface.print(library.getBookListForDisplay());
+    public void executeMenu(Parser parser, int choice) {
+        AMenu assignedMenu = parser.assignADelegateMenu(choice);
+        assignedMenu.execute();
+    }
+
+    public boolean shouldGetChoiceAgain(int choice, Parser parser) {
+        return !parser.isValidMenuChoice(choice) || !parser.isQuitting(choice);
     }
 }
