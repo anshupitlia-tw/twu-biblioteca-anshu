@@ -59,20 +59,27 @@ public class LibraryApplicationTest {
 
     @Test
     public void shouldAskUserForInputAgainAndAgainUntilValidOptionComes() {
+        exit.expectSystemExitWithStatus(0);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
 
-        when(userInterface.getMenuChoice()).thenReturn(0).thenReturn(1);
+        when(userInterface.getMenuChoice()).thenReturn(0).thenReturn(1).thenReturn(2);
         when(mainMenu.hasMenu(0)).thenReturn(false);
         when(mainMenu.hasMenu(1)).thenReturn(true);
+        when(mainMenu.hasMenu(2)).thenReturn(true);
+        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
+        when(mainMenu.getMenu(1)).thenReturn("List Books");
+        when(mainMenu.getMenu(2)).thenReturn("Quit");
         when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
 
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
         libraryApplication.getUserChoice();
 
-        verify(userInterface, times(1)).print("Select a valid option!");
+        verify(userInterface, times(2)).print("Select a valid option!");
+        verify(libraryApplication, times(1)).delegate(1);
+        verify(libraryApplication, times(1)).delegate(2);
     }
 
     @Test
@@ -92,6 +99,7 @@ public class LibraryApplicationTest {
 
     @Test
     public void shouldTakeInputFromUserForMenuUntilQuitIsSelected() {
+        exit.expectSystemExitWithStatus(0);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);

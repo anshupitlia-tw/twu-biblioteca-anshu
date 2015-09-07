@@ -22,15 +22,17 @@ public class LibraryApplication {
         userInterface.print(mainMenu.getListOfMenuForDisplay());
     }
 
-    public int getUserChoice() {
+    public void getUserChoice() {
         int choice;
         do {
-            choice = userInterface.getMenuChoice();
-            if (!mainMenu.hasMenu(choice)) {
-                userInterface.print(messages.getUXMessage("select_a_valid_option"));
-            }
-        }while(!mainMenu.hasMenu(choice) || !mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option")));
-        return choice;
+            do {
+                choice = userInterface.getMenuChoice();
+                if (!mainMenu.hasMenu(choice)) {
+                    userInterface.print(messages.getUXMessage("select_a_valid_option"));
+                }
+               }while(!mainMenu.hasMenu(choice));
+            delegate(choice);
+        }while( !mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option")));
     }
 
     public void delegate(int choice) {
