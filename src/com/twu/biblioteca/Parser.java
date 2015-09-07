@@ -27,6 +27,7 @@ public class Parser {
             if (mainMenu.getMenu(choice).equals(messages.getUXMessage("list_books"))) {
                 menu = new ListBooksMenu(userInterface, library);
             } else if (mainMenu.getMenu(choice).equals(messages.getUXMessage("checkout_book"))) {
+                userInterface.print(messages.getUXMessage("enter_book_name"));
                 String bookName = userInterface.getBookName();
                 menu = new CheckoutBookMenu(library, bookName, userInterface, messages);
             }

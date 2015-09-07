@@ -24,6 +24,7 @@ public class EstablishLibrary {
         setUpMessages.put("checkout_book", "Checkout A Book");
         setUpMessages.put("successful_checkout", "Thank you! Enjoy the book");
         setUpMessages.put("unsuccessful_checkout", "That book is not available. Please select a different book, or fix the spelling error");
+        setUpMessages.put("enter_book_name", "Enter the book name");
         Messages messages = new Messages(setUpMessages);
         defaultConfiguration.put("messages", messages);
     }
