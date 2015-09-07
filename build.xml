@@ -32,6 +32,7 @@
     </target>
 
     <target name="build-jar" depends="build">
+        <jacoco:coverage>
         <jar destfile="lib/${project.name}.jar"
              basedir="out"
              excludes="**/Test.class">
@@ -40,6 +41,7 @@
             </manifest>
 
         </jar>
+        </jacoco:coverage>
     </target>
 
     <target name="run" depends="build-jar">
