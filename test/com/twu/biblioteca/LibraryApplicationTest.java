@@ -52,7 +52,7 @@ public class LibraryApplicationTest {
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
 
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.parse(1);
+        libraryApplication.delegate(1);
 
         verify(userInterface, times(1)).print("Book1\nBook2");
     }
@@ -87,6 +87,27 @@ public class LibraryApplicationTest {
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-        libraryApplication.parse(2);
+        libraryApplication.delegate(2);
+    }
+
+    @Test
+    public void shouldTakeInputFromUserForMenuUntilQuitIsSelected() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Library library = mock(Library.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+
+        when(userInterface.getMenuChoice()).thenReturn(0).thenReturn(1).thenReturn(1).thenReturn(2);
+        when(mainMenu.hasMenu(0)).thenReturn(false);
+        when(mainMenu.hasMenu(1)).thenReturn(true);
+        when(mainMenu.hasMenu(2)).thenReturn(true);
+        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
+        when(mainMenu.getMenu(1)).thenReturn("List Books");
+        when(mainMenu.getMenu(2)).thenReturn("Quit");
+
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        libraryApplication.getUserChoice();
+
+        verify(userInterface, times(4)).getMenuChoice();
     }
 }

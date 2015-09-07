@@ -29,11 +29,11 @@ public class LibraryApplication {
             if (!mainMenu.hasMenu(choice)) {
                 userInterface.print(messages.getUXMessage("select_a_valid_option"));
             }
-        }while(!mainMenu.hasMenu(choice));
+        }while(!mainMenu.hasMenu(choice) || !mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option")));
         return choice;
     }
 
-    public void parse(int choice) {
+    public void delegate(int choice) {
         if (mainMenu.getMenu(choice).equals(messages.getUXMessage("list_books"))) {
               listBooks();
         } else if (mainMenu.getMenu(choice).equals(messages.getUXMessage("quit_option"))) {
