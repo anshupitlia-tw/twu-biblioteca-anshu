@@ -1,34 +1,53 @@
 <?xml version = "1.0"?>
 
-<project name="Biblioteca" default="report" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+<project name="Biblioteca" default="coverage" basedir=".">
 
-    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-        <classpath path="lib/jacocoant.jar"/>
-    </taskdef>
 
     <property name = "project.name" value="Biblioteca" />
     <property name = "main.name" value="BibliotecaApp" />
     <property name = "package.name" value="com.twu.biblioteca" />
 
+    <path id="cobertura.classpath">
+        <fileset dir="lib/cobertura-2.1.1">
+            <include name="cobertura*.jar" />
+            <include name="lib/**/*.jar" />
+        </fileset>
+    </path>
+
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
+
     <target name="build" depends="clean">
         <mkdir dir="out"/>
-        <javac destdir="out">
+        <mkdir dir="instrumented"/>
+        <mkdir dir="reports"/>
+        <javac destdir="out" debug="true" includeantruntime="false">
             <src path="src;test"/>
             <classpath location="lib/junit-4.12.jar"/>
             <classpath location="lib/hamcrest-all-1.1.jar"/>
             <classpath location="lib/mockito-all-1.9.5.jar"/>
-            <classpath location="lib/jacocoagent.jar"/>
-            <classpath location="lib/jacocoant.jar"/>
-            <classpath location="lib/org.jacoco.agent-0.7.5.201505241946.jar"/>
-            <classpath location="lib/org.jacoco.ant-0.7.5.201505241946.jar"/>
-            <classpath location="lib/org.jacoco.core-0.7.5.201505241946.jar"/>
-            <classpath location="lib/org.jacoco.report-0.7.5.201505241946.jar"/>
+            <classpath location="lib/cobertura-2.1.1/lib/cobertura-2.1.1.jar"/>
             <classpath location="lib/system-rules-1.12.0.jar"/>
         </javac>
     </target>
 
+    <target name="instrument" depends="build">
+        <delete file="cobertura.ser" />
+        <delete dir="./instrumented"/>
+        <cobertura-instrument todir="./instrumented">
+            <ignore regex="org.slf4j.*"/>
+            <fileset dir="./out">
+                <include name="**/*.class"/>
+                <exclude name="**/*Test*.class"/>
+            </fileset>
+        </cobertura-instrument>
+    </target>
+
     <target name="clean" description="clean previous output directory">
         <delete dir="out"/>
+        <delete dir="reports"/>
+        <delete dir="instrumented"/>
+        <delete file="cobertura.log"/>
+        <delete file="cobertura.ser"/>
     </target>
 
     <target name="build-jar" depends="build">
@@ -38,59 +57,60 @@
             <manifest>
                 <attribute name="Main-Class" value="${package.name}.${main.name}"/>
             </manifest>
-
         </jar>
     </target>
 
     <target name="run" depends="build-jar">
-        <jacoco:coverage>
         <java fork="true" failonerror="yes" classname="${package.name}.${main.name}">
             <classpath>
                 <path location="lib/${project.name}.jar"/>
             </classpath>
         </java>
-        </jacoco:coverage>
     </target>
 
 
     <target name="runjUnit" depends="build" description="runs the junit test cases">
-        <jacoco:coverage>
         <junit printsummary="yes" haltonfailure="true" fork="true" forkmode="once" showoutput="true">
-            <classpath>
-                <pathelement location="lib/junit-4.12.jar"/>
-                <pathelement location="lib/hamcrest-all-1.1.jar"/>
-                <pathelement location="lib/mockito-all-1.9.5.jar"/>
-                <pathelement location="lib/system-rules-1.12.0.jar"/>
-                <pathelement location="out"/>
-            </classpath>
-            <batchtest fork="yes">
+                <classpath location="./instrumented"/>
+                <classpath location="lib/junit-4.12.jar"/>
+                <classpath location="lib/hamcrest-all-1.1.jar"/>
+                <classpath location="lib/mockito-all-1.9.5.jar"/>
+                <classpath location="lib/system-rules-1.12.0.jar"/>
+                <classpath location="out"/>
+                <classpath refid="cobertura.classpath"/>
+                <formatter type="xml"/>
+
+            <batchtest todir="reports" fork="yes">
                 <fileset dir="test">
                     <include name="**/*Test*.java" />
                 </fileset>
             </batchtest>
         </junit>
-        </jacoco:coverage>
+        <junitreport todir="reports">
+            <fileset dir="reports">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="reports"/>
+        </junitreport>
     </target>
 
-    <target name="report" depends="runjUnit">
-    <jacoco:report>
-
-        <executiondata>
-            <file file="jacoco.exec"/>
-        </executiondata>
-
-        <structure name="Biblioteca Project">
-            <classfiles>
-                <fileset dir="out"/>
-            </classfiles>
-            <sourcefiles encoding="UTF-8">
-                <fileset dir="src"/>
-            </sourcefiles>
-        </structure>
-
-        <html destdir="report"/>
-
-    </jacoco:report>
+    <target name="coverage-report">
+        <cobertura-report srcdir="src" destdir="reports" format="xml" />
     </target>
+
+    <target name="summary-coverage-report">
+        <cobertura-report srcdir="src" destdir="reports" format="summaryXml" />
+    </target>
+
+    <target name="alternate-coverage-report">
+        <cobertura-report destdir="reports">
+            <fileset dir="src">
+                <include name="**/*.java"/>
+            </fileset>
+        </cobertura-report>
+    </target>
+
+    <target name="coverage" depends="build, instrument, runjUnit, coverage-report, summary-coverage-report, alternate-coverage-report"/>
+
 </project>
 
