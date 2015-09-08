@@ -3,5 +3,6 @@ Biblioteca.iml
 .DS_Store
 .idea
 lib/Biblioteca.jar
-report/
-jacoco.exec
+reports/
+cobertura.ser
+/instrumented
