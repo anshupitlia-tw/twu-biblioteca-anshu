@@ -56,34 +56,6 @@ public class LibraryApplicationTest {
     }
 
     @Test
-    public void shouldReturnTrueIfNeedToGetUserChoiceAgainIfNotQuitting() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-
-        when(parser.isQuitting(1)).thenReturn(false);
-
-        assertEquals(true, libraryApplication.shouldGetChoiceAgain(1, parser));
-    }
-
-    @Test
-    public void shouldReturnFalseIfNoNeedToGetUserChoiceAgainIfQuitting() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
-
-        when(parser.isQuitting(2)).thenReturn(true);
-
-        assertEquals(true, libraryApplication.shouldGetChoiceAgain(2, parser));
-    }
-
-    @Test
     public void shouldAssignAValidDelegateMenuWithTheHelpOfParserAndExecuteIt() {
         UserInterface userInterface = mock(UserInterface.class);
         Library library = mock(Library.class);
