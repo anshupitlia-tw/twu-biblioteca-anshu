@@ -1,13 +1,13 @@
 package com.twu.biblioteca;
 
 public class Book {
-    private String name;
+    private String title;
     private String author;
     private short yearPublished;
     private boolean isAvailable;
 
     public Book(String name, String author, short yearPublished) {
-        this.name = name;
+        this.title = name;
         this.author = author;
         this.yearPublished = yearPublished;
         isAvailable = true;
@@ -15,17 +15,17 @@ public class Book {
 
     public String getBookDetailsForDisplay() {
         if (isAvailable) {
-            return this.name + "\t" + this.author + "\t" + this.yearPublished;
+            return this.title + "\t" + this.author + "\t" + this.yearPublished+ "\n";
         }
         else return "";
     }
 
     public boolean match(String bookName) {
-        return name.equals(bookName);
+        return title.equals(bookName);
     }
 
     public boolean checkOut() {
-        if (isAvailable == true) {
+        if (isAvailable) {
             isAvailable = false;
             return true;
         } else

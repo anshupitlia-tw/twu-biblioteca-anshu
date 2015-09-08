@@ -12,7 +12,7 @@ public class Library {
     public String getBookListForDisplay() {
         String bookList = "NAME\tAUTHOR\tYEAR PUBLISHED\n";
         for(Book book: books) {
-            bookList += book.getBookDetailsForDisplay() + "\n";
+            bookList += book.getBookDetailsForDisplay();
         }
         return bookList;
     }

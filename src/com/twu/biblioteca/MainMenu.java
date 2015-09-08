@@ -14,7 +14,7 @@ public class MainMenu {
         String listOfMenus = "";
         for (Entry<Integer, String> menu: mainMenu.entrySet()) {
             listOfMenus += menu.getKey()+ ". ";
-            listOfMenus += menu.getValue();
+            listOfMenus += menu.getValue() +"\n";
         }
         return listOfMenus;
     }

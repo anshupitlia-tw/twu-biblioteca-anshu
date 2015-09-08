@@ -13,7 +13,7 @@ public class MainMenuTest {
         HashMap<Integer, String> mainMenuList = new HashMap<>();
         mainMenuList.put(1, "List Books");
         MainMenu mainMenu = new MainMenu(mainMenuList);
-        String mainMenuToBeDisplayed = "1. List Books";
+        String mainMenuToBeDisplayed = "1. List Books\n";
 
         assertEquals(mainMenuToBeDisplayed, mainMenu.getListOfMenuForDisplay());
     }
