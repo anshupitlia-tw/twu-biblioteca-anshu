@@ -110,4 +110,21 @@ public class ParserTest {
         AMenu assignedMenu = parser.assignADelegateMenu(3);
         assertEquals(assignedMenu.getClass(), CheckoutBookMenu.class);
     }
+
+    @Test
+    public void shouldDelegateToReturnABookMenuIfUserGoesForReturnABookOption() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Library library = mock(Library.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+
+        when(mainMenu.hasMenu(4)).thenReturn(true);
+        when(mainMenu.getMenu(4)).thenReturn("Return A Book");
+        when(messages.getUXMessage("return_book")).thenReturn("Return A Book");
+        when(userInterface.getBookName()).thenReturn("Anna Karenina");
+
+        AMenu assignedMenu = parser.assignADelegateMenu(4);
+        assertEquals(assignedMenu.getClass(), ReturnABookMenu.class);
+    }
 }

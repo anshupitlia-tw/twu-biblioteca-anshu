@@ -28,4 +28,16 @@ public class Library {
         }
         return found && checkedOut;
     }
+
+    public boolean returnBook(String bookName) {
+        boolean found = false, returned = false;
+        for (Book book: books) {
+            if (book.match(bookName)) {
+                found = true;
+                returned = book.returnn();
+                break;
+            }
+        }
+        return found && returned;
+    }
 }

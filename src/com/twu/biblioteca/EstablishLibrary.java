@@ -22,9 +22,12 @@ public class EstablishLibrary {
         setUpMessages.put("select_a_valid_option", "Select a valid option!");
         setUpMessages.put("quit_option", "Quit");
         setUpMessages.put("checkout_book", "Checkout A Book");
+        setUpMessages.put("return_book", "Return A Book");
         setUpMessages.put("successful_checkout", "Thank you! Enjoy the book");
         setUpMessages.put("unsuccessful_checkout", "That book is not available. Please select a different book, or fix the spelling error");
         setUpMessages.put("enter_book_name", "Enter the book name");
+        setUpMessages.put("successful_return", "Thank you for returning the book.");
+        setUpMessages.put("unsuccessful_return", "That is not a valid book to return.");
         Messages messages = new Messages(setUpMessages);
         defaultConfiguration.put("messages", messages);
     }
@@ -35,6 +38,7 @@ public class EstablishLibrary {
         mainMenuList.put(1, messages.getUXMessage("list_books"));
         mainMenuList.put(2, messages.getUXMessage("quit_option"));
         mainMenuList.put(3, messages.getUXMessage("checkout_book"));
+        mainMenuList.put(4, messages.getUXMessage("return_book"));
         MainMenu mainMenu = new MainMenu(mainMenuList);
         defaultConfiguration.put("main_menu", mainMenu);
     }

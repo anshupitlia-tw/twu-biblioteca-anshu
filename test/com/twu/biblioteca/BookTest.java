@@ -60,4 +60,12 @@ public class BookTest {
 
         assertEquals("", book.getBookDetailsForDisplay());
     }
+
+    @Test
+    public void shouldBeAbleToGetReturned() {
+        Book book = new Book("Anna Karenina", "Leo Tolstoy", (short) 1878);
+        book.checkOut();
+
+        assertEquals(true, book.returnn());
+    }
 }

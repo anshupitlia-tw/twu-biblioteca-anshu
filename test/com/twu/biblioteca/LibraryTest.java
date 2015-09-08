@@ -26,7 +26,7 @@ public class LibraryTest {
     public void shouldReturnTrueIfBookFoundInLibraryAndCheckedOut() {
         List<Book> booksList = new ArrayList<>();
         booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
-        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
         assertEquals(true, library.findTheBookAndCheckout("Anna Karenina"));
@@ -36,7 +36,7 @@ public class LibraryTest {
     public void shouldReturnFalseIfBookFoundInLibraryButCanNotBeCheckedOutBecauseItIsAlreadyCheckedOut() {
         List<Book> booksList = new ArrayList<>();
         booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
-        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
         library.findTheBookAndCheckout("Anna Karenina");
@@ -47,9 +47,35 @@ public class LibraryTest {
     public void shouldReturnFalseIfBookNotFoundInTheLibrary() {
         List<Book> booksList = new ArrayList<>();
         booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
-        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
         assertEquals(false, library.findTheBookAndCheckout("Any other book"));
+    }
+
+    @Test
+    public void shouldBeAbleToReturnABook() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+
+        Library library = new Library(booksList);
+        assertEquals(true, library.returnBook("Anna Karenina"));
+    }
+
+    @Test
+    public void shouldShowTheBookReturnedInTheListOfBooks() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+
+        Library library = new Library(booksList);
+        library.findTheBookAndCheckout("Anna Karenina");
+        library.returnBook("Anna Karenina");
+        String expectedList = "NAME\tAUTHOR\tYEAR PUBLISHED\n" +
+                "Anna Karenina\tLeo Tolstoy\t1878\n" +
+                "Madame Bovary\tGustave Flaubert\t1856\n";
+
+        assertEquals(expectedList, library.getBookListForDisplay());
     }
 }

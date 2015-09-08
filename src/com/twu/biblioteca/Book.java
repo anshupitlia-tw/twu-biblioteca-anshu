@@ -33,4 +33,14 @@ public class Book {
             return false;
         }
     }
+
+    public boolean returnn() {
+        if (!isAvailable) {
+            isAvailable = true;
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
 }
