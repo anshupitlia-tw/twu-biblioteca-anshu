@@ -27,6 +27,6 @@ public class Parser {
     }
 
     public boolean isQuitting(int choice) {
-        return mainMenu.getMenu(choice).getName().equals(messages.getUXMessage("quit_option"));
+        return mainMenu.getMenu(choice).getClass().equals(QuitMenu.class);
     }
 }
