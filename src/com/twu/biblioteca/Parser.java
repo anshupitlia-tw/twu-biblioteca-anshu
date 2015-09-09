@@ -23,17 +23,17 @@ public class Parser {
 
     public AMenu assignADelegateMenu(int choice) {
         AMenu menu = new InvalidMenu(userInterface, messages);
-        if (isValidMenuChoice(choice)) {
-            if (isListBooks(choice)) {
+        if (!isValidMenuChoice(choice))
+            return menu;
+        if (isListBooks(choice)) {
                 menu = new ListBooksMenu(userInterface, library);
-            } else if (isCheckoutBook(choice)) {
+        } else if (isCheckoutBook(choice)) {
                 menu = new CheckoutBookMenu(library, userInterface, messages);
-            } else if (isReturnBook(choice)) {
+        } else if (isReturnBook(choice)) {
                 menu = new ReturnABookMenu(library, userInterface, messages);
-            }
+        }
             else if (isQuitting(choice)) {
                 menu = new QuitMenu();
-            }
         }
         return menu;
     }
