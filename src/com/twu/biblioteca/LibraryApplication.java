@@ -5,8 +5,9 @@ public class LibraryApplication {
     private UserInterface userInterface;
     private Messages messages;
     private MainMenu mainMenu;
+    private Parser parser;
 
-    public LibraryApplication(UserInterface userInterface, Messages messages, Library library, MainMenu mainMenu) {
+    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu) {
         this.userInterface = userInterface;
         this.messages = messages;
         this.mainMenu = mainMenu;
@@ -20,18 +21,18 @@ public class LibraryApplication {
         userInterface.print(mainMenu.getListOfMenuForDisplay());
     }
 
-    public void controlUserChoiceAndExecution() {
+    public void controlUserChoice() {
         int choice;
         Parser parser = new Parser(userInterface, messages, mainMenu);
         do {
-            choice = getChoiceAndExecute(parser);
+            choice = getUserChoice();
+            executeMenu(parser, choice);
         }while(shouldGetChoiceAgain(choice, parser));
     }
 
-    public int getChoiceAndExecute(Parser parser) {
+    public int getUserChoice() {
         int choice;
         choice = userInterface.getMenuChoice();
-        executeMenu(parser, choice);
         return choice;
     }
 

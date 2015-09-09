@@ -66,7 +66,7 @@ public class EstablishLibrary {
     }
 
     public LibraryApplication getTheEstablishedLibrary() {
-        LibraryApplication libraryApplication = new LibraryApplication((UserInterface) defaultConfiguration.get("user_interface"), (Messages) defaultConfiguration.get("messages"), (Library) defaultConfiguration.get("library"), (MainMenu) defaultConfiguration.get("main_menu"));
+        LibraryApplication libraryApplication = new LibraryApplication((UserInterface) defaultConfiguration.get("user_interface"), (Messages) defaultConfiguration.get("messages"), (MainMenu) defaultConfiguration.get("main_menu"));
         return libraryApplication;
     }
 }

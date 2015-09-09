@@ -16,12 +16,11 @@ public class LibraryApplicationTest {
     public void shouldStartWithAWelcomeMessageAndPrintItOnTheUserInterface() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
 
         when(messages.getUXMessage("welcome_message")).thenReturn("Welcome! Biblioteca at your service");
 
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
         libraryApplication.start();
 
         verify(userInterface, times(1)).print("Welcome! Biblioteca at your service");
@@ -31,9 +30,8 @@ public class LibraryApplicationTest {
     public void shouldDisplayTheMainMenuList() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
         when(mainMenu.getListOfMenuForDisplay()).thenReturn("1. List Books");
 
         libraryApplication.listMainMenu();
@@ -45,10 +43,9 @@ public class LibraryApplicationTest {
     public void shouldReturnTrueIfNeedToGetUserChoiceAgainOnInvalidChoice() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
 
         when(parser.isValidMenuChoice(0)).thenReturn(false);
 
@@ -58,11 +55,10 @@ public class LibraryApplicationTest {
     @Test
     public void shouldAssignAValidDelegateMenuWithTheHelpOfParserAndExecuteIt() {
         UserInterface userInterface = mock(UserInterface.class);
-        Library library = mock(Library.class);
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
         ListBooksMenu listBooksMenu = mock(ListBooksMenu.class);
 
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
@@ -75,16 +71,15 @@ public class LibraryApplicationTest {
     @Test
     public void shouldGetChoiceAndAskForExecution() {
         UserInterface userInterface = mock(UserInterface.class);
-        Library library = mock(Library.class);
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, library, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
         ListBooksMenu listBooksMenu = mock(ListBooksMenu.class);
 
         when(userInterface.getMenuChoice()).thenReturn(1);
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
 
-        assertEquals(1, libraryApplication.getChoiceAndExecute(parser));
+        assertEquals(1, libraryApplication.getUserChoice());
     }
 }

@@ -8,6 +8,6 @@ public class BibliotecaApp {
         LibraryApplication libraryApplication = setup.getTheEstablishedLibrary();
         libraryApplication.start();
         libraryApplication.listMainMenu();
-        libraryApplication.controlUserChoiceAndExecution();
+        libraryApplication.controlUserChoice();
     }
 }
