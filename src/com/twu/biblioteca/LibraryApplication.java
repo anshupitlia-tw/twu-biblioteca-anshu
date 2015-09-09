@@ -26,20 +26,16 @@ public class LibraryApplication {
         int choice;
         do {
             choice = getUserChoice();
-            executeMenu(parser, choice);
-        }while(shouldGetChoiceAgain(choice, parser));
+            executeMenu(choice);
+        }while(parser.isNotTheEndOfParsing(choice));
     }
 
     public int getUserChoice() {
         return userInterface.getMenuChoice();
     }
 
-    public void executeMenu(Parser parser, int choice) {
+    public void executeMenu(int choice) {
         MenuItem assignedMenuItem = parser.assignADelegateMenu(choice);
         assignedMenuItem.execute();
-    }
-
-    public boolean shouldGetChoiceAgain(int choice, Parser parser) {
-        return !parser.isValidMenuChoice(choice) || !parser.isQuitting(choice);
     }
 }

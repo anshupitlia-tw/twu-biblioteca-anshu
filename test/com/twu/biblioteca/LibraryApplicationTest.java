@@ -42,19 +42,6 @@ public class LibraryApplicationTest {
     }
 
     @Test
-    public void shouldReturnTrueIfNeedToGetUserChoiceAgainOnInvalidChoice() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
-
-        when(parser.isValidMenuChoice(0)).thenReturn(false);
-
-        assertEquals(true, libraryApplication.shouldGetChoiceAgain(0, parser));
-    }
-
-    @Test
     public void shouldAssignAValidDelegateMenuWithTheHelpOfParserAndExecuteIt() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
@@ -64,7 +51,7 @@ public class LibraryApplicationTest {
         ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
-        libraryApplication.executeMenu(parser, 1);
+        libraryApplication.executeMenu(1);
 
         verify(parser, times(1)).assignADelegateMenu(1);
         verify(listBooksMenu, times(1)).execute();
@@ -83,5 +70,39 @@ public class LibraryApplicationTest {
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
 
         assertEquals(1, libraryApplication.getUserChoice());
+    }
+
+    @Test
+    public void shouldProperlyGetUserChoiceUntilQuitOrInvalidChoiceAndExecuteOnValidity() {
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
+        ListBooksMenuItem listBooksMenuItem = mock(ListBooksMenuItem.class);
+        QuitMenuItem quitMenuItem = mock(QuitMenuItem.class);
+        CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
+        InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
+
+        when(userInterface.getMenuChoice()).thenReturn(1).thenReturn(3).thenReturn(6).thenReturn(2);
+        when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenuItem);
+        when(parser.assignADelegateMenu(2)).thenReturn(quitMenuItem);
+        when(parser.assignADelegateMenu(3)).thenReturn(checkoutBookMenuItem);
+        when(parser.assignADelegateMenu(6)).thenReturn(invalidMenuItem);
+
+        when(parser.isNotTheEndOfParsing(1)).thenReturn(true);
+        when(parser.isNotTheEndOfParsing(3)).thenReturn(true);
+        when(parser.isNotTheEndOfParsing(6)).thenReturn(true);
+        when(parser.isNotTheEndOfParsing(2)).thenReturn(false);
+
+        libraryApplication.controlUserChoice();
+
+        verify(parser, times(1)).isNotTheEndOfParsing(1);
+        verify(listBooksMenuItem, times(1)).execute();
+        verify(parser, times(1)).isNotTheEndOfParsing(3);
+        verify(checkoutBookMenuItem, times(1)).execute();
+        verify(parser, times(1)).isNotTheEndOfParsing(6);
+        verify(parser, times(1)).isNotTheEndOfParsing(2);
+        verify(quitMenuItem, times(1)).execute();
     }
 }

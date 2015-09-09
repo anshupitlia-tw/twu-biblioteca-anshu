@@ -29,4 +29,8 @@ public class Parser {
     public boolean isQuitting(int choice) {
         return mainMenu.getMenu(choice).getClass().equals(QuitMenuItem.class);
     }
+
+    public boolean isNotTheEndOfParsing(int choice) {
+        return !isValidMenuChoice(choice) || !isQuitting(choice);
+    }
 }
