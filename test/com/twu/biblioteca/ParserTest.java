@@ -102,7 +102,7 @@ public class ParserTest {
         when(mainMenu.hasMenu(3)).thenReturn(true);
         when(mainMenu.getMenu(3)).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, messages));
         when(messages.getUXMessage("checkout_book")).thenReturn("Checkout A Book");
-        when(userInterface.getBookName()).thenReturn("Anna Karenina");
+        when(userInterface.getAStringFromUser()).thenReturn("Anna Karenina");
 
         MenuItem assignedMenuItem = parser.assignADelegateMenu(3);
         assertEquals(assignedMenuItem.getClass(), CheckoutBookMenuItem.class);
@@ -119,7 +119,7 @@ public class ParserTest {
         when(mainMenu.hasMenu(4)).thenReturn(true);
         when(mainMenu.getMenu(4)).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, messages));
         when(messages.getUXMessage("return_book")).thenReturn("Return A Book");
-        when(userInterface.getBookName()).thenReturn("Anna Karenina");
+        when(userInterface.getAStringFromUser()).thenReturn("Anna Karenina");
 
         MenuItem assignedMenuItem = parser.assignADelegateMenu(4);
         assertEquals(assignedMenuItem.getClass(), ReturnBookMenuItem.class);

@@ -66,7 +66,7 @@ public class LibraryApplicationTest {
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
         ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
-        when(userInterface.getMenuChoice()).thenReturn(1);
+        when(userInterface.getANumberFromUser()).thenReturn(1);
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
 
         assertEquals(1, libraryApplication.getUserChoice());
@@ -84,7 +84,7 @@ public class LibraryApplicationTest {
         CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
         InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
 
-        when(userInterface.getMenuChoice()).thenReturn(1).thenReturn(3).thenReturn(6).thenReturn(2);
+        when(userInterface.getANumberFromUser()).thenReturn(1).thenReturn(3).thenReturn(6).thenReturn(2);
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenuItem);
         when(parser.assignADelegateMenu(2)).thenReturn(quitMenuItem);
         when(parser.assignADelegateMenu(3)).thenReturn(checkoutBookMenuItem);

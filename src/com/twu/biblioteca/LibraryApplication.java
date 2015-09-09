@@ -31,7 +31,7 @@ public class LibraryApplication {
     }
 
     public int getUserChoice() {
-        return userInterface.getMenuChoice();
+        return userInterface.getANumberFromUser();
     }
 
     public void executeMenu(int choice) {

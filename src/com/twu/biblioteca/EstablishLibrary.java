@@ -49,7 +49,7 @@ public class EstablishLibrary {
     }
 
     public void establishUserInterface() {
-        UserInterface userInterface = new UserInterface();
+        UserInterface userInterface = new UserInterface(System.in, System.out);
         defaultConfiguration.put("user_interface", userInterface);
     }
 

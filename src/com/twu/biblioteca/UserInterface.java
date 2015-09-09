@@ -1,18 +1,23 @@
 package com.twu.biblioteca;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 //Interacts with the user.
 public class UserInterface {
+    private InputStream inputStream;
+    private PrintStream outputStream;
 
-    public void print(String message) {
-        System.out.println(message);
+    UserInterface(InputStream inputStream, PrintStream outputStream) {
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
     }
 
-    public int getMenuChoice() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public void print(String message) {
+        outputStream.println(message);
+    }
+
+    public int getANumberFromUser() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         String input = null;
         int inputChoice;
         try {
@@ -31,8 +36,8 @@ public class UserInterface {
         return inputChoice;
     }
 
-    public String getBookName() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public String getAStringFromUser() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         String input = "";
         try {
             input = br.readLine();
