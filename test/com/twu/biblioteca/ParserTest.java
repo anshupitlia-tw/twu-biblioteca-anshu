@@ -37,7 +37,7 @@ public class ParserTest {
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = new Parser(userInterface, messages, mainMenu);
 
-        when(mainMenu.getMenu(2)).thenReturn(new QuitMenu("Quit"));
+        when(mainMenu.getMenu(2)).thenReturn(new QuitMenuItem("Quit"));
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
         assertEquals(true, parser.isQuitting(2));
@@ -52,12 +52,12 @@ public class ParserTest {
         Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(1)).thenReturn(true);
-        when(mainMenu.getMenu(1)).thenReturn(new ListBooksMenu("List Books", userInterface,library));
+        when(mainMenu.getMenu(1)).thenReturn(new ListBooksMenuItem("List Books", userInterface,library));
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
-        AMenu assignedMenu = parser.assignADelegateMenu(1);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(1);
 
-        assertEquals(assignedMenu.getClass(), ListBooksMenu.class);
+        assertEquals(assignedMenuItem.getClass(), ListBooksMenuItem.class);
     }
 
     @Test
@@ -70,8 +70,8 @@ public class ParserTest {
 
         when(mainMenu.hasMenu(0)).thenReturn(false);
 
-        AMenu assignedMenu = parser.assignADelegateMenu(0);
-        assertEquals(assignedMenu.getClass(), InvalidMenu.class);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(0);
+        assertEquals(assignedMenuItem.getClass(), InvalidMenuItem.class);
     }
 
     @Test
@@ -83,12 +83,12 @@ public class ParserTest {
         Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(2)).thenReturn(true);
-        when(mainMenu.getMenu(2)).thenReturn(new QuitMenu("Quit"));
+        when(mainMenu.getMenu(2)).thenReturn(new QuitMenuItem("Quit"));
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
-        AMenu assignedMenu = parser.assignADelegateMenu(2);
-        assertEquals(assignedMenu.getClass(), QuitMenu.class);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(2);
+        assertEquals(assignedMenuItem.getClass(), QuitMenuItem.class);
     }
 
     @Test
@@ -100,12 +100,12 @@ public class ParserTest {
         Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(3)).thenReturn(true);
-        when(mainMenu.getMenu(3)).thenReturn(new CheckoutBookMenu("Checkout A Book", library, userInterface, messages));
+        when(mainMenu.getMenu(3)).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, messages));
         when(messages.getUXMessage("checkout_book")).thenReturn("Checkout A Book");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
 
-        AMenu assignedMenu = parser.assignADelegateMenu(3);
-        assertEquals(assignedMenu.getClass(), CheckoutBookMenu.class);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(3);
+        assertEquals(assignedMenuItem.getClass(), CheckoutBookMenuItem.class);
     }
 
     @Test
@@ -117,11 +117,11 @@ public class ParserTest {
         Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(4)).thenReturn(true);
-        when(mainMenu.getMenu(4)).thenReturn(new ReturnABookMenu("Return A Book", library, userInterface, messages));
+        when(mainMenu.getMenu(4)).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, messages));
         when(messages.getUXMessage("return_book")).thenReturn("Return A Book");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
 
-        AMenu assignedMenu = parser.assignADelegateMenu(4);
-        assertEquals(assignedMenu.getClass(), ReturnABookMenu.class);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(4);
+        assertEquals(assignedMenuItem.getClass(), ReturnBookMenuItem.class);
     }
 }

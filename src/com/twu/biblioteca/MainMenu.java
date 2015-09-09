@@ -4,26 +4,26 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class MainMenu {
-    private HashMap<Integer, AMenu> mainMenu;
+    private HashMap<Integer, MenuItem> menuItems;
 
-    MainMenu(HashMap<Integer, AMenu> mainMenu) {
-        this.mainMenu = mainMenu;
+    MainMenu(HashMap<Integer, MenuItem> mainMenu) {
+        this.menuItems = mainMenu;
     }
 
     public String getListOfMenuForDisplay() {
         String listOfMenus = "";
-        for (Entry<Integer, AMenu> menu: mainMenu.entrySet()) {
+        for (Entry<Integer, MenuItem> menu: menuItems.entrySet()) {
             listOfMenus += menu.getKey()+ ". ";
             listOfMenus += menu.getValue().getName() +"\n";
         }
         return listOfMenus;
     }
 
-    public AMenu getMenu(int menuNumber ) {
-        return mainMenu.get(menuNumber);
+    public MenuItem getMenu(int menuNumber ) {
+        return menuItems.get(menuNumber);
     }
 
     public boolean hasMenu(int choice) {
-        return mainMenu.containsKey(choice);
+        return menuItems.containsKey(choice);
     }
 }

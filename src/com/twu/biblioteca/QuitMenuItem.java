@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
-public class QuitMenu extends AMenu {
+public class QuitMenuItem extends MenuItem {
 
-    QuitMenu(String name) {
+    QuitMenuItem(String name) {
         this.name = name;
     }
 

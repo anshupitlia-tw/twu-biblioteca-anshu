@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
-public class ListBooksMenu extends AMenu{
+public class ListBooksMenuItem extends MenuItem {
     private UserInterface userInterface;
     private Library library;
 
-    ListBooksMenu(String name, UserInterface userInterface, Library library) {
+    ListBooksMenuItem(String name, UserInterface userInterface, Library library) {
         this.name = name;
         this.userInterface = userInterface;
         this.library = library;

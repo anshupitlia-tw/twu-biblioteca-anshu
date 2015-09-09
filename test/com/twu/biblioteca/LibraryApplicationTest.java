@@ -17,10 +17,11 @@ public class LibraryApplicationTest {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
 
         when(messages.getUXMessage("welcome_message")).thenReturn("Welcome! Biblioteca at your service");
 
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
         libraryApplication.start();
 
         verify(userInterface, times(1)).print("Welcome! Biblioteca at your service");
@@ -31,7 +32,8 @@ public class LibraryApplicationTest {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
+        Parser parser = mock(Parser.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
         when(mainMenu.getListOfMenuForDisplay()).thenReturn("1. List Books");
 
         libraryApplication.listMainMenu();
@@ -45,7 +47,7 @@ public class LibraryApplicationTest {
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
 
         when(parser.isValidMenuChoice(0)).thenReturn(false);
 
@@ -58,8 +60,8 @@ public class LibraryApplicationTest {
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
-        ListBooksMenu listBooksMenu = mock(ListBooksMenu.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
+        ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
         libraryApplication.executeMenu(parser, 1);
@@ -74,8 +76,8 @@ public class LibraryApplicationTest {
         Messages messages = mock(Messages.class);
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu);
-        ListBooksMenu listBooksMenu = mock(ListBooksMenu.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
+        ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
         when(userInterface.getMenuChoice()).thenReturn(1);
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);

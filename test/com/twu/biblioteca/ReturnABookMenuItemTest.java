@@ -4,14 +4,14 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
-public class ReturnABookMenuTest {
+public class ReturnABookMenuItemTest {
 
     @Test
     public void shouldBeAbleToSuccessfullyReturnABookIfItBelongsToTheLibrary() {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        ReturnABookMenu returnABookMenu = new ReturnABookMenu("return",library, userInterface, messages);
+        ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
@@ -28,7 +28,7 @@ public class ReturnABookMenuTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        ReturnABookMenu returnABookMenu = new ReturnABookMenu("return",library, userInterface, messages);
+        ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna");

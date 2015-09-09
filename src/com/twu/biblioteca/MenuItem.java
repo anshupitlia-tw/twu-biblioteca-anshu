@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public abstract class AMenu {
+public abstract class MenuItem {
 
     protected String name;
     public abstract void execute();

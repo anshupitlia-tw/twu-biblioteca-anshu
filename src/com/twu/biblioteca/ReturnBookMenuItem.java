@@ -1,13 +1,13 @@
 package com.twu.biblioteca;
 
-public class ReturnABookMenu extends AMenu{
+public class ReturnBookMenuItem extends MenuItem {
 
     private Library library;
     private String bookName;
     private UserInterface userInterface;
     private Messages messages;
 
-    ReturnABookMenu(String name, Library library, UserInterface userInterface, Messages messages) {
+    ReturnBookMenuItem(String name, Library library, UserInterface userInterface, Messages messages) {
         this.name = name;
         this.library = library;
         this.userInterface = userInterface;

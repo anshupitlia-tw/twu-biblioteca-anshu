@@ -4,7 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
-public class QuitMenuTest {
+public class QuitMenuItemTest {
 
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
@@ -12,7 +12,7 @@ public class QuitMenuTest {
     @Test
     public void shouldQuitTheApplicationOnExecute() {
         exit.expectSystemExitWithStatus(0);
-        QuitMenu quitMenu =  new QuitMenu("Quit");
+        QuitMenuItem quitMenu =  new QuitMenuItem("Quit");
         quitMenu.execute();
     }
 }

@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
-public class InvalidMenu extends AMenu {
+public class InvalidMenuItem extends MenuItem {
     private UserInterface userInterface;
     private Messages messages;
 
-    InvalidMenu(UserInterface userInterface, Messages messages) {
+    InvalidMenuItem(UserInterface userInterface, Messages messages) {
         this.userInterface = userInterface;
         this.messages = messages;
     }

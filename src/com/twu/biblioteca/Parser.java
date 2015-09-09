@@ -19,14 +19,14 @@ public class Parser {
         }
     }
 
-    public AMenu assignADelegateMenu(int choice) {
-        AMenu menu = new InvalidMenu(userInterface, messages);
+    public MenuItem assignADelegateMenu(int choice) {
+        MenuItem menuItem = new InvalidMenuItem(userInterface, messages);
         if (!isValidMenuChoice(choice))
-            return menu;
+            return menuItem;
         return (mainMenu.getMenu(choice));
     }
 
     public boolean isQuitting(int choice) {
-        return mainMenu.getMenu(choice).getClass().equals(QuitMenu.class);
+        return mainMenu.getMenu(choice).getClass().equals(QuitMenuItem.class);
     }
 }

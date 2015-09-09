@@ -7,10 +7,11 @@ public class LibraryApplication {
     private MainMenu mainMenu;
     private Parser parser;
 
-    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu) {
+    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu, Parser parser) {
         this.userInterface = userInterface;
         this.messages = messages;
         this.mainMenu = mainMenu;
+        this.parser = parser;
     }
 
     public void start() {
@@ -23,7 +24,6 @@ public class LibraryApplication {
 
     public void controlUserChoice() {
         int choice;
-        Parser parser = new Parser(userInterface, messages, mainMenu);
         do {
             choice = getUserChoice();
             executeMenu(parser, choice);
@@ -31,14 +31,12 @@ public class LibraryApplication {
     }
 
     public int getUserChoice() {
-        int choice;
-        choice = userInterface.getMenuChoice();
-        return choice;
+        return userInterface.getMenuChoice();
     }
 
     public void executeMenu(Parser parser, int choice) {
-        AMenu assignedMenu = parser.assignADelegateMenu(choice);
-        assignedMenu.execute();
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(choice);
+        assignedMenuItem.execute();
     }
 
     public boolean shouldGetChoiceAgain(int choice, Parser parser) {
