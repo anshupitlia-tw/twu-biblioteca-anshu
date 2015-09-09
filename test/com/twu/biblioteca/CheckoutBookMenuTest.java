@@ -15,7 +15,7 @@ public class CheckoutBookMenuTest {
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
-        when(library.findTheBookAndCheckout("Anna Karenina")).thenReturn(true);
+        when(library.checkOutBook("Anna Karenina")).thenReturn(true);
         when(messages.getUXMessage("successful_checkout")).thenReturn("Thank you! Enjoy the book");
         checkoutBook.execute();
 
@@ -31,7 +31,7 @@ public class CheckoutBookMenuTest {
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna Kerenina");
-        when(library.findTheBookAndCheckout("Anna Kerenina")).thenReturn(false);
+        when(library.checkOutBook("Anna Kerenina")).thenReturn(false);
         when(messages.getUXMessage("unsuccessful_checkout")).thenReturn("That book is not available. Please select a different book, or fix the spelling error");
         checkoutBook.execute();
 

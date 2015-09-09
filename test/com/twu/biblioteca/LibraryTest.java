@@ -29,7 +29,7 @@ public class LibraryTest {
         booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
-        assertEquals(true, library.findTheBookAndCheckout("Anna Karenina"));
+        assertEquals(true, library.checkOutBook("Anna Karenina"));
     }
 
     @Test
@@ -39,8 +39,8 @@ public class LibraryTest {
         booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
-        library.findTheBookAndCheckout("Anna Karenina");
-        assertEquals(false, library.findTheBookAndCheckout("Anna Karenina"));
+        library.checkOutBook("Anna Karenina");
+        assertEquals(false, library.checkOutBook("Anna Karenina"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class LibraryTest {
         booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
-        assertEquals(false, library.findTheBookAndCheckout("Any other book"));
+        assertEquals(false, library.checkOutBook("Any other book"));
     }
 
     @Test
@@ -58,8 +58,9 @@ public class LibraryTest {
         List<Book> booksList = new ArrayList<>();
         booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
         booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
-
         Library library = new Library(booksList);
+        library.checkOutBook("Anna Karenina");
+
         assertEquals(true, library.returnBook("Anna Karenina"));
     }
 
@@ -70,7 +71,7 @@ public class LibraryTest {
         booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
 
         Library library = new Library(booksList);
-        library.findTheBookAndCheckout("Anna Karenina");
+        library.checkOutBook("Anna Karenina");
         library.returnBook("Anna Karenina");
         String expectedList = "NAME\tAUTHOR\tYEAR PUBLISHED\n" +
                 "Anna Karenina\tLeo Tolstoy\t1878\n" +

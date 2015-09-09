@@ -16,7 +16,7 @@ public class CheckoutBookMenu implements AMenu{
     public void execute() {
         userInterface.print(messages.getUXMessage("enter_book_name"));
         bookName = userInterface.getBookName();
-        if (library.findTheBookAndCheckout(bookName)) {
+        if (library.checkOutBook(bookName)) {
             userInterface.print(messages.getUXMessage("successful_checkout"));
         }
         else {

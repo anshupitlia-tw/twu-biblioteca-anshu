@@ -17,27 +17,28 @@ public class Library {
         return bookList;
     }
 
-    public boolean findTheBookAndCheckout(String bookName) {
-        boolean found = false, checkedOut = false;
-        for (Book book: books) {
+    private Book findBook(String bookName) {
+        for (Book book : books) {
             if (book.match(bookName)) {
-                found = true;
-                checkedOut = book.checkOut();
-                break;
+                return book;
             }
         }
-        return found && checkedOut;
+        return null;
+    }
+
+    public boolean checkOutBook(String bookName) {
+        Book book = findBook(bookName);
+        if (book != null) {
+            return book.checkOut();
+        }
+        return false;
     }
 
     public boolean returnBook(String bookName) {
-        boolean found = false, returned = false;
-        for (Book book: books) {
-            if (book.match(bookName)) {
-                found = true;
-                returned = book.returnn();
-                break;
-            }
+        Book book = findBook(bookName);
+        if (book != null) {
+            return book.returnn();
         }
-        return found && returned;
+        return false;
     }
 }
