@@ -1,10 +1,11 @@
 package com.twu.biblioteca;
 
-public class ListBooksMenu implements AMenu{
+public class ListBooksMenu extends AMenu{
     private UserInterface userInterface;
     private Library library;
 
-    ListBooksMenu(UserInterface userInterface, Library library) {
+    ListBooksMenu(String name, UserInterface userInterface, Library library) {
+        this.name = name;
         this.userInterface = userInterface;
         this.library = library;
     }

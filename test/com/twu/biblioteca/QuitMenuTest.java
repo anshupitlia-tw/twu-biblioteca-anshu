@@ -12,7 +12,7 @@ public class QuitMenuTest {
     @Test
     public void shouldQuitTheApplicationOnExecute() {
         exit.expectSystemExitWithStatus(0);
-        QuitMenu quitMenu =  new QuitMenu();
+        QuitMenu quitMenu =  new QuitMenu("Quit");
         quitMenu.execute();
     }
 }

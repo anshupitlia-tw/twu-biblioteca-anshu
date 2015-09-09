@@ -1,13 +1,14 @@
 package com.twu.biblioteca;
 
-public class ReturnABookMenu implements AMenu{
+public class ReturnABookMenu extends AMenu{
 
     private Library library;
     private String bookName;
     private UserInterface userInterface;
     private Messages messages;
 
-    ReturnABookMenu(Library library, UserInterface userInterface, Messages messages) {
+    ReturnABookMenu(String name, Library library, UserInterface userInterface, Messages messages) {
+        this.name = name;
         this.library = library;
         this.userInterface = userInterface;
         this.messages = messages;

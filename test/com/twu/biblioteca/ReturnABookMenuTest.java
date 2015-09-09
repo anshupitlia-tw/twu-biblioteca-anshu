@@ -11,7 +11,7 @@ public class ReturnABookMenuTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        ReturnABookMenu returnABookMenu = new ReturnABookMenu(library, userInterface, messages);
+        ReturnABookMenu returnABookMenu = new ReturnABookMenu("return",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
@@ -28,7 +28,7 @@ public class ReturnABookMenuTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        ReturnABookMenu returnABookMenu = new ReturnABookMenu(library, userInterface, messages);
+        ReturnABookMenu returnABookMenu = new ReturnABookMenu("return",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna");

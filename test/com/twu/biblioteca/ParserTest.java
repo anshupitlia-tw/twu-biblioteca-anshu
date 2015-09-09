@@ -12,9 +12,8 @@ public class ParserTest {
     public void shouldReturnTrueForAValidMenuChoice() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(1)).thenReturn(true);
         assertEquals(true, parser.isValidMenuChoice(1));
@@ -24,9 +23,8 @@ public class ParserTest {
     public void shouldReturnFalseForAnInvalidValidMenuChoice() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(0)).thenReturn(false);
         assertEquals(false, parser.isValidMenuChoice(0));
@@ -36,11 +34,10 @@ public class ParserTest {
     public void shouldReturnTrueIfItIsQuitting() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
-        when(mainMenu.getMenu(2)).thenReturn("Quit");
+        when(mainMenu.getMenu(2)).thenReturn(new QuitMenu("Quit"));
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
         assertEquals(true, parser.isQuitting(2));
@@ -52,10 +49,10 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(1)).thenReturn(true);
-        when(mainMenu.getMenu(1)).thenReturn("List Books");
+        when(mainMenu.getMenu(1)).thenReturn(new ListBooksMenu("List Books", userInterface,library));
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
         AMenu assignedMenu = parser.assignADelegateMenu(1);
@@ -69,7 +66,7 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(0)).thenReturn(false);
 
@@ -83,10 +80,10 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(2)).thenReturn(true);
-        when(mainMenu.getMenu(2)).thenReturn("Quit");
+        when(mainMenu.getMenu(2)).thenReturn(new QuitMenu("Quit"));
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
@@ -100,10 +97,10 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(3)).thenReturn(true);
-        when(mainMenu.getMenu(3)).thenReturn("Checkout A Book");
+        when(mainMenu.getMenu(3)).thenReturn(new CheckoutBookMenu("Checkout A Book", library, userInterface, messages));
         when(messages.getUXMessage("checkout_book")).thenReturn("Checkout A Book");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
 
@@ -117,10 +114,10 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
 
         when(mainMenu.hasMenu(4)).thenReturn(true);
-        when(mainMenu.getMenu(4)).thenReturn("Return A Book");
+        when(mainMenu.getMenu(4)).thenReturn(new ReturnABookMenu("Return A Book", library, userInterface, messages));
         when(messages.getUXMessage("return_book")).thenReturn("Return A Book");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
 

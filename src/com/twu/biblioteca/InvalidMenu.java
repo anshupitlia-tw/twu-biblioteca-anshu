@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class InvalidMenu implements AMenu {
+public class InvalidMenu extends AMenu {
     private UserInterface userInterface;
     private Messages messages;
 

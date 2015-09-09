@@ -1,12 +1,13 @@
 package com.twu.biblioteca;
 
-public class CheckoutBookMenu implements AMenu{
+public class CheckoutBookMenu extends AMenu{
     private Library library;
     private String bookName;
     private UserInterface userInterface;
     private Messages messages;
 
-    CheckoutBookMenu(Library library, UserInterface userInterface, Messages messages) {
+    CheckoutBookMenu(String name, Library library, UserInterface userInterface, Messages messages) {
+        this.name = name;
         this.library = library;
         this.userInterface = userInterface;
         this.messages = messages;

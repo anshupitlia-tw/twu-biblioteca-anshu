@@ -1,7 +1,12 @@
 package com.twu.biblioteca;
 
-public interface AMenu {
+public abstract class AMenu {
 
-    public void execute();
+    protected String name;
+    public abstract void execute();
+
+    public String getName() {
+        return this.name;
+    }
 }
 

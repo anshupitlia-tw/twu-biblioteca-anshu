@@ -4,13 +4,11 @@ package com.twu.biblioteca;
 public class LibraryApplication {
     private UserInterface userInterface;
     private Messages messages;
-    private Library library;
     private MainMenu mainMenu;
 
     public LibraryApplication(UserInterface userInterface, Messages messages, Library library, MainMenu mainMenu) {
         this.userInterface = userInterface;
         this.messages = messages;
-        this.library = library;
         this.mainMenu = mainMenu;
     }
 
@@ -24,7 +22,7 @@ public class LibraryApplication {
 
     public void controlUserChoiceAndExecution() {
         int choice;
-        Parser parser = new Parser(userInterface, messages, library, mainMenu);
+        Parser parser = new Parser(userInterface, messages, mainMenu);
         do {
             choice = getChoiceAndExecute(parser);
         }while(shouldGetChoiceAgain(choice, parser));

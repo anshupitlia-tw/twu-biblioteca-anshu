@@ -7,11 +7,11 @@ import static org.mockito.Mockito.*;
 public class CheckoutBookMenuTest {
 
     @Test
-    public void shouldFindTheBookAndCheckItOutAndDisplaySuccessfulCheckoutMessageIfSuccessfullyCheckedOut() {
+    public void shouldCheckoutABookAndDisplaySuccessfulCheckoutMessageIfSuccessfullyCheckedOut() {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        CheckoutBookMenu checkoutBook = new CheckoutBookMenu(library, userInterface, messages);
+        CheckoutBookMenu checkoutBook = new CheckoutBookMenu("Checkout A Book",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna Karenina");
@@ -23,11 +23,11 @@ public class CheckoutBookMenuTest {
     }
 
     @Test
-    public void shouldFindTheBookAndTryToCheckItOutAndDisplayUnSuccessfulCheckoutMessageIfNotFound() {
+    public void shouldTryToCheckOutABookAndDisplayUnSuccessfulCheckoutMessageIfNotFound() {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        CheckoutBookMenu checkoutBook = new CheckoutBookMenu(library, userInterface, messages);
+        CheckoutBookMenu checkoutBook = new CheckoutBookMenu("Checkout A Book",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getBookName()).thenReturn("Anna Kerenina");

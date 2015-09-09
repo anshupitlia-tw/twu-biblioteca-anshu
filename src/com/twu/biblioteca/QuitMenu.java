@@ -1,6 +1,10 @@
 package com.twu.biblioteca;
 
-public class QuitMenu implements AMenu {
+public class QuitMenu extends AMenu {
+
+    QuitMenu(String name) {
+        this.name = name;
+    }
 
     @Override
     public void execute() {

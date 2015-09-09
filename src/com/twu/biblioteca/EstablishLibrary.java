@@ -10,9 +10,9 @@ public class EstablishLibrary {
 
     EstablishLibrary() {
         establishMessages();
-        establishMainMenu();
         establishUserInterface();
         establishLibrary();
+        establishMainMenu();
     }
 
     public void establishMessages() {
@@ -30,17 +30,6 @@ public class EstablishLibrary {
         setUpMessages.put("unsuccessful_return", "That is not a valid book to return.");
         Messages messages = new Messages(setUpMessages);
         defaultConfiguration.put("messages", messages);
-    }
-
-    public void establishMainMenu() {
-        HashMap<Integer, String> mainMenuList = new HashMap<>();
-        Messages messages = (Messages) defaultConfiguration.get("messages");
-        mainMenuList.put(1, messages.getUXMessage("list_books"));
-        mainMenuList.put(2, messages.getUXMessage("quit_option"));
-        mainMenuList.put(3, messages.getUXMessage("checkout_book"));
-        mainMenuList.put(4, messages.getUXMessage("return_book"));
-        MainMenu mainMenu = new MainMenu(mainMenuList);
-        defaultConfiguration.put("main_menu", mainMenu);
     }
 
     public void establishLibrary() {
@@ -63,6 +52,19 @@ public class EstablishLibrary {
         UserInterface userInterface = new UserInterface();
         defaultConfiguration.put("user_interface", userInterface);
     }
+
+    public void establishMainMenu() {
+        HashMap<Integer, AMenu> mainMenuList = new HashMap<>();
+        Messages messages = (Messages) defaultConfiguration.get("messages");
+        ListBooksMenu listBooksMenu = new ListBooksMenu(messages.getUXMessage("list_books"),(UserInterface) defaultConfiguration.get("user_interface"), (Library) defaultConfiguration.get("library"));
+        mainMenuList.put(1, listBooksMenu);
+        mainMenuList.put(2, new QuitMenu(messages.getUXMessage("quit_option")));
+        mainMenuList.put(3, new CheckoutBookMenu(messages.getUXMessage("checkout_book"),(Library) defaultConfiguration.get("library"), (UserInterface) defaultConfiguration.get("user_interface"), (Messages) defaultConfiguration.get("messages")));
+        mainMenuList.put(4, new ReturnABookMenu(messages.getUXMessage("return_book"),(Library) defaultConfiguration.get("library"), (UserInterface) defaultConfiguration.get("user_interface"), (Messages) defaultConfiguration.get("messages")));
+        MainMenu mainMenu = new MainMenu(mainMenuList);
+        defaultConfiguration.put("main_menu", mainMenu);
+    }
+
     public LibraryApplication getTheEstablishedLibrary() {
         LibraryApplication libraryApplication = new LibraryApplication((UserInterface) defaultConfiguration.get("user_interface"), (Messages) defaultConfiguration.get("messages"), (Library) defaultConfiguration.get("library"), (MainMenu) defaultConfiguration.get("main_menu"));
         return libraryApplication;
