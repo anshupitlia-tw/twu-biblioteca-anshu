@@ -1,3 +1,4 @@
+
 package com.twu.biblioteca;
 
 import org.junit.After;
@@ -25,7 +26,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldBeAbleToPrintAMessageGivenToIt() {
-        UserInterface userInterface = new UserInterface();
+        UserInterface userInterface = new UserInterface(System.in, System.out);
         userInterface.print("Welcome!");
 
         assertEquals("Welcome!\n", outContent.toString());
@@ -33,31 +34,33 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldBeAbleToGetUserChoiceOfMenuWhenUserEntersAValidNumber() {
-        UserInterface userInterface = new UserInterface();
         String userChoice = "1";
         ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
         System.setIn(inContent);
+
+        UserInterface userInterface = new UserInterface(System.in, System.out);
 
         assertEquals(1, userInterface.getANumberFromUser());
     }
 
     @Test
     public void shouldBeAbleToCatchAnExceptionAndPrintAMessageWhenUserEntersNotANumberForMenu() {
-        UserInterface userInterface = new UserInterface();
         String userChoice = "abc";
         ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
         System.setIn(inContent);
+        UserInterface userInterface = new UserInterface(System.in, System.out);
         userInterface.getANumberFromUser();
         assertEquals("NOT AN INTEGER\n", outContent.toString());
     }
 
     @Test
     public void shouldBeAbleToReadTheBookNameProvidedByUser() {
-        UserInterface userInterface = new UserInterface();
         String userChoice = "Anna Karenina";
         ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
         System.setIn(inContent);
+        UserInterface userInterface = new UserInterface(System.in, System.out);
 
         assertEquals("Anna Karenina", userInterface.getAStringFromUser());
     }
 }
+

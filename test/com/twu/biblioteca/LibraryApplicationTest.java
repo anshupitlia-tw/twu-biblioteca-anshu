@@ -84,12 +84,12 @@ public class LibraryApplicationTest {
         CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
         InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
 
+        when(mainMenu.getListOfMenuForDisplay()).thenReturn("Some menu");
         when(userInterface.getANumberFromUser()).thenReturn(1).thenReturn(3).thenReturn(6).thenReturn(2);
         when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenuItem);
         when(parser.assignADelegateMenu(2)).thenReturn(quitMenuItem);
         when(parser.assignADelegateMenu(3)).thenReturn(checkoutBookMenuItem);
         when(parser.assignADelegateMenu(6)).thenReturn(invalidMenuItem);
-
         when(parser.isNotTheEndOfParsing(1)).thenReturn(true);
         when(parser.isNotTheEndOfParsing(3)).thenReturn(true);
         when(parser.isNotTheEndOfParsing(6)).thenReturn(true);
@@ -97,12 +97,6 @@ public class LibraryApplicationTest {
 
         libraryApplication.controlUserChoice();
 
-        verify(parser, times(1)).isNotTheEndOfParsing(1);
-        verify(listBooksMenuItem, times(1)).execute();
-        verify(parser, times(1)).isNotTheEndOfParsing(3);
-        verify(checkoutBookMenuItem, times(1)).execute();
-        verify(parser, times(1)).isNotTheEndOfParsing(6);
-        verify(parser, times(1)).isNotTheEndOfParsing(2);
-        verify(quitMenuItem, times(1)).execute();
+        verify(parser, times(4)).isNotTheEndOfParsing(anyInt());
     }
 }

@@ -25,6 +25,7 @@ public class LibraryApplication {
     public void controlUserChoice() {
         int choice;
         do {
+            mainMenu.getListOfMenuForDisplay();
             choice = getUserChoice();
             executeMenu(choice);
         }while(parser.isNotTheEndOfParsing(choice));
