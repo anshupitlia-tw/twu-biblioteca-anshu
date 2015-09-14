@@ -1,13 +1,11 @@
 package com.twu.biblioteca;
 
 public class Parser {
-    private UserInterface userInterface;
+    private InvalidMenuItem invalidMenuItem;
     private MainMenu mainMenu;
-    private Messages messages;
 
-    Parser(UserInterface userInterface, Messages messages, MainMenu mainMenu) {
-        this.userInterface = userInterface;
-        this.messages = messages;
+    Parser(InvalidMenuItem invalidMenuItem, MainMenu mainMenu) {
+        this.invalidMenuItem = invalidMenuItem;
         this.mainMenu = mainMenu;
     }
 
@@ -20,7 +18,7 @@ public class Parser {
     }
 
     public MenuItem assignADelegateMenu(int choice) {
-        MenuItem menuItem = new InvalidMenuItem(userInterface, messages);
+        MenuItem menuItem = invalidMenuItem;
         if (!isValidMenuChoice(choice))
             return menuItem;
         return (mainMenu.getMenu(choice));

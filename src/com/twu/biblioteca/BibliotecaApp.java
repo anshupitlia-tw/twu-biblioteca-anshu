@@ -4,8 +4,7 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        EstablishLibrary setup = new EstablishLibrary();
-        LibraryApplication libraryApplication = setup.getTheEstablishedLibrary();
+        LibraryApplication libraryApplication = new LibraryApplicationFactory().getTheEstablishedLibrary();
         libraryApplication.start();
         libraryApplication.listMainMenu();
         libraryApplication.controlUserChoice();

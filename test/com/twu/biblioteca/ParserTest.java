@@ -1,3 +1,4 @@
+
 package com.twu.biblioteca;
 
 import org.junit.Test;
@@ -10,10 +11,9 @@ public class ParserTest {
 
     @Test
     public void shouldReturnTrueForAValidMenuChoice() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(1)).thenReturn(true);
         assertEquals(true, parser.isValidMenuChoice(1));
@@ -21,10 +21,9 @@ public class ParserTest {
 
     @Test
     public void shouldReturnFalseForAnInvalidValidMenuChoice() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(0)).thenReturn(false);
         assertEquals(false, parser.isValidMenuChoice(0));
@@ -32,13 +31,11 @@ public class ParserTest {
 
     @Test
     public void shouldReturnTrueIfItIsQuitting() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.getMenu(2)).thenReturn(new QuitMenuItem("Quit"));
-        when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
         assertEquals(true, parser.isQuitting(2));
     }
@@ -49,7 +46,8 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(1)).thenReturn(true);
         when(mainMenu.getMenu(1)).thenReturn(new ListBooksMenuItem("List Books", userInterface,library));
@@ -64,9 +62,9 @@ public class ParserTest {
     public void shouldDelegateToInvalidMenuIfUserGoesForInvalidOption() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(0)).thenReturn(false);
 
@@ -76,11 +74,10 @@ public class ParserTest {
 
     @Test
     public void shouldDelegateToQuitMenuIfUserGoesForQuitOption() {
-        UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(2)).thenReturn(true);
         when(mainMenu.getMenu(2)).thenReturn(new QuitMenuItem("Quit"));
@@ -97,7 +94,8 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(3)).thenReturn(true);
         when(mainMenu.getMenu(3)).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, messages));
@@ -114,7 +112,8 @@ public class ParserTest {
         Messages messages = mock(Messages.class);
         Library library = mock(Library.class);
         MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = new Parser(userInterface, messages, mainMenu);
+        InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
+        Parser parser = new Parser(invalidMenuItem, mainMenu);
 
         when(mainMenu.hasMenu(4)).thenReturn(true);
         when(mainMenu.getMenu(4)).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, messages));
@@ -125,3 +124,4 @@ public class ParserTest {
         assertEquals(assignedMenuItem.getClass(), ReturnBookMenuItem.class);
     }
 }
+
