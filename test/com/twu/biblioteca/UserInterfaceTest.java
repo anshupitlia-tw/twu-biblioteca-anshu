@@ -33,34 +33,23 @@ public class UserInterfaceTest {
     }
 
     @Test
-    public void shouldBeAbleToGetUserChoiceOfMenuWhenUserEntersAValidNumber() {
-        String userChoice = "1";
-        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
-        System.setIn(inContent);
-
-        UserInterface userInterface = new UserInterface(System.in, System.out);
-
-        assertEquals(1, userInterface.getANumberFromUser());
-    }
-
-    @Test
-    public void shouldBeAbleToCatchAnExceptionAndPrintAMessageWhenUserEntersNotANumberForMenu() {
-        String userChoice = "abc";
-        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
-        System.setIn(inContent);
-        UserInterface userInterface = new UserInterface(System.in, System.out);
-        userInterface.getANumberFromUser();
-        assertEquals("NOT AN INTEGER\n", outContent.toString());
-    }
-
-    @Test
     public void shouldBeAbleToReadTheBookNameProvidedByUser() {
         String userChoice = "Anna Karenina";
         ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
         System.setIn(inContent);
         UserInterface userInterface = new UserInterface(System.in, System.out);
 
-        assertEquals("Anna Karenina", userInterface.getAStringFromUser());
+        assertEquals("Anna Karenina", userInterface.getChoiceFromUser());
+    }
+
+    @Test
+    public void shouldBeAbleToReadTheMenuChoiceProvidedByUser() {
+        String userChoice = "2";
+        ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
+        System.setIn(inContent);
+        UserInterface userInterface = new UserInterface(System.in, System.out);
+
+        assertEquals("2", userInterface.getChoiceFromUser());
     }
 }
 

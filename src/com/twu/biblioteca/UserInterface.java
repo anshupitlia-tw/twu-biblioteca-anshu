@@ -16,27 +16,7 @@ public class UserInterface {
         outputStream.println(message);
     }
 
-    public int getANumberFromUser() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-        String input = null;
-        int inputChoice;
-        try {
-           input = br.readLine();
-        }
-        catch(IOException ioe) {
-            System.out.println("ERROR");
-        }
-        try {
-            inputChoice = Integer.parseInt(input);
-        }
-        catch(NumberFormatException nfe) {
-            System.out.println("NOT AN INTEGER");
-            inputChoice = 0;
-        }
-        return inputChoice;
-    }
-
-    public String getAStringFromUser() {
+    public String getChoiceFromUser() {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         String input = "";
         try {

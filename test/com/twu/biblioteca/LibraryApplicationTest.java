@@ -50,10 +50,10 @@ public class LibraryApplicationTest {
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
         ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
-        when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
-        libraryApplication.executeMenu(1);
+        when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenu);
+        libraryApplication.executeMenu("1");
 
-        verify(parser, times(1)).assignADelegateMenu(1);
+        verify(parser, times(1)).assignADelegateMenu("1");
         verify(listBooksMenu, times(1)).execute();
     }
 
@@ -66,10 +66,10 @@ public class LibraryApplicationTest {
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
         ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
-        when(userInterface.getANumberFromUser()).thenReturn(1);
-        when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenu);
+        when(userInterface.getChoiceFromUser()).thenReturn("1");
+        when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenu);
 
-        assertEquals(1, libraryApplication.getUserChoice());
+        assertEquals("1", libraryApplication.getUserChoice());
     }
 
     @Test
@@ -85,18 +85,18 @@ public class LibraryApplicationTest {
         InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
 
         when(mainMenu.getListOfMenuForDisplay()).thenReturn("Some menu");
-        when(userInterface.getANumberFromUser()).thenReturn(1).thenReturn(3).thenReturn(6).thenReturn(2);
-        when(parser.assignADelegateMenu(1)).thenReturn(listBooksMenuItem);
-        when(parser.assignADelegateMenu(2)).thenReturn(quitMenuItem);
-        when(parser.assignADelegateMenu(3)).thenReturn(checkoutBookMenuItem);
-        when(parser.assignADelegateMenu(6)).thenReturn(invalidMenuItem);
-        when(parser.isNotTheEndOfParsing(1)).thenReturn(true);
-        when(parser.isNotTheEndOfParsing(3)).thenReturn(true);
-        when(parser.isNotTheEndOfParsing(6)).thenReturn(true);
-        when(parser.isNotTheEndOfParsing(2)).thenReturn(false);
+        when(userInterface.getChoiceFromUser()).thenReturn("1").thenReturn("3").thenReturn("6").thenReturn("2");
+        when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenuItem);
+        when(parser.assignADelegateMenu("2")).thenReturn(quitMenuItem);
+        when(parser.assignADelegateMenu("3")).thenReturn(checkoutBookMenuItem);
+        when(parser.assignADelegateMenu("6")).thenReturn(invalidMenuItem);
+        when(parser.isNotTheEndOfParsing("1")).thenReturn(true);
+        when(parser.isNotTheEndOfParsing("3")).thenReturn(true);
+        when(parser.isNotTheEndOfParsing("6")).thenReturn(true);
+        when(parser.isNotTheEndOfParsing("2")).thenReturn(false);
 
         libraryApplication.controlUserChoice();
 
-        verify(parser, times(4)).isNotTheEndOfParsing(anyInt());
+        verify(parser, times(4)).isNotTheEndOfParsing(anyString());
     }
 }

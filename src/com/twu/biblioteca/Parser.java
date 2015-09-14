@@ -9,7 +9,7 @@ public class Parser {
         this.mainMenu = mainMenu;
     }
 
-    public boolean isValidMenuChoice(int choice) {
+    public boolean isValidMenuChoice(String choice) {
         if (mainMenu.hasMenu(choice)) {
             return true;
         } else {
@@ -17,18 +17,18 @@ public class Parser {
         }
     }
 
-    public MenuItem assignADelegateMenu(int choice) {
+    public MenuItem assignADelegateMenu(String choice) {
         MenuItem menuItem = invalidMenuItem;
         if (!isValidMenuChoice(choice))
             return menuItem;
         return (mainMenu.getMenu(choice));
     }
 
-    public boolean isQuitting(int choice) {
+    public boolean isQuitting(String choice) {
         return mainMenu.getMenu(choice).getClass().equals(QuitMenuItem.class);
     }
 
-    public boolean isNotTheEndOfParsing(int choice) {
+    public boolean isNotTheEndOfParsing(String choice) {
         return !isValidMenuChoice(choice) || !isQuitting(choice);
     }
 }

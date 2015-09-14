@@ -3,18 +3,19 @@ package com.twu.biblioteca;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
-public class MainMenuItemTest {
+public class MainMenuTest {
 
     @Test
     public void shouldDisplayListOfMenusNoMatterHowManyMenusAreThere() {
-        HashMap<Integer, MenuItem> mainMenuList = new HashMap<>();
+        LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
         UserInterface userInterface = mock(UserInterface.class);
         Library library = mock(Library.class);
-        mainMenuList.put(1, new ListBooksMenuItem("List Books", userInterface, library));
+        mainMenuList.put("1", new ListBooksMenuItem("List Books", userInterface, library));
         MainMenu mainMenu = new MainMenu(mainMenuList);
         String mainMenuToBeDisplayed = "1. List Books\n";
 
@@ -23,36 +24,36 @@ public class MainMenuItemTest {
 
     @Test
     public void shouldReturnMenuNameFromMenuNumber() {
-        HashMap<Integer, MenuItem> mainMenuList = new HashMap<>();
+        LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
         UserInterface userInterface = mock(UserInterface.class);
         Library library = mock(Library.class);
-        mainMenuList.put(1, new ListBooksMenuItem("List Books", userInterface, library));
+        mainMenuList.put("1", new ListBooksMenuItem("List Books", userInterface, library));
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
         String menu = "List Books";
 
-        assertEquals(menu, mainMenu.getMenu(1).getName());
+        assertEquals(menu, mainMenu.getMenu("1").getName());
     }
 
    @Test
     public void shouldReturnTrueIfTheMenuNumberIsValid() {
-       HashMap<Integer, MenuItem> mainMenuList = new HashMap<>();
+       LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
        UserInterface userInterface = mock(UserInterface.class);
        Library library = mock(Library.class);
-       mainMenuList.put(1, new ListBooksMenuItem("List Books", userInterface, library));
+       mainMenuList.put("1", new ListBooksMenuItem("List Books", userInterface, library));
        MainMenu mainMenu = new MainMenu(mainMenuList);
 
-        assertEquals(true, mainMenu.hasMenu(1));
+        assertEquals(true, mainMenu.hasMenu("1"));
     }
 
     @Test
     public void shouldReturnFalseIfTheMenuNumberIsNotValid() {
-        HashMap<Integer, MenuItem> mainMenuList = new HashMap<>();
+        LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
         UserInterface userInterface = mock(UserInterface.class);
         Library library = mock(Library.class);
-        mainMenuList.put(1, new ListBooksMenuItem("List Books", userInterface, library));
+        mainMenuList.put("1", new ListBooksMenuItem("List Books", userInterface, library));
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
-        assertEquals(false, mainMenu.hasMenu(2));
+        assertEquals(false, mainMenu.hasMenu("2"));
     }
 }

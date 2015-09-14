@@ -14,7 +14,7 @@ public class ReturnABookMenuItemTest {
         ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
-        when(userInterface.getAStringFromUser()).thenReturn("Anna Karenina");
+        when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
         when(library.returnBook("Anna Karenina")).thenReturn(true);
         when(messages.getUXMessage("successful_return")).thenReturn("Thank you for returning the book.");
         returnABookMenu.execute();
@@ -31,7 +31,7 @@ public class ReturnABookMenuItemTest {
         ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
-        when(userInterface.getAStringFromUser()).thenReturn("Anna");
+        when(userInterface.getChoiceFromUser()).thenReturn("Anna");
         when(library.returnBook("Anna")).thenReturn(false);
         when(messages.getUXMessage("unsuccessful_return")).thenReturn("That is not a valid book to return.");
         returnABookMenu.execute();

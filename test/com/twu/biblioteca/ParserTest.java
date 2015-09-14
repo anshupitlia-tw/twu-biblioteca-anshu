@@ -15,8 +15,8 @@ public class ParserTest {
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(1)).thenReturn(true);
-        assertEquals(true, parser.isValidMenuChoice(1));
+        when(mainMenu.hasMenu("1")).thenReturn(true);
+        assertEquals(true, parser.isValidMenuChoice("1"));
     }
 
     @Test
@@ -25,8 +25,8 @@ public class ParserTest {
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(0)).thenReturn(false);
-        assertEquals(false, parser.isValidMenuChoice(0));
+        when(mainMenu.hasMenu("0")).thenReturn(false);
+        assertEquals(false, parser.isValidMenuChoice("0"));
     }
 
     @Test
@@ -35,9 +35,9 @@ public class ParserTest {
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.getMenu(2)).thenReturn(new QuitMenuItem("Quit"));
+        when(mainMenu.getMenu("2")).thenReturn(new QuitMenuItem("Quit"));
 
-        assertEquals(true, parser.isQuitting(2));
+        assertEquals(true, parser.isQuitting("2"));
     }
 
     @Test
@@ -49,11 +49,11 @@ public class ParserTest {
         InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(1)).thenReturn(true);
-        when(mainMenu.getMenu(1)).thenReturn(new ListBooksMenuItem("List Books", userInterface,library));
+        when(mainMenu.hasMenu("1")).thenReturn(true);
+        when(mainMenu.getMenu("1")).thenReturn(new ListBooksMenuItem("List Books", userInterface,library));
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
-        MenuItem assignedMenuItem = parser.assignADelegateMenu(1);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu("1");
 
         assertEquals(assignedMenuItem.getClass(), ListBooksMenuItem.class);
     }
@@ -66,9 +66,9 @@ public class ParserTest {
         InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(0)).thenReturn(false);
+        when(mainMenu.hasMenu("0")).thenReturn(false);
 
-        MenuItem assignedMenuItem = parser.assignADelegateMenu(0);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu("0");
         assertEquals(assignedMenuItem.getClass(), InvalidMenuItem.class);
     }
 
@@ -79,12 +79,12 @@ public class ParserTest {
         InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(2)).thenReturn(true);
-        when(mainMenu.getMenu(2)).thenReturn(new QuitMenuItem("Quit"));
+        when(mainMenu.hasMenu("2")).thenReturn(true);
+        when(mainMenu.getMenu("2")).thenReturn(new QuitMenuItem("Quit"));
         when(messages.getUXMessage("list_books")).thenReturn("List Books");
         when(messages.getUXMessage("quit_option")).thenReturn("Quit");
 
-        MenuItem assignedMenuItem = parser.assignADelegateMenu(2);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu("2");
         assertEquals(assignedMenuItem.getClass(), QuitMenuItem.class);
     }
 
@@ -97,12 +97,12 @@ public class ParserTest {
         InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(3)).thenReturn(true);
-        when(mainMenu.getMenu(3)).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, messages));
+        when(mainMenu.hasMenu("3")).thenReturn(true);
+        when(mainMenu.getMenu("3")).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, messages));
         when(messages.getUXMessage("checkout_book")).thenReturn("Checkout A Book");
-        when(userInterface.getAStringFromUser()).thenReturn("Anna Karenina");
+        when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
 
-        MenuItem assignedMenuItem = parser.assignADelegateMenu(3);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu("3");
         assertEquals(assignedMenuItem.getClass(), CheckoutBookMenuItem.class);
     }
 
@@ -115,12 +115,12 @@ public class ParserTest {
         InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
 
-        when(mainMenu.hasMenu(4)).thenReturn(true);
-        when(mainMenu.getMenu(4)).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, messages));
+        when(mainMenu.hasMenu("4")).thenReturn(true);
+        when(mainMenu.getMenu("4")).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, messages));
         when(messages.getUXMessage("return_book")).thenReturn("Return A Book");
-        when(userInterface.getAStringFromUser()).thenReturn("Anna Karenina");
+        when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
 
-        MenuItem assignedMenuItem = parser.assignADelegateMenu(4);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu("4");
         assertEquals(assignedMenuItem.getClass(), ReturnBookMenuItem.class);
     }
 }

@@ -23,7 +23,7 @@ public class LibraryApplication {
     }
 
     public void controlUserChoice() {
-        int choice;
+        String choice;
         do {
             mainMenu.getListOfMenuForDisplay();
             choice = getUserChoice();
@@ -31,11 +31,11 @@ public class LibraryApplication {
         }while(parser.isNotTheEndOfParsing(choice));
     }
 
-    public int getUserChoice() {
-        return userInterface.getANumberFromUser();
+    public String getUserChoice() {
+        return userInterface.getChoiceFromUser();
     }
 
-    public void executeMenu(int choice) {
+    public void executeMenu(String choice) {
         MenuItem assignedMenuItem = parser.assignADelegateMenu(choice);
         assignedMenuItem.execute();
     }

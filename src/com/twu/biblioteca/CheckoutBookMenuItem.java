@@ -16,7 +16,7 @@ public class CheckoutBookMenuItem extends MenuItem {
     @Override
     public void execute() {
         userInterface.print(messages.getUXMessage("enter_book_name"));
-        bookName = userInterface.getAStringFromUser();
+        bookName = userInterface.getChoiceFromUser();
         if (library.checkOutBook(bookName)) {
             userInterface.print(messages.getUXMessage("successful_checkout"));
         }
