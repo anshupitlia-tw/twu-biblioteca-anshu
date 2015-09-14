@@ -8,8 +8,9 @@ public class MovieTest {
 
     @Test
     public void shouldReturnMovieDetailsInDisplayableFormat() {
-        Movie movie = new Movie("Titanic", (short)1991, "Director", RATING.EIGHT);
+        Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
+        StringBuilder detailsOfMovieInProperFormat = new StringBuilder(String.format("%-40s%-40s%-40s%-40s\n","Titanic", "1997", "James Cameron", "EIGHT"));
 
-        assertEquals("Titanic 1991 Director EIGHT", movie.getDisplayListForMovie());
+        assertEquals(detailsOfMovieInProperFormat.toString(), movie.getDisplayDetailsForMovie());
     }
 }

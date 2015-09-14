@@ -15,7 +15,11 @@ public class Movie {
         this.isAvailable = true;
     }
 
-    public String getDisplayListForMovie() {
-        return "Titanic 1991 Director EIGHT";
+    public String getDisplayDetailsForMovie() {
+        StringBuilder movieDetails = new StringBuilder();
+        if (isAvailable) {
+            movieDetails.append(String.format("%-40s%-40s%-40s%-40s\n", this.name, this.year, this.director, this.rating));
+        }
+        return movieDetails.toString();
     }
 }
