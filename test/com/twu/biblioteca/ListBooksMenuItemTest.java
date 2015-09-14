@@ -15,7 +15,7 @@ public class ListBooksMenuItemTest {
         ListBooksMenuItem listBooksMenu = new ListBooksMenuItem("List Books", userInterface, library);
         when(library.getBookListForDisplay()).thenReturn("Some List");
         listBooksMenu.execute();
-        verify(userInterface, times(1)).print("Some List");
+        verify(userInterface, times(1)).printOnOutputStream("Some List");
     }
 }
 

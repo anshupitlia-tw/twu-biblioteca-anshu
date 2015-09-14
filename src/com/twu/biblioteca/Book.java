@@ -14,10 +14,11 @@ public class Book {
     }
 
     public String getBookDetailsForDisplay() {
+        StringBuilder bookDetails = new StringBuilder();
         if (isAvailable) {
-            return this.title + "\t" + this.author + "\t" + this.yearPublished+ "\n";
+             bookDetails.append(String.format("%-40s%-40s%-40s\n", this.title,  this.author, this.yearPublished));
         }
-        else return "";
+        return bookDetails.toString();
     }
 
     public boolean match(String bookName) {

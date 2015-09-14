@@ -19,7 +19,7 @@ public class CheckoutBookMenuItemTest {
         when(messages.getUXMessage("successful_checkout")).thenReturn("Thank you! Enjoy the book");
         checkoutBook.execute();
 
-        verify(userInterface, times(1)).print("Thank you! Enjoy the book");
+        verify(userInterface, times(1)).printOnOutputStream("Thank you! Enjoy the book");
     }
 
     @Test
@@ -35,6 +35,6 @@ public class CheckoutBookMenuItemTest {
         when(messages.getUXMessage("unsuccessful_checkout")).thenReturn("That book is not available. Please select a different book, or fix the spelling error");
         checkoutBook.execute();
 
-        verify(userInterface, times(1)).print("That book is not available. Please select a different book, or fix the spelling error");
+        verify(userInterface, times(1)).printOnOutputStream("That book is not available. Please select a different book, or fix the spelling error");
     }
 }

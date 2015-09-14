@@ -19,7 +19,7 @@ public class ReturnABookMenuItemTest {
         when(messages.getUXMessage("successful_return")).thenReturn("Thank you for returning the book.");
         returnABookMenu.execute();
 
-        verify(userInterface, times(1)).print("Thank you for returning the book.");
+        verify(userInterface, times(1)).printOnOutputStream("Thank you for returning the book.");
     }
 
 
@@ -36,6 +36,6 @@ public class ReturnABookMenuItemTest {
         when(messages.getUXMessage("unsuccessful_return")).thenReturn("That is not a valid book to return.");
         returnABookMenu.execute();
 
-        verify(userInterface, times(1)).print("That is not a valid book to return.");
+        verify(userInterface, times(1)).printOnOutputStream("That is not a valid book to return.");
     }
 }

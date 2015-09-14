@@ -14,6 +14,6 @@ public class InvalidMenuItemTest {
         when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
 
         invalidMenu.execute();
-        verify(userInterface, times(1)).print("Select a valid option!");
+        verify(userInterface, times(1)).printOnOutputStream("Select a valid option!");
     }
 }

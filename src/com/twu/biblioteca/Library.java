@@ -10,11 +10,11 @@ public class Library {
     }
 
     public String getBookListForDisplay() {
-        String bookList = "NAME\tAUTHOR\tYEAR PUBLISHED\n";
+        StringBuilder bookList = new StringBuilder().append(String.format("%-40s%-40s%-40s\n", "NAME", "AUTHOR", "YEAR PUBLISHED"));
         for(Book book: books) {
-            bookList += book.getBookDetailsForDisplay();
+            bookList.append(book.getBookDetailsForDisplay());
         }
-        return bookList;
+        return bookList.toString();
     }
 
     private Book findBook(String bookName) {

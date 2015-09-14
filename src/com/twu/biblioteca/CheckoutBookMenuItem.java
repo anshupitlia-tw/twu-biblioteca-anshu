@@ -15,13 +15,13 @@ public class CheckoutBookMenuItem extends MenuItem {
 
     @Override
     public void execute() {
-        userInterface.print(messages.getUXMessage("enter_book_name"));
+        userInterface.printOnOutputStream(messages.getUXMessage("enter_book_name"));
         bookName = userInterface.getChoiceFromUser();
         if (library.checkOutBook(bookName)) {
-            userInterface.print(messages.getUXMessage("successful_checkout"));
+            userInterface.printOnOutputStream(messages.getUXMessage("successful_checkout"));
         }
         else {
-            userInterface.print(messages.getUXMessage("unsuccessful_checkout"));
+            userInterface.printOnOutputStream(messages.getUXMessage("unsuccessful_checkout"));
         }
     }
 }

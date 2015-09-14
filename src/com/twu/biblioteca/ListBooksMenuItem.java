@@ -11,6 +11,6 @@ public class ListBooksMenuItem extends MenuItem {
     }
     @Override
     public void execute() {
-        userInterface.print(library.getBookListForDisplay());
+        userInterface.printOnOutputStream(library.getBookListForDisplay());
     }
 }

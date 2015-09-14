@@ -15,11 +15,11 @@ public class LibraryTest {
         booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
 
         Library library = new Library(booksList);
-        String expectedList = "NAME\tAUTHOR\tYEAR PUBLISHED\n" +
-                "Anna Karenina\tLeo Tolstoy\t1878\n" +
-                "Madame Bovary\tGustave Flaubert\t1856\n";
+        StringBuilder expectedList = new StringBuilder(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s\n%-40s%-40s%-40s\n","NAME", "AUTHOR", "YEAR PUBLISHED",
+                "Anna Karenina", "Leo Tolstoy", "1878",
+                "Madame Bovary", "Gustave Flaubert", "1856"));
 
-        assertEquals(expectedList, library.getBookListForDisplay());
+        assertEquals(expectedList.toString(), library.getBookListForDisplay());
     }
 
     @Test
@@ -30,6 +30,21 @@ public class LibraryTest {
 
         Library library = new Library(booksList);
         assertEquals(true, library.checkOutBook("Anna Karenina"));
+    }
+
+
+    @Test
+    public void shouldNotDisplayTheBookCheckedOut() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+
+        Library library = new Library(booksList);
+        library.checkOutBook("Anna Karenina");
+        StringBuilder expectedList = new StringBuilder(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s\n","NAME", "AUTHOR", "YEAR PUBLISHED",
+                "Madame Bovary", "Gustave Flaubert", "1856"));
+
+        assertEquals(expectedList.toString(), library.getBookListForDisplay());
     }
 
     @Test
@@ -68,15 +83,15 @@ public class LibraryTest {
     public void shouldShowTheBookReturnedInTheListOfBooks() {
         List<Book> booksList = new ArrayList<>();
         booksList.add(new Book("Anna Karenina", "Leo Tolstoy", (short) 1878));
-        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short)1856));
+        booksList.add(new Book("Madame Bovary", "Gustave Flaubert", (short) 1856));
 
         Library library = new Library(booksList);
         library.checkOutBook("Anna Karenina");
         library.returnBook("Anna Karenina");
-        String expectedList = "NAME\tAUTHOR\tYEAR PUBLISHED\n" +
-                "Anna Karenina\tLeo Tolstoy\t1878\n" +
-                "Madame Bovary\tGustave Flaubert\t1856\n";
+        StringBuilder expectedList = new StringBuilder(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s\n%-40s%-40s%-40s\n","NAME", "AUTHOR", "YEAR PUBLISHED",
+                "Anna Karenina", "Leo Tolstoy", "1878",
+                "Madame Bovary", "Gustave Flaubert", "1856"));
 
-        assertEquals(expectedList, library.getBookListForDisplay());
+        assertEquals(expectedList.toString(), library.getBookListForDisplay());
     }
 }

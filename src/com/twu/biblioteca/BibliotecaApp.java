@@ -6,7 +6,6 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         LibraryApplication libraryApplication = new LibraryApplicationFactory().getTheEstablishedLibrary();
         libraryApplication.start();
-        libraryApplication.listMainMenu();
         libraryApplication.controlUserChoice();
     }
 }

@@ -10,6 +10,6 @@ public class InvalidMenuItem extends MenuItem {
     }
     @Override
     public void execute() {
-        userInterface.print(messages.getUXMessage("select_a_valid_option"));
+        userInterface.printOnOutputStream(messages.getUXMessage("select_a_valid_option"));
     }
 }

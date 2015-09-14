@@ -24,7 +24,7 @@ public class LibraryApplicationTest {
         LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
         libraryApplication.start();
 
-        verify(userInterface, times(1)).print("Welcome! Biblioteca at your service");
+        verify(userInterface, times(1)).printOnOutputStream("Welcome! Biblioteca at your service");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class LibraryApplicationTest {
 
         libraryApplication.listMainMenu();
 
-        verify(userInterface, times(1)).print(mainMenu.getListOfMenuForDisplay());
+        verify(userInterface, times(1)).printOnOutputStream(mainMenu.getListOfMenuForDisplay());
     }
 
     @Test
@@ -84,7 +84,6 @@ public class LibraryApplicationTest {
         CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
         InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
 
-        when(mainMenu.getListOfMenuForDisplay()).thenReturn("Some menu");
         when(userInterface.getChoiceFromUser()).thenReturn("1").thenReturn("3").thenReturn("6").thenReturn("2");
         when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenuItem);
         when(parser.assignADelegateMenu("2")).thenReturn(quitMenuItem);

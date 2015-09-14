@@ -15,14 +15,14 @@ public class ReturnBookMenuItem extends MenuItem {
     }
     @Override
     public void execute() {
-        userInterface.print(messages.getUXMessage("enter_book_name"));
+        userInterface.printOnOutputStream(messages.getUXMessage("enter_book_name"));
         bookName = userInterface.getChoiceFromUser();
         if (library.returnBook(bookName)) {
-            userInterface.print(messages.getUXMessage("successful_return"));
+            userInterface.printOnOutputStream(messages.getUXMessage("successful_return"));
         }
         else
         {
-            userInterface.print(messages.getUXMessage("unsuccessful_return"));
+            userInterface.printOnOutputStream(messages.getUXMessage("unsuccessful_return"));
         }
     }
 

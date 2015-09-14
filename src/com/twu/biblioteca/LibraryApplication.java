@@ -15,17 +15,17 @@ public class LibraryApplication {
     }
 
     public void start() {
-        userInterface.print(messages.getUXMessage("welcome_message"));
+        userInterface.printOnOutputStream(messages.getUXMessage("welcome_message"));
     }
 
     public void listMainMenu() {
-        userInterface.print(mainMenu.getListOfMenuForDisplay());
+        userInterface.printOnOutputStream(mainMenu.getListOfMenuForDisplay());
     }
 
     public void controlUserChoice() {
         String choice;
         do {
-            mainMenu.getListOfMenuForDisplay();
+            listMainMenu();
             choice = getUserChoice();
             executeMenu(choice);
         }while(parser.isNotTheEndOfParsing(choice));
