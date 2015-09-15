@@ -30,6 +30,15 @@ public class LibraryFactoryTest {
         List<Movie> listOfMovies = new ArrayList<>();
         listOfMovies.add(new Movie("Titanic", (short) 1997, "James Cameron", RATING.EIGHT));
         listOfMovies.add(new Movie("Vertigo", (short) 1958, "Alfred Hitchcock", RATING.NINE));
+        listOfMovies.add(new Movie("Citizen Kane", (short) 1941, "Orson Welles", RATING.NINE));
+        listOfMovies.add(new Movie("Tokyo Story", (short) 1953, "Yasujiro Ozu", RATING.EIGHT));
+        listOfMovies.add(new Movie("Sunrise: A Song Of Two Humans", (short) 1927, "F. W. Murnau", RATING.NINE));
+        listOfMovies.add(new Movie("2001: A Space Odyssey", (short) 1968, "Stanley Kubric", RATING.EIGHT));
+        listOfMovies.add(new Movie("The Searchers", (short) 1956, "John Ford", RATING.EIGHT));
+        listOfMovies.add(new Movie("Man with a Movie Camera", (short) 1929, "Dziga Vertov", RATING.NINE));
+        listOfMovies.add(new Movie("The Passion of Joan of Arc", (short) 1928, "Carl Theodor Dreyer", RATING.NINE));
+        listOfMovies.add(new Movie("Battleship Potemkin", (short) 1925, "Sergei M. Eisenstein", RATING.EIGHT));
+
         library = new Library(listOfBooks, listOfMovies);
     }
 
@@ -37,5 +46,10 @@ public class LibraryFactoryTest {
     @Test
     public void shouldHaveAllTheBooksInTheLibrary() {
         assertEquals(library.getBookListForDisplay(), new LibraryFactory().establishLibrary().getBookListForDisplay());
+    }
+
+    @Test
+    public void shouldHaveAllTheMoviesInTheLibrary() {
+        assertEquals(library.getMovieListForDisplay(), new LibraryFactory().establishLibrary().getMovieListForDisplay());
     }
 }
