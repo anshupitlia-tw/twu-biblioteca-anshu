@@ -13,10 +13,12 @@ public class MainMenuFactory {
         QuitMenuItem quitMenuItem = new QuitMenuItem(messages.getUXMessage("quit_option"));
         CheckoutBookMenuItem checkoutBookMenuItem = new CheckoutBookMenuItem(messages.getUXMessage("checkout_book"), library, userInterface , messages);
         ReturnBookMenuItem returnBookMenuItem = new ReturnBookMenuItem(messages.getUXMessage("return_book"),library, userInterface, messages);
+        ListMoviesMenuItem listMoviesMenuItem = new ListMoviesMenuItem(messages.getUXMessage("list_movies"), userInterface, library);
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
         mainMenuList.put("3", checkoutBookMenuItem);
         mainMenuList.put("4", returnBookMenuItem);
+        mainMenuList.put("5", listMoviesMenuItem);
         MainMenu mainMenu = new MainMenu(mainMenuList);
         return mainMenu;
     }

@@ -17,20 +17,46 @@ public class MainMenuFactoryTest {
         QuitMenuItem quitMenuItem = mock(QuitMenuItem.class);
         CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
         ReturnBookMenuItem returnBookMenuItem = mock(ReturnBookMenuItem.class);
+        ListMoviesMenuItem listMoviesMenuItem = mock(ListMoviesMenuItem.class);
 
         when(listBooksMenuItem.getName()).thenReturn("List Books");
         when(quitMenuItem.getName()).thenReturn("Quit");
         when(checkoutBookMenuItem.getName()).thenReturn("Checkout A Book");
         when(returnBookMenuItem.getName()).thenReturn("Return A Book");
+        when(listMoviesMenuItem.getName()).thenReturn("List Movies");
 
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
         mainMenuList.put("3", checkoutBookMenuItem);
         mainMenuList.put("4", returnBookMenuItem);
+        mainMenuList.put("5", listMoviesMenuItem);
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
         assertEquals(mainMenu.getListOfMenuForDisplay(), new MainMenuFactory().establishMainMenu().getListOfMenuForDisplay());
     }
 
+    @Test
+    public void shouldHaveAMenuForListingBooks() {
+        assertEquals(ListBooksMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("1").getClass());
+    }
 
+    @Test
+    public void shouldHaveAMenuForQuitting() {
+        assertEquals(QuitMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("2").getClass());
+    }
+
+    @Test
+    public void shouldHaveAMenuForCheckingOutABook() {
+        assertEquals(CheckoutBookMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("3").getClass());
+    }
+
+    @Test
+    public void shouldHaveAMenuForReturningABook() {
+        assertEquals(ReturnBookMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("4").getClass());
+    }
+
+    @Test
+    public void shouldHaveAMenuForListingMovies() {
+       assertEquals(ListMoviesMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("5").getClass());
+    }
 }
