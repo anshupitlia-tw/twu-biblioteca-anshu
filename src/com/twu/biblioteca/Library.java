@@ -4,9 +4,19 @@ import java.util.List;
 
 public class Library {
     private List<Book> books;
+    private List<Movie> movies;
 
-    public Library(List<Book> books) {
+    public Library(List<Book> books, List<Movie> movies) {
         this.books = books;
+        this.movies = movies;
+    }
+
+    public String getMovieListForDisplay() {
+        StringBuilder movieList = new StringBuilder().append(String.format("%-40s%-40s%-40s%-40s\n", "NAME", "YEAR RELEASED", "DIRECTOR", "RATING"));
+        for(Movie movie: movies) {
+            movieList.append(movie.getMovieDetailsForDisplay());
+        }
+        return movieList.toString();
     }
 
     public String getBookListForDisplay() {

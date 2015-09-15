@@ -17,7 +17,12 @@ public class LibraryFactory {
         listOfBooks.add(new Book("In Search of Lost Time", "Marcel Proust", (short) 1871));
         listOfBooks.add(new Book("The Stories of Anton Chekhov", "Anton Chekhov", (short) 1900));
         listOfBooks.add(new Book("Middlemarch", "George Eliot", (short) 1871));
-        Library library = new Library(listOfBooks);
+
+        List<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie("Titanic", (short) 1997, "James Cameron", RATING.EIGHT));
+        movieList.add(new Movie("Vertigo", (short) 1958, "Alfred Hitchcock", RATING.NINE));
+
+        Library library = new Library(listOfBooks, movieList);
         return library;
     }
 

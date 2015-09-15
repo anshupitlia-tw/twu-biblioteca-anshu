@@ -11,6 +11,6 @@ public class MovieTest {
         Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
         StringBuilder detailsOfMovieInProperFormat = new StringBuilder(String.format("%-40s%-40s%-40s%-40s\n","Titanic", "1997", "James Cameron", "EIGHT"));
 
-        assertEquals(detailsOfMovieInProperFormat.toString(), movie.getDisplayDetailsForMovie());
+        assertEquals(detailsOfMovieInProperFormat.toString(), movie.getMovieDetailsForDisplay());
     }
 }

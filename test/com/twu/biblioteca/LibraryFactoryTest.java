@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class LibraryFactoryTest {
 
@@ -25,7 +26,11 @@ public class LibraryFactoryTest {
         listOfBooks.add(new Book("In Search of Lost Time", "Marcel Proust", (short) 1871));
         listOfBooks.add(new Book("The Stories of Anton Chekhov", "Anton Chekhov", (short) 1900));
         listOfBooks.add(new Book("Middlemarch", "George Eliot", (short) 1871));
-        library = new Library(listOfBooks);
+
+        List<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.add(new Movie("Titanic", (short) 1997, "James Cameron", RATING.EIGHT));
+        listOfMovies.add(new Movie("Vertigo", (short) 1958, "Alfred Hitchcock", RATING.NINE));
+        library = new Library(listOfBooks, listOfMovies);
     }
 
 

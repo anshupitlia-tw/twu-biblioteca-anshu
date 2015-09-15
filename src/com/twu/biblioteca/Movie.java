@@ -15,7 +15,7 @@ public class Movie {
         this.isAvailable = true;
     }
 
-    public String getDisplayDetailsForMovie() {
+    public String getMovieDetailsForDisplay() {
         StringBuilder movieDetails = new StringBuilder();
         if (isAvailable) {
             movieDetails.append(String.format("%-40s%-40s%-40s%-40s\n", this.name, this.year, this.director, this.rating));
