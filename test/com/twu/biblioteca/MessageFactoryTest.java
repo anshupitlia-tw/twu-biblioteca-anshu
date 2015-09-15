@@ -29,6 +29,7 @@ public class MessageFactoryTest {
         setUpMessages.put("checkout_movie", "Checkout A Movie");
         setUpMessages.put("enter_library_number", "Enter Library Number");
         setUpMessages.put("enter_password", "Enter Password");
+        setUpMessages.put("login", "Login");
         messages = new Messages(setUpMessages);
     }
 
@@ -142,6 +143,13 @@ public class MessageFactoryTest {
         MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("enter_password"), messages.getUXMessage("enter_password"));
+    }
+
+    @Test
+    public void shouldCreateMessagesAndHaveTheSameMessageForLogin() {
+        MessageFactory messageFactory = new MessageFactory();
+
+        assertEquals(messageFactory.establishMessages().getUXMessage("login"), messages.getUXMessage("login"));
     }
 }
 

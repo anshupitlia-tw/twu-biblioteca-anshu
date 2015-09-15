@@ -1,3 +1,5 @@
+
+
 package com.twu.biblioteca;
 
 import org.junit.Test;
@@ -11,8 +13,10 @@ public class CheckoutBookMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, messages);
+        LoginCaller loginCaller = mock(LoginCaller.class);
+        CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
 
+        when(loginCaller.authenticate()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
         when(library.checkOutBook("Anna Karenina")).thenReturn(true);
@@ -27,8 +31,10 @@ public class CheckoutBookMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, messages);
+        LoginCaller loginCaller = mock(LoginCaller.class);
+        CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
 
+        when(loginCaller.authenticate()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Kerenina");
         when(library.checkOutBook("Anna Kerenina")).thenReturn(false);
@@ -38,3 +44,5 @@ public class CheckoutBookMenuItemTest {
         verify(userInterface, times(1)).printOnOutputStream("That book is not available. Please select a different book, or fix the spelling error");
     }
 }
+
+

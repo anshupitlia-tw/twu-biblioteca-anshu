@@ -6,7 +6,8 @@ public class LoginMenuItem extends MenuItem {
     private Session session;
     private Messages messages;
 
-    LoginMenuItem(UserInterface userInterface, Users users, Session session, Messages messages) {
+    LoginMenuItem(String name, UserInterface userInterface, Users users, Session session, Messages messages) {
+        this.name = name;
         this.userInterface = userInterface;
         this.users = users;
         this.session = session;

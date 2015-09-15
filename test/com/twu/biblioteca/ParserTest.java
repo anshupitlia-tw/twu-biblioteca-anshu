@@ -96,9 +96,10 @@ public class ParserTest {
         MainMenu mainMenu = mock(MainMenu.class);
         InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
+        LoginCaller loginCaller = mock(LoginCaller.class);
 
         when(mainMenu.hasMenu("3")).thenReturn(true);
-        when(mainMenu.getMenu("3")).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, messages));
+        when(mainMenu.getMenu("3")).thenReturn(new CheckoutBookMenuItem("Checkout A Book", library, userInterface, loginCaller, messages));
         when(messages.getUXMessage("checkout_book")).thenReturn("Checkout A Book");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
 
@@ -114,9 +115,10 @@ public class ParserTest {
         MainMenu mainMenu = mock(MainMenu.class);
         InvalidMenuItem invalidMenuItem = mock(InvalidMenuItem.class);
         Parser parser = new Parser(invalidMenuItem, mainMenu);
+        LoginCaller loginCaller = mock(LoginCaller.class);
 
         when(mainMenu.hasMenu("4")).thenReturn(true);
-        when(mainMenu.getMenu("4")).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, messages));
+        when(mainMenu.getMenu("4")).thenReturn(new ReturnBookMenuItem("Return A Book", library, userInterface, loginCaller, messages));
         when(messages.getUXMessage("return_book")).thenReturn("Return A Book");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
 
@@ -124,4 +126,5 @@ public class ParserTest {
         assertEquals(assignedMenuItem.getClass(), ReturnBookMenuItem.class);
     }
 }
+
 

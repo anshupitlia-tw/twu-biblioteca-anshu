@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +19,7 @@ public class MainMenuFactoryTest {
         ReturnBookMenuItem returnBookMenuItem = mock(ReturnBookMenuItem.class);
         ListMoviesMenuItem listMoviesMenuItem = mock(ListMoviesMenuItem.class);
         CheckoutMovieMenuItem checkoutMovieMenuItem = mock(CheckoutMovieMenuItem.class);
+        LoginMenuItem loginMenuItem = mock(LoginMenuItem.class);
 
         when(listBooksMenuItem.getName()).thenReturn("List Books");
         when(quitMenuItem.getName()).thenReturn("Quit");
@@ -26,6 +27,7 @@ public class MainMenuFactoryTest {
         when(returnBookMenuItem.getName()).thenReturn("Return A Book");
         when(listMoviesMenuItem.getName()).thenReturn("List Movies");
         when(checkoutMovieMenuItem.getName()).thenReturn("Checkout A Movie");
+        when(loginMenuItem.getName()).thenReturn("Login");
 
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
@@ -33,6 +35,7 @@ public class MainMenuFactoryTest {
         mainMenuList.put("4", returnBookMenuItem);
         mainMenuList.put("5", listMoviesMenuItem);
         mainMenuList.put("6", checkoutMovieMenuItem);
+        mainMenuList.put("7", loginMenuItem);
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
         assertEquals(mainMenu.getListOfMenuForDisplay(), new MainMenuFactory().establishMainMenu().getListOfMenuForDisplay());

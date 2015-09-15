@@ -14,7 +14,7 @@ public class LoginMenuItemTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         Session session = mock(Session.class);
-        LoginMenuItem loginMenuItem = new LoginMenuItem(userInterface, users, session, messages);
+        LoginMenuItem loginMenuItem = new LoginMenuItem("Login", userInterface, users, session, messages);
         UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
         User user = new User(userCredentials);
         when(messages.getUXMessage("enter_library_number")).thenReturn("Enter library number");

@@ -1,3 +1,4 @@
+
 package com.twu.biblioteca;
 
 import org.junit.Test;
@@ -11,8 +12,10 @@ public class ReturnABookMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, messages);
+        LoginCaller loginCaller = mock(LoginCaller.class);
+        ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, loginCaller, messages);
 
+        when(loginCaller.authenticate()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
         when(library.returnBook("Anna Karenina")).thenReturn(true);
@@ -28,7 +31,9 @@ public class ReturnABookMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, messages);
+        LoginCaller loginCaller = mock(LoginCaller.class);
+        ReturnBookMenuItem returnABookMenu = new ReturnBookMenuItem("return",library, userInterface, loginCaller, messages);
+        when(loginCaller.authenticate()).thenReturn(true);
 
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna");
@@ -39,3 +44,4 @@ public class ReturnABookMenuItemTest {
         verify(userInterface, times(1)).printOnOutputStream("That is not a valid book to return.");
     }
 }
+
