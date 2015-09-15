@@ -20,6 +20,7 @@ public class MessageFactory{
         setUpMessages.put("unsuccessful_return", "That is not a valid book to return.");
         setUpMessages.put("list_movies", "List Movies");
         setUpMessages.put("enter_movie_name", "Enter Movie Name");
+        setUpMessages.put("checkout_movie", "Checkout A Movie");
         messages = new Messages(setUpMessages);
         return messages;
     }

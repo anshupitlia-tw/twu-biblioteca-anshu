@@ -26,6 +26,7 @@ public class MessageFactoryTest {
         setUpMessages.put("unsuccessful_return", "That is not a valid book to return.");
         setUpMessages.put("list_movies", "List Movies");
         setUpMessages.put("enter_movie_name", "Enter Movie Name");
+        setUpMessages.put("checkout_movie", "Checkout A Movie");
         messages = new Messages(setUpMessages);
     }
 
@@ -118,6 +119,13 @@ public class MessageFactoryTest {
         MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("enter_movie_name"), messages.getUXMessage("enter_movie_name"));
+    }
+
+    @Test
+    public void shouldCreateMessagesAndHaveTheSameMessageForMenuToCheckOutAMovie() {
+        MessageFactory messageFactory = new MessageFactory();
+
+        assertEquals(messageFactory.establishMessages().getUXMessage("checkout_movie"), messages.getUXMessage("checkout_movie"));
     }
 }
 
