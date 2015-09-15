@@ -21,7 +21,7 @@ public class UserCredentialsTest {
     }
 
     @Test
-    public void shouldReturnFalseIfWrongUserName() {
+    public void shouldReturnFalseIfWrongLibraryNumber() {
         UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
 
         assertEquals(false, userCredentials.areValidCredentials("bib-0000", "password"));
