@@ -26,4 +26,8 @@ public class Movie {
     public void checkOut() {
         isAvailable = false;
     }
+
+    public boolean match(String movieName) {
+        return name.equals(movieName);
+    }
 }

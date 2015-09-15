@@ -51,4 +51,12 @@ public class Library {
         }
         return false;
     }
+
+    public void checkOutMovie(String movieName) {
+        for (Movie movie: movies) {
+            if(movie.match(movieName)) {
+                movie.checkOut();
+            }
+        }
+    }
 }

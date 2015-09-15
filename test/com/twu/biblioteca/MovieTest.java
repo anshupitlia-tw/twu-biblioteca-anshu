@@ -22,4 +22,12 @@ public class MovieTest {
 
         assertEquals(detailsOfMovieInProperFormat.toString(), movie.getMovieDetailsForDisplay());
     }
+
+    @Test
+    public void shouldBeAbleToMatchAMovieNameWithItself() {
+        Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
+
+        assertEquals(true, movie.match("Titanic"));
+    }
 }
+
