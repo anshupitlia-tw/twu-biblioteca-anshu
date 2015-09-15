@@ -22,4 +22,8 @@ public class Movie {
         }
         return movieDetails.toString();
     }
+
+    public void checkOut() {
+        isAvailable = false;
+    }
 }
