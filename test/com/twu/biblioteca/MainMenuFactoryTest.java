@@ -18,18 +18,21 @@ public class MainMenuFactoryTest {
         CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
         ReturnBookMenuItem returnBookMenuItem = mock(ReturnBookMenuItem.class);
         ListMoviesMenuItem listMoviesMenuItem = mock(ListMoviesMenuItem.class);
+        CheckoutMovieMenuItem checkoutMovieMenuItem = mock(CheckoutMovieMenuItem.class);
 
         when(listBooksMenuItem.getName()).thenReturn("List Books");
         when(quitMenuItem.getName()).thenReturn("Quit");
         when(checkoutBookMenuItem.getName()).thenReturn("Checkout A Book");
         when(returnBookMenuItem.getName()).thenReturn("Return A Book");
         when(listMoviesMenuItem.getName()).thenReturn("List Movies");
+        when(checkoutMovieMenuItem.getName()).thenReturn("Checkout A Movie");
 
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
         mainMenuList.put("3", checkoutBookMenuItem);
         mainMenuList.put("4", returnBookMenuItem);
         mainMenuList.put("5", listMoviesMenuItem);
+        mainMenuList.put("6", checkoutMovieMenuItem);
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
         assertEquals(mainMenu.getListOfMenuForDisplay(), new MainMenuFactory().establishMainMenu().getListOfMenuForDisplay());
@@ -58,5 +61,10 @@ public class MainMenuFactoryTest {
     @Test
     public void shouldHaveAMenuForListingMovies() {
        assertEquals(ListMoviesMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("5").getClass());
+    }
+
+    @Test
+    public void shouldHaveAMenuForCheckingOutAMovie() {
+        assertEquals(CheckoutMovieMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("6").getClass());
     }
 }
