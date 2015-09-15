@@ -14,9 +14,16 @@ public class UserCredentialsTest {
     }
 
     @Test
-    public void shouldReturnFalseIfWrongPasswordForALibraryNumbe() {
+    public void shouldReturnFalseIfWrongPasswordForALibraryNumber() {
         UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
 
         assertEquals(false, userCredentials.areValidCredentials("bib-0001", "passwrd"));
+    }
+
+    @Test
+    public void shouldReturnFalseIfWrongUserName() {
+        UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
+
+        assertEquals(false, userCredentials.areValidCredentials("bib-0000", "password"));
     }
 }

@@ -10,7 +10,7 @@ public class UserCredentials {
     }
 
     public boolean areValidCredentials(String libraryNumber, String password) {
-        if (this.password.equals(password))
+        if (this.password.equals(password) && this.libraryNumber.equals(libraryNumber))
             return true;
         return false;
     }
