@@ -6,4 +6,8 @@ public class User {
     User(UserCredentials userCredentials) {
         this.userCredentials = userCredentials;
     }
+
+    public boolean match(User accessor) {
+        return true;
+    }
 }
