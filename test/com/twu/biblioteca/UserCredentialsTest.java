@@ -8,22 +8,23 @@ public class UserCredentialsTest {
 
     @Test
     public void shouldReturnTrueForValidCredentials() {
-        UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
+        UserCredentials registeredUserCredentials = new UserCredentials("bib-0001", "password");
+        UserCredentials accessorUserCredentials = new UserCredentials("bib-0001", "password");
 
-        assertEquals(true, userCredentials.areValidCredentials("bib-0001", "password"));
+        assertEquals(true, registeredUserCredentials.equals(accessorUserCredentials));
     }
 
     @Test
     public void shouldReturnFalseIfWrongPasswordForALibraryNumber() {
-        UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
+        UserCredentials registeredUserCredentials = new UserCredentials("bib-0001", "password");
 
-        assertEquals(false, userCredentials.areValidCredentials("bib-0001", "passwrd"));
+        assertEquals(false, registeredUserCredentials.equals(new UserCredentials("bib-0001", "passwrd")));
     }
 
     @Test
     public void shouldReturnFalseIfWrongLibraryNumber() {
-        UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
+        UserCredentials registeredUserCredentials = new UserCredentials("bib-0001", "password");
 
-        assertEquals(false, userCredentials.areValidCredentials("bib-0000", "password"));
+        assertEquals(false, registeredUserCredentials.equals(new UserCredentials("bib-0000", "password")));
     }
 }

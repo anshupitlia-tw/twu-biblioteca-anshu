@@ -9,8 +9,10 @@ public class UserCredentials {
         this.password = password;
     }
 
-    public boolean areValidCredentials(String libraryNumber, String password) {
-        if (this.password.equals(password) && this.libraryNumber.equals(libraryNumber))
+    @Override
+    public boolean equals(Object object) {
+        UserCredentials accessorUserCredentials = (UserCredentials) object;
+        if (this.password.equals(accessorUserCredentials.password) && this.libraryNumber.equals(accessorUserCredentials.libraryNumber))
             return true;
         return false;
     }

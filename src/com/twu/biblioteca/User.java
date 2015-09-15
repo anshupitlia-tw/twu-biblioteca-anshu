@@ -7,7 +7,10 @@ public class User {
         this.userCredentials = userCredentials;
     }
 
-    public boolean match(User accessor) {
-        return true;
+    public boolean isValidLogin(UserCredentials accessorCredentials) {
+        if (this.userCredentials.equals(accessorCredentials))
+            return true;
+        else
+            return false;
     }
 }

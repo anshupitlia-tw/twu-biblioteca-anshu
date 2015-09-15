@@ -27,6 +27,8 @@ public class MessageFactoryTest {
         setUpMessages.put("list_movies", "List Movies");
         setUpMessages.put("enter_movie_name", "Enter Movie Name");
         setUpMessages.put("checkout_movie", "Checkout A Movie");
+        setUpMessages.put("enter_library_number", "Enter Library Number");
+        setUpMessages.put("enter_password", "Enter Password");
         messages = new Messages(setUpMessages);
     }
 
@@ -126,6 +128,20 @@ public class MessageFactoryTest {
         MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("checkout_movie"), messages.getUXMessage("checkout_movie"));
+    }
+
+    @Test
+    public void shouldCreateMessagesAndHaveTheSameMessageForAskingTheUserToEnterLibraryNumber() {
+        MessageFactory messageFactory = new MessageFactory();
+
+        assertEquals(messageFactory.establishMessages().getUXMessage("enter_library_number"), messages.getUXMessage("enter_library_number"));
+    }
+
+    @Test
+    public void shouldCreateMessagesAndHaveTheSameMessageForAskingTheUserToEnterPassword() {
+        MessageFactory messageFactory = new MessageFactory();
+
+        assertEquals(messageFactory.establishMessages().getUXMessage("enter_password"), messages.getUXMessage("enter_password"));
     }
 }
 

@@ -21,6 +21,8 @@ public class MessageFactory{
         setUpMessages.put("list_movies", "List Movies");
         setUpMessages.put("enter_movie_name", "Enter Movie Name");
         setUpMessages.put("checkout_movie", "Checkout A Movie");
+        setUpMessages.put("enter_library_number", "Enter Library Number");
+        setUpMessages.put("enter_password", "Enter Password");
         messages = new Messages(setUpMessages);
         return messages;
     }

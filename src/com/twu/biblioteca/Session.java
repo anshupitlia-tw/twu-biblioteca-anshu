@@ -10,4 +10,8 @@ public class Session {
     public User getCurrentUser() {
         return currentUser;
     }
+
+    public void putCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 }

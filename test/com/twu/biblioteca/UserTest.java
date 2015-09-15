@@ -7,10 +7,18 @@ import static org.junit.Assert.assertEquals;
 public class UserTest {
 
     @Test
-    public void shouldBeAbleToMatchAnAccessorWithItselfAndReturnTrueIfMatched() {
+    public void shouldBeAbleToMatchAnAccessorWithItselfAndReturnTrueIfTheAccessorIsRegisteredUser() {
         User registeredUser = new User(new UserCredentials("bib-0001", "password"));
-        User accessorUser = new User(new UserCredentials("bib-0001", "password"));
+        UserCredentials accessorUserCredentials = new UserCredentials("bib-0001", "password");
 
-        assertEquals(true, registeredUser.match(accessorUser));
+        assertEquals(true, registeredUser.isValidLogin(accessorUserCredentials));
+    }
+
+    @Test
+    public void shouldBeAbleToMatchAnAccessorWithItselfAndReturnFalseIfTheAccessorIsNotRegisteredUser() {
+        User registeredUser = new User(new UserCredentials("bib-0001", "password"));
+        UserCredentials accessorUserCredentials = new UserCredentials("bib-0000", "password");
+
+        assertEquals(false, registeredUser.isValidLogin(accessorUserCredentials));
     }
 }
