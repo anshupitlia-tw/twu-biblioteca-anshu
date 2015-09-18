@@ -30,7 +30,7 @@ public class MessageFactoryTest {
         setUpMessages.put("enter_library_number", "Enter Library Number");
         setUpMessages.put("enter_password", "Enter Password");
         setUpMessages.put("login", "Login");
-        setUpMessages.put("view_details", "View Details");
+        setUpMessages.put("view_user_profile", "View My Profile");
         messages = new Messages(setUpMessages);
     }
 
@@ -157,7 +157,7 @@ public class MessageFactoryTest {
     public void shouldCreateMessagesAndHaveTheSameMessageForViewingDetails() {
         MessageFactory messageFactory = new MessageFactory();
 
-        assertEquals(messageFactory.establishMessages().getUXMessage("view_details"), messages.getUXMessage("view_details"));
+        assertEquals(messageFactory.establishMessages().getUXMessage("view_user_profile"), messages.getUXMessage("view_user_profile"));
     }
 }
 

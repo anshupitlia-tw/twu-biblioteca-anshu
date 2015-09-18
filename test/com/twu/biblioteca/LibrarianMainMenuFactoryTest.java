@@ -93,4 +93,15 @@ public class LibrarianMainMenuFactoryTest {
         MainMenu mainMenu = new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(CheckedOutBookDetailsMenuItem.class, mainMenu.getMenu("8").getClass());
     }
+
+    @Test
+    public void shouldHaveAMenuForViewingUserDetails() {
+        Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        MainMenu mainMenu = new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        assertEquals(UserDetailsMenuItem.class, mainMenu.getMenu("9").getClass());
+    }
 }

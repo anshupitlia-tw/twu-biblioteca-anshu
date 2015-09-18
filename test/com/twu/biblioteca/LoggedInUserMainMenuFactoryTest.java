@@ -84,7 +84,7 @@ public class LoggedInUserMainMenuFactoryTest {
     }
 
     @Test
-    public void shouldHaveAMenuForViewingDetails() {
+    public void shouldHaveAMenuForViewingUserDetails() {
         Session session = mock(Session.class);
         Library library = mock(Library.class);
         Messages messages = mock(Messages.class);
