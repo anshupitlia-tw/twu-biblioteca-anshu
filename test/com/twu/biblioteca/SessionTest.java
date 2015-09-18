@@ -8,7 +8,7 @@ public class SessionTest {
 
     @Test
     public void shouldBeAbleToGiveTheCurrentlyLoggedInUser() {
-        User currentUser = new User(new UserCredentials("bib-0001", "password"));
+        User currentUser = new User(new UserCredentials("bib-0001", "password"), "", "", "");
         Session session = new Session(currentUser);
 
         assertEquals(currentUser, session.getCurrentUser());

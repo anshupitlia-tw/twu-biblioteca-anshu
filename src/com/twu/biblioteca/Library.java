@@ -16,10 +16,10 @@ public class Library {
         this.checkedOutBooks = new ArrayList<>();
     }
 
-    public String getCheckedOutBookDetails() {
+    public String getCheckedOutBookDetailsForDisplay() {
         StringBuilder checkedOutBookList = new StringBuilder().append(String.format("%-40s%-40s\n", "BOOK NAME", "CHECKED OUT BY"));
         for (Book book: checkedOutBooks) {
-            checkedOutBookList.append(book.getCheckedOutDetailsForDisplay());
+            checkedOutBookList.append(book.getCheckedOutBookDetailsForDisplay());
         }
         return checkedOutBookList.toString();
     }
@@ -32,10 +32,10 @@ public class Library {
         return movieList.toString();
     }
 
-    public String getBookListForDisplay() {
+    public String getAvailableBookListForDisplay() {
         StringBuilder bookList = new StringBuilder().append(String.format("%-40s%-40s%-40s\n", "NAME", "AUTHOR", "YEAR PUBLISHED"));
         for(Book book: availableBooks) {
-            bookList.append(book.getBookDetailsForDisplay());
+            bookList.append(book.getAvailableBookDetailsForDisplay());
         }
         return bookList.toString();
     }
@@ -52,9 +52,9 @@ public class Library {
     public boolean checkOutBook(String bookName) {
         Book book = findBook(bookName, availableBooks);
         if (book != null) {
-            if (book.checkOutBook()) {
+            if (book.canBeCheckedOut()) {
                 availableBooks.remove(book);
-                CheckedOutBook checkedOutBook = new CheckedOutBook(book, session.getCurrentUser());
+                CheckedOutBook checkedOutBook = new CheckedOutBook(book, (User)session.getCurrentUser());
                 checkedOutBooks.add(checkedOutBook);
                 return true;
             }
@@ -65,13 +65,12 @@ public class Library {
     public boolean returnBook(String bookName) {
         Book book = findBook(bookName, checkedOutBooks);
         if (book != null) {
-            if (book.returnBook()) {
+            if (book.canBeReturned((User)session.getCurrentUser())) {
                 checkedOutBooks.remove(book);
                 AvailableBook availableBook = new AvailableBook(book);
                 availableBooks.add(availableBook);
                 return true;
             }
-            return book.returnBook();
         }
         return false;
     }

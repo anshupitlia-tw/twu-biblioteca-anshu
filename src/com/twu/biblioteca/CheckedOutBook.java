@@ -4,31 +4,35 @@ public class CheckedOutBook extends Book{
 
     private User checkedOutBy;
 
-    public CheckedOutBook(String name, String author, short yearPublished) {
+    public CheckedOutBook(String name, String author, short yearPublished, User checkedOutBy) {
         super(name, author, yearPublished);
+        this.checkedOutBy = checkedOutBy;
     }
 
-    public CheckedOutBook(Book book, Guest checkedOutBy) {
+    public CheckedOutBook(Book book, User checkedOutBy) {
         super(book);
-        this.checkedOutBy = (User)checkedOutBy;
+        this.checkedOutBy = checkedOutBy;
     }
 
-    public String getBookDetailsForDisplay() {
+    public String getAvailableBookDetailsForDisplay() {
         StringBuilder bookDetails = new StringBuilder();
         return bookDetails.toString();
         }
 
-        public boolean checkOutBook() {
+        public boolean canBeCheckedOut() {
         return false;
         }
 
-        public boolean returnBook() {
-            return true;
+        public boolean canBeReturned(User user) {
+            if (checkedOutBy.equals(user))
+                return true;
+            else
+                return false;
     }
 
 
-    public String getCheckedOutDetailsForDisplay() {
-        StringBuilder stringBuilder = new StringBuilder().append(String.format("%-40s%-40s", title, checkedOutBy.getLibraryNumber()));
+    public String getCheckedOutBookDetailsForDisplay() {
+        StringBuilder stringBuilder = new StringBuilder().append(String.format("%-40s%-40s\n", title, checkedOutBy.getLibraryNumber()));
         return stringBuilder.toString();
     }
 }

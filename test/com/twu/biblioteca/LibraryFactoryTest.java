@@ -47,7 +47,7 @@ public class LibraryFactoryTest {
     @Test
     public void shouldHaveAllTheBooksInTheLibrary() {
         Session session = new SessionFactory().createGuestSession();
-        assertEquals(library.getBookListForDisplay(), new LibraryFactory().establishLibrary(session).getBookListForDisplay());
+        assertEquals(library.getAvailableBookListForDisplay(), new LibraryFactory().establishLibrary(session).getAvailableBookListForDisplay());
     }
 
     @Test

@@ -13,8 +13,8 @@ public class CheckedOutBookDetailsMenuItem extends MenuItem{
     }
     @Override
     public void execute() {
-        if (loginCaller.callLoginViewForUser()) {
-            userInterface.printOnOutputStream(library.getCheckedOutBookDetails());
+        if (loginCaller.callLoginViewForLibrarian()) {
+            userInterface.printOnOutputStream(library.getCheckedOutBookDetailsForDisplay());
         }
     }
 }

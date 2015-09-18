@@ -16,16 +16,15 @@ public abstract class Book {
         this.author = book.author;
         this.yearPublished = book.yearPublished;
     }
-    public abstract String getBookDetailsForDisplay();
-
+    public abstract String getAvailableBookDetailsForDisplay();
 
     public boolean match(String bookName) {
         return title.equals(bookName);
     }
 
-    public abstract boolean checkOutBook();
+    public abstract boolean canBeCheckedOut();
 
-    public abstract boolean returnBook();
+    public abstract boolean canBeReturned(User user);
 
-    public abstract String getCheckedOutDetailsForDisplay();
+    public abstract String getCheckedOutBookDetailsForDisplay();
 }

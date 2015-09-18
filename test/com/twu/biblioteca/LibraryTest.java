@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LibraryTest {
     @Test
@@ -23,7 +24,7 @@ public class LibraryTest {
                 "Anna Karenina", "Leo Tolstoy", "1878",
                 "Madame Bovary", "Gustave Flaubert", "1856"));
 
-        assertEquals(expectedList.toString(), library.getBookListForDisplay());
+        assertEquals(expectedList.toString(), library.getAvailableBookListForDisplay());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class LibraryTest {
         StringBuilder expectedList = new StringBuilder(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s\n","NAME", "AUTHOR", "YEAR PUBLISHED",
                 "Madame Bovary", "Gustave Flaubert", "1856"));
 
-        assertEquals(expectedList.toString(), library.getBookListForDisplay());
+        assertEquals(expectedList.toString(), library.getAvailableBookListForDisplay());
     }
 
     @Test
@@ -87,12 +88,14 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldBeAbleToReturnABook() {
+    public void shouldBeAbleToReturnABookTakenByAMember() {
         List<Book> booksList = new ArrayList<>();
         booksList.add(new AvailableBook("Anna Karenina", "Leo Tolstoy", (short) 1878));
         booksList.add(new AvailableBook("Madame Bovary", "Gustave Flaubert", (short) 1856));
         List<Movie> movieList = mock(List.class);
         Session session = mock(Session.class);
+        User user = mock(User.class);
+        when(session.getCurrentUser()).thenReturn(user);
 
         Library library = new Library(booksList,  movieList, session);
         library.checkOutBook("Anna Karenina");
@@ -108,6 +111,8 @@ public class LibraryTest {
 
         List<Movie> movieList = mock(List.class);
         Session session = mock(Session.class);
+        User user = mock(User.class);
+        when(session.getCurrentUser()).thenReturn(user);
 
         Library library = new Library(booksList,  movieList, session);
         library.checkOutBook("Anna Karenina");
@@ -115,7 +120,7 @@ public class LibraryTest {
         StringBuilder expectedList = new StringBuilder(String.format("%-40s%-40s%-40s\n%-40s%-40s%-40s\n%-40s%-40s%-40s\n","NAME", "AUTHOR", "YEAR PUBLISHED",
                 "Madame Bovary", "Gustave Flaubert", "1856", "Anna Karenina", "Leo Tolstoy", "1878"));
 
-        assertEquals(expectedList.toString(), library.getBookListForDisplay());
+        assertEquals(expectedList.toString(), library.getAvailableBookListForDisplay());
     }
 
     @Test
@@ -170,5 +175,47 @@ public class LibraryTest {
                 "Vertigo", "1958",  "Alfred Hitchcock", "NINE"));
 
         assertEquals(expectedList.toString(), library.getMovieListForDisplay());
+    }
+
+    @Test
+    public void shouldNotReturnABookFromAUserWhoHadNotCheckedOutTheBook() {
+        List<Book> booksList = new ArrayList<>();
+        booksList.add(new AvailableBook("Anna Karenina", "Leo Tolstoy", (short) 1878));
+        booksList.add(new AvailableBook("Madame Bovary", "Gustave Flaubert", (short) 1856));
+        List<Movie> movieList = mock(List.class);
+        Session session = mock(Session.class);
+        User userToCheckout = mock(User.class);
+        User userToReturn = mock(User.class);
+        when(session.getCurrentUser()).thenReturn(userToCheckout, userToReturn);
+
+        Library library = new Library(booksList,  movieList, session);
+        library.checkOutBook("Anna Karenina");
+
+        assertEquals(false, library.returnBook("Anna Karenina"));
+    }
+
+    @Test
+    public void shouldReturnTheCheckedOutBookDetailsForDisplay() {
+        List<Book> booksList = new ArrayList<>();
+        User checkedOutByUser = mock(User.class);
+
+        Book book = new AvailableBook("Anna Karenina", "Leo Tolstoy", (short) 1878);
+        booksList.add(book);
+
+        List<Movie> movieList = mock(List.class);
+
+        Session session = mock(Session.class);
+
+        when(checkedOutByUser.getLibraryNumber()).thenReturn("bib-0001");
+        when(session.getCurrentUser()).thenReturn(checkedOutByUser);
+
+        Library library = new Library(booksList, movieList, session);
+        library.checkOutBook("Anna Karenina");
+
+        StringBuilder expectedList = new StringBuilder(String.format("%-40s%-40s\n%-40s%-40s\n",
+                "BOOK NAME", "CHECKED OUT BY",
+                "Anna Karenina", "bib-0001"));
+
+        assertEquals(expectedList.toString(), library.getCheckedOutBookDetailsForDisplay());
     }
 }

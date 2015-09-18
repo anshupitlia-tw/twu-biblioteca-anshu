@@ -15,11 +15,17 @@ public class LibraryApplicationFactoryTest {
         Session session = mock(Session.class);
         MainMenu mainMenu = mock(MainMenu.class);
         User user = mock(User.class);
+        Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
+
 
         when(session.getCurrentUser()).thenReturn(user);
-        when(user.getMainMenu(session)).thenReturn(mainMenu);
+        when(user.getMainMenu(session, library, messages, users, userInterface)).thenReturn(mainMenu);
 
         assertEquals(LibraryApplication.class, libraryApplicationFactory.getTheEstablishedLibraryApplication(session).getClass());
     }
 }
+
 

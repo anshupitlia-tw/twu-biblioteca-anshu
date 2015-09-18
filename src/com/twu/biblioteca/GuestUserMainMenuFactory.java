@@ -4,12 +4,8 @@ import java.util.LinkedHashMap;
 
 public class GuestUserMainMenuFactory {
 
-    public MainMenu establishMainMenu(Session session) {
+    public MainMenu establishMainMenu(Session session, Library library, Messages messages, Users users, UserInterface userInterface) {
         LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
-        Messages messages = new MessageFactory().establishMessages();
-        Library library = new LibraryFactory().establishLibrary(session);
-        Users users = new UsersFactory().establishUsers();
-        UserInterface userInterface = new UserInterfaceFactory().establishUserInterface();
 
         ListBooksMenuItem listBooksMenuItem = new ListBooksMenuItem(messages.getUXMessage("list_books"), userInterface, library);
         QuitMenuItem quitMenuItem = new QuitMenuItem(messages.getUXMessage("quit_option"));
@@ -20,7 +16,7 @@ public class GuestUserMainMenuFactory {
         LoginCaller loginCaller = new LoginCaller(loginMenuItem, session, userInterface);
 
         CheckoutBookMenuItem checkoutBookMenuItem = new CheckoutBookMenuItem(messages.getUXMessage("checkout_book"), library, userInterface, loginCaller, messages);
-        ReturnBookMenuItem returnBookMenuItem = new ReturnBookMenuItem(messages.getUXMessage("return_book"),library, userInterface, loginCaller, messages);
+        ReturnBookMenuItem returnBookMenuItem = new ReturnBookMenuItem(messages.getUXMessage("return_book"), library, userInterface, loginCaller, messages);
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
         mainMenuList.put("3", checkoutBookMenuItem);

@@ -9,25 +9,27 @@ public class AvailableBook extends Book{
     public AvailableBook(Book book) {
         super (book);
     }
+
     @Override
-    public String getBookDetailsForDisplay() {
+    public String getAvailableBookDetailsForDisplay() {
         StringBuilder bookDetails = new StringBuilder();
-        bookDetails.append(String.format("%-40s%-40s%-40s\n", this.title,  this.author, this.yearPublished));
+        bookDetails.append(String.format("%-40s%-40s%-40s\n", this.title, this.author, this.yearPublished));
         return bookDetails.toString();
     }
 
     @Override
-    public boolean checkOutBook() {
+    public boolean canBeCheckedOut() {
         return true;
     }
 
     @Override
-    public boolean returnBook() {
+    public boolean canBeReturned(User thatUser) {
         return false;
     }
 
     @Override
-    public String getCheckedOutDetailsForDisplay() {
-        return null;
+    public String getCheckedOutBookDetailsForDisplay() {
+        StringBuilder bookDetails = new StringBuilder();
+        return bookDetails.toString();
     }
 }

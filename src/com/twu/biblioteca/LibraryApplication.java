@@ -7,13 +7,17 @@ public class LibraryApplication {
     private MainMenu mainMenu;
     private Parser parser;
     private Session session;
+    private Library library;
+    private Users users;
 
-    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu, Parser parser, Session session) {
+    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu, Parser parser, Session session, Library library, Users users) {
         this.userInterface = userInterface;
         this.messages = messages;
         this.mainMenu = mainMenu;
         this.parser = parser;
         this.session = session;
+        this.library = library;
+        this.users = users;
     }
 
     public void start() {
@@ -45,10 +49,10 @@ public class LibraryApplication {
     }
 
     private void setMainMenu() {
-        mainMenu = session.getCurrentUser().getMainMenu(session);
+        mainMenu = session.buildMainMenu(library, messages, users, userInterface);
     }
 
     private void setParser() {
-        parser = new ParserFactory().establishParser(session);
+        parser = new ParserFactory().establishParser(mainMenu);
     }
 }

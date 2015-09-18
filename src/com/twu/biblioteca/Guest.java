@@ -1,9 +1,8 @@
 package com.twu.biblioteca;
 
 public class Guest {
-    protected MainMenu mainMenu;
 
-    public MainMenu getMainMenu(Session session) {
-        return new GuestUserMainMenuFactory().establishMainMenu(session);
+    public MainMenu getMainMenu(Session session, Library library, Messages messages, Users users, UserInterface userInterface) {
+        return new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface );
     }
 }

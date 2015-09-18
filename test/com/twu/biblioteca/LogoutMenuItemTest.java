@@ -8,7 +8,7 @@ public class LogoutMenuItemTest {
 
     @Test
     public void shouldLogoutAUserAndMakeHimAGuest() {
-        Session session = new Session(new User(new UserCredentials("1234", "1234")));
+        Session session = new Session(new User(new UserCredentials("1234", "1234"), "", "", ""));
         LogoutMenuItem logoutMenuItem = new LogoutMenuItem("Logout", session);
 
         logoutMenuItem.execute();

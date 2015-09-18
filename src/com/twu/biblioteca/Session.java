@@ -15,4 +15,8 @@ public class Session {
     public void putCurrentUser(Guest currentUser) {
         this.currentUser = currentUser;
     }
+
+    public MainMenu buildMainMenu(Library library, Messages messages, Users users, UserInterface userInterface ) {
+        return this.getCurrentUser().getMainMenu(this, library, messages, users, userInterface);
+    }
 }

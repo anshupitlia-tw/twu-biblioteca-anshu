@@ -20,10 +20,12 @@ public class LibraryApplicationTest {
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
         Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
         when(messages.getUXMessage("welcome_message")).thenReturn("Welcome! Biblioteca at your service");
 
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
         libraryApplication.start();
 
         verify(userInterface, times(1)).printOnOutputStream("Welcome! Biblioteca at your service");
@@ -36,8 +38,10 @@ public class LibraryApplicationTest {
         MainMenu mainMenu = mock(MainMenu.class);
         Parser parser = mock(Parser.class);
         Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
         when(mainMenu.getListOfMenuForDisplay()).thenReturn("1. List Books");
 
         libraryApplication.listMainMenu();
@@ -53,9 +57,11 @@ public class LibraryApplicationTest {
         Parser parser = mock(Parser.class);
         Session session = mock(Session.class);
 
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session);
-        ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
+        ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
         when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenu);
         libraryApplication.executeMenu("1");
 
@@ -71,7 +77,10 @@ public class LibraryApplicationTest {
         Parser parser = mock(Parser.class);
         Session session = mock(Session.class);
 
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
+
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
         ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
         when(userInterface.getChoiceFromUser()).thenReturn("1");
@@ -79,37 +88,5 @@ public class LibraryApplicationTest {
 
         assertEquals("1", libraryApplication.getUserChoice());
     }
-
-    /*@Test
-    public void shouldProperlyGetUserChoiceUntilQuitOrInvalidChoiceAndExecuteOnValidity() {
-        UserInterface userInterface = mock(UserInterface.class);
-        Messages messages = mock(Messages.class);
-        MainMenu mainMenu = mock(MainMenu.class);
-        Parser parser = mock(Parser.class);
-        Session session = mock(Session.class);
-        User user = mock(User.class);
-
-        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session);
-        ListBooksMenuItem listBooksMenuItem = mock(ListBooksMenuItem.class);
-        QuitMenuItem quitMenuItem = mock(QuitMenuItem.class);
-        CheckoutBookMenuItem checkoutBookMenuItem = mock(CheckoutBookMenuItem.class);
-        InvalidMenuItem invalidMenuItem = new InvalidMenuItem(userInterface, messages);
-
-        when(session.getCurrentUser()).thenReturn(user);
-        when(user.getMainMenu(session)).thenReturn(mainMenu);
-        when(userInterface.getChoiceFromUser()).thenReturn("1").thenReturn("3").thenReturn("6").thenReturn("2");
-        when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenuItem);
-        when(parser.assignADelegateMenu("2")).thenReturn(quitMenuItem);
-        when(parser.assignADelegateMenu("3")).thenReturn(checkoutBookMenuItem);
-        when(parser.assignADelegateMenu("6")).thenReturn(invalidMenuItem);
-        when(parser.isNotTheEndOfParsing("1")).thenReturn(true);
-        when(parser.isNotTheEndOfParsing("3")).thenReturn(true);
-        when(parser.isNotTheEndOfParsing("6")).thenReturn(true);
-        when(parser.isNotTheEndOfParsing("2")).thenReturn(false);
-
-        libraryApplication.controlUserChoice();
-
-        verify(parser, times(4)).isNotTheEndOfParsing(anyString());
-    }*/
 }
 

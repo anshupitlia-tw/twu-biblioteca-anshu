@@ -18,4 +18,16 @@ public class LoginCallerTest {
 
         verify(loginMenuItem).execute();
     }
+
+    @Test
+    public void shouldCallLoginIfTheLibrarianIsNotLoggedIn() {
+        LoginMenuItem loginMenuItem  = mock(LoginMenuItem.class);
+        Session session = mock(Session.class);
+        UserInterface userInterface = mock(UserInterface.class);
+
+        LoginCaller loginCaller = new LoginCaller(loginMenuItem, session, userInterface);
+        loginCaller.callLoginViewForLibrarian();
+
+        verify(loginMenuItem).execute();
+    }
 }

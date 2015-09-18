@@ -1,4 +1,3 @@
-
 package com.twu.biblioteca;
 
 import org.junit.Test;
@@ -6,8 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
-public class GuestUserMainMenuFactoryTest {
-
+public class LibrarianMainMenuFactoryTest {
     @Test
     public void shouldHaveAMenuForListingBooks() {
         Session session = mock(Session.class);
@@ -15,7 +13,7 @@ public class GuestUserMainMenuFactoryTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        MainMenu mainMenu =  new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(ListBooksMenuItem.class, mainMenu.getMenu("1").getClass());
     }
 
@@ -26,7 +24,7 @@ public class GuestUserMainMenuFactoryTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        MainMenu mainMenu =  new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(QuitMenuItem.class, mainMenu.getMenu("2").getClass());
     }
 
@@ -37,7 +35,7 @@ public class GuestUserMainMenuFactoryTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        MainMenu mainMenu =  new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(CheckoutBookMenuItem.class, mainMenu.getMenu("3").getClass());
     }
 
@@ -48,7 +46,7 @@ public class GuestUserMainMenuFactoryTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        MainMenu mainMenu =  new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(ReturnBookMenuItem.class, mainMenu.getMenu("4").getClass());
     }
 
@@ -59,7 +57,7 @@ public class GuestUserMainMenuFactoryTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        MainMenu mainMenu =  new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(ListMoviesMenuItem.class, mainMenu.getMenu("5").getClass());
     }
 
@@ -70,20 +68,29 @@ public class GuestUserMainMenuFactoryTest {
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        MainMenu mainMenu =  new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(CheckoutMovieMenuItem.class, mainMenu.getMenu("6").getClass());
     }
 
     @Test
-    public void shouldHaveAMenuForLoggingIn() {
+    public void shouldHaveAMenuForLoggingOut() {
         Session session = mock(Session.class);
         Library library = mock(Library.class);
         Messages messages = mock(Messages.class);
         Users users = mock(Users.class);
         UserInterface userInterface = mock(UserInterface.class);
-        MainMenu mainMenu = new GuestUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
-        assertEquals(LoginMenuItem.class, mainMenu.getMenu("7").getClass());
+        MainMenu mainMenu = new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        assertEquals(LogoutMenuItem.class, mainMenu.getMenu("7").getClass());
+    }
+
+    @Test
+    public void shouldHaveAMenuForDisplayingCheckedOutBookDetails() {
+        Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        MainMenu mainMenu = new LibrarianMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        assertEquals(CheckedOutBookDetailsMenuItem.class, mainMenu.getMenu("8").getClass());
     }
 }
-
-

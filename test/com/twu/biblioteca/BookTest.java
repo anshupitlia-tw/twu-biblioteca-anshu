@@ -11,7 +11,7 @@ public class BookTest {
         Book book = new AvailableBook("Anna Karenina", "Leo Tolstoy", (short) 1878);
         StringBuilder detailsOfBookInProperFormat = new StringBuilder(String.format("%-40s%-40s%-40s\n","Anna Karenina", "Leo Tolstoy", "1878"));
 
-        assertEquals(detailsOfBookInProperFormat.toString(), book.getBookDetailsForDisplay());
+        assertEquals(detailsOfBookInProperFormat.toString(), book.getAvailableBookDetailsForDisplay());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class BookTest {
         Book book = new AvailableBook("Madame Bovary", "Gustave Flaubert", (short)1856);
         StringBuilder detailsOfBookInProperFormat = new StringBuilder(String.format("%-40s%-40s%-40s\n","Madame Bovary", "Gustave Flaubert", "1856"));
 
-        assertEquals(detailsOfBookInProperFormat.toString(), book.getBookDetailsForDisplay());
+        assertEquals(detailsOfBookInProperFormat.toString(), book.getAvailableBookDetailsForDisplay());
     }
 
     @Test
@@ -42,6 +42,6 @@ public class BookTest {
     public void shouldBeAbleToCheckOutABookIfNotCheckedOutAlready() {
         Book book = new AvailableBook("Anna Karenina", "Leo Tolstoy", (short) 1878);
 
-        assertEquals(true, book.checkOutBook());
+        assertEquals(true, book.canBeCheckedOut());
     }
 }
