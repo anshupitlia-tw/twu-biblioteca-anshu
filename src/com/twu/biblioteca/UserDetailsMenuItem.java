@@ -5,7 +5,8 @@ public class UserDetailsMenuItem extends  MenuItem{
     private UserInterface userInterface;
     private LoginCaller loginCaller;
 
-    public UserDetailsMenuItem(Session session, UserInterface userInterface, LoginCaller loginCaller) {
+    public UserDetailsMenuItem(String name, Session session, UserInterface userInterface, LoginCaller loginCaller) {
+        this.name = name;
         this.user = (User)session.getCurrentUser();
         this.userInterface = userInterface;
         this.loginCaller = loginCaller;

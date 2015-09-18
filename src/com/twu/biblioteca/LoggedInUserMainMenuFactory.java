@@ -17,6 +17,7 @@ public class LoggedInUserMainMenuFactory {
 
         CheckoutBookMenuItem checkoutBookMenuItem = new CheckoutBookMenuItem(messages.getUXMessage("checkout_book"), library, userInterface, loginCaller, messages);
         ReturnBookMenuItem returnBookMenuItem = new ReturnBookMenuItem(messages.getUXMessage("return_book"),library, userInterface, loginCaller, messages);
+        UserDetailsMenuItem userDetailsMenuItem = new UserDetailsMenuItem(messages.getUXMessage("view_details"), session, userInterface, loginCaller);
 
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
@@ -25,6 +26,7 @@ public class LoggedInUserMainMenuFactory {
         mainMenuList.put("5", listMoviesMenuItem);
         mainMenuList.put("6", checkoutMovieMenuItem);
         mainMenuList.put("7", logoutMenuItem);
+        mainMenuList.put("8", userDetailsMenuItem);
         MainMenu mainMenu = new MainMenu(mainMenuList);
         return mainMenu;
     }

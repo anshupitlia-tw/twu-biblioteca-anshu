@@ -25,6 +25,7 @@ public class MessageFactory{
         setUpMessages.put("enter_password", "Enter Password");
         setUpMessages.put("login", "Login");
         setUpMessages.put("logout", "Logout");
+        setUpMessages.put("view_details", "View Details");
         messages = new Messages(setUpMessages);
         return messages;
     }

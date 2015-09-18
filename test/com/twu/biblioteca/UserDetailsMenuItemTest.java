@@ -14,7 +14,7 @@ public class UserDetailsMenuItemTest {
         LoginCaller loginCaller = mock(LoginCaller.class);
         when(session.getCurrentUser()).thenReturn(user);
 
-        UserDetailsMenuItem userDetailsMenuItem = new UserDetailsMenuItem(session, userInterface, loginCaller);
+        UserDetailsMenuItem userDetailsMenuItem = new UserDetailsMenuItem("View Details", session, userInterface, loginCaller);
 
         when(user.getUserDetailsInDisplayableFormat()).thenReturn("DETAILS");
         when(loginCaller.callLoginViewForUser()).thenReturn(true);
@@ -31,7 +31,7 @@ public class UserDetailsMenuItemTest {
         LoginCaller loginCaller = mock(LoginCaller.class);
         when(session.getCurrentUser()).thenReturn(user);
 
-        UserDetailsMenuItem userDetailsMenuItem = new UserDetailsMenuItem(session, userInterface, loginCaller);
+        UserDetailsMenuItem userDetailsMenuItem = new UserDetailsMenuItem("View Details", session, userInterface, loginCaller);
 
         when(loginCaller.callLoginViewForUser()).thenReturn(false);
 

@@ -82,4 +82,15 @@ public class LoggedInUserMainMenuFactoryTest {
         MainMenu mainMenu = new LoggedInUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
         assertEquals(LogoutMenuItem.class, mainMenu.getMenu("7").getClass());
     }
+
+    @Test
+    public void shouldHaveAMenuForViewingDetails() {
+        Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        MainMenu mainMenu = new LoggedInUserMainMenuFactory().establishMainMenu(session, library, messages, users, userInterface);
+        assertEquals(UserDetailsMenuItem.class, mainMenu.getMenu("8").getClass());
+    }
 }
