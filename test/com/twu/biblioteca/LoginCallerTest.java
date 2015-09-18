@@ -14,7 +14,7 @@ public class LoginCallerTest {
         UserInterface userInterface = mock(UserInterface.class);
 
         LoginCaller loginCaller = new LoginCaller(loginMenuItem, session, userInterface);
-        loginCaller.authenticate();
+        loginCaller.callLoginViewForUser();
 
         verify(loginMenuItem).execute();
     }

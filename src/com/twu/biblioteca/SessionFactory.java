@@ -3,8 +3,8 @@ package com.twu.biblioteca;
 public class SessionFactory {
     private Session session;
 
-    public Session createNullSession() {
-        session = new Session(null);
+    public Session createGuestSession() {
+        session = new Session(new Guest());
         return session;
     }
 }

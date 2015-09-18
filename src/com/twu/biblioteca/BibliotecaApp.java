@@ -4,7 +4,8 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        LibraryApplication libraryApplication = new LibraryApplicationFactory().getTheEstablishedLibrary();
+        Session session = new SessionFactory().createGuestSession();
+        LibraryApplication libraryApplication = new LibraryApplicationFactory().getTheEstablishedLibraryApplication(session);
         libraryApplication.start();
         libraryApplication.controlUserChoice();
     }

@@ -1,14 +1,27 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    private List<Book> books;
+    private List<Book> availableBooks;
+    private List<Book> checkedOutBooks;
     private List<Movie> movies;
+    private Session session;
 
-    public Library(List<Book> books, List<Movie> movies) {
-        this.books = books;
+    public Library(List<Book> availableBooks, List<Movie> movies, Session session) {
+        this.availableBooks = availableBooks;
         this.movies = movies;
+        this.session = session;
+        this.checkedOutBooks = new ArrayList<>();
+    }
+
+    public String getCheckedOutBookDetails() {
+        StringBuilder checkedOutBookList = new StringBuilder().append(String.format("%-40s%-40s\n", "BOOK NAME", "CHECKED OUT BY"));
+        for (Book book: checkedOutBooks) {
+            checkedOutBookList.append(book.getCheckedOutDetailsForDisplay());
+        }
+        return checkedOutBookList.toString();
     }
 
     public String getMovieListForDisplay() {
@@ -21,14 +34,14 @@ public class Library {
 
     public String getBookListForDisplay() {
         StringBuilder bookList = new StringBuilder().append(String.format("%-40s%-40s%-40s\n", "NAME", "AUTHOR", "YEAR PUBLISHED"));
-        for(Book book: books) {
+        for(Book book: availableBooks) {
             bookList.append(book.getBookDetailsForDisplay());
         }
         return bookList.toString();
     }
 
-    private Book findBook(String bookName) {
-        for (Book book : books) {
+    private Book findBook(String bookName, List<Book> bookList) {
+        for (Book book : bookList) {
             if (book.match(bookName)) {
                 return book;
             }
@@ -37,17 +50,28 @@ public class Library {
     }
 
     public boolean checkOutBook(String bookName) {
-        Book book = findBook(bookName);
+        Book book = findBook(bookName, availableBooks);
         if (book != null) {
-            return book.checkOut();
+            if (book.checkOutBook()) {
+                availableBooks.remove(book);
+                CheckedOutBook checkedOutBook = new CheckedOutBook(book, session.getCurrentUser());
+                checkedOutBooks.add(checkedOutBook);
+                return true;
+            }
         }
         return false;
     }
 
     public boolean returnBook(String bookName) {
-        Book book = findBook(bookName);
+        Book book = findBook(bookName, checkedOutBooks);
         if (book != null) {
-            return book.returnn();
+            if (book.returnBook()) {
+                checkedOutBooks.remove(book);
+                AvailableBook availableBook = new AvailableBook(book);
+                availableBooks.add(availableBook);
+                return true;
+            }
+            return book.returnBook();
         }
         return false;
     }

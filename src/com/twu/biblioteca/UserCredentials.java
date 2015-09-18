@@ -16,4 +16,8 @@ public class UserCredentials {
             return true;
         return false;
     }
+
+    public String getLibraryNumber() {
+        return libraryNumber;
+    }
 }

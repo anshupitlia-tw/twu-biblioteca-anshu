@@ -1,19 +1,15 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class LibraryApplicationFactory {
 
     private LibraryApplication libraryApplication;
 
-    public LibraryApplication getTheEstablishedLibrary() {
+    public LibraryApplication getTheEstablishedLibraryApplication(Session session) {
         UserInterface userInterface = new UserInterfaceFactory().establishUserInterface();
         Messages messages = new MessageFactory().establishMessages();
-        MainMenu mainMenu = new MainMenuFactory().establishMainMenu();
-        Parser parser =  new ParserFactory().establishParser();
-         libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser);
+        MainMenu mainMenu = session.getCurrentUser().getMainMenu(session);
+        Parser parser =  new ParserFactory().establishParser(session);
+        libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session);
         return libraryApplication;
     }
 }

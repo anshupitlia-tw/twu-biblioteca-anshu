@@ -9,12 +9,12 @@ public class Users {
         this.users = users;
     }
 
-    public User login(UserCredentials accessorUserCredentials) {
+    public Guest login(UserCredentials accessorUserCredentials) {
         for (User registeredUser: users) {
             if (registeredUser.isValidLogin(accessorUserCredentials)) {
                 return registeredUser;
             }
         }
-        return null;
+        return new Guest();
     }
 }

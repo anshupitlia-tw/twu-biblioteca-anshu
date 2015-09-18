@@ -18,6 +18,9 @@ public class UsersFactory {
         usersList.add(new User(new UserCredentials("bib-0008", "password8")));
         usersList.add(new User(new UserCredentials("bib-0009", "password9")));
         usersList.add(new User(new UserCredentials("bib-0010", "password10")));
+
+        usersList.add(new Librarian(new UserCredentials("lib-0001", "password1")));
+        usersList.add(new Librarian(new UserCredentials("lib-0002", "password2")));
         users = new Users(usersList);
         return users;
     }

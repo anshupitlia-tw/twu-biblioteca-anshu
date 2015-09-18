@@ -12,6 +12,6 @@ public class LogoutMenuItem extends MenuItem {
 
     @Override
     public void execute() {
-        session.putCurrentUser(null);
+        session.putCurrentUser(new Guest());
     }
 }

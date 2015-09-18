@@ -21,7 +21,9 @@ public class LoginMenuItem extends MenuItem {
         userInterface.printOnOutputStream(messages.getUXMessage("enter_password"));
         String password = userInterface.getChoiceFromUser();
         UserCredentials accessorUserCredentials = new UserCredentials(libraryNumber, password);
-        User currentUser = users.login(accessorUserCredentials);
+        Guest currentUser = users.login(accessorUserCredentials);
+        if (!(currentUser instanceof User))
+            userInterface.printOnOutputStream("Invalid Credentials");
         session.putCurrentUser(currentUser);
     }
 }

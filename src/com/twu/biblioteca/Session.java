@@ -1,17 +1,18 @@
 package com.twu.biblioteca;
 
 public class Session {
-    private User currentUser;
+    private Guest currentUser;
 
-    public Session(User currentUser) {
+    public Session(Guest currentUser) {
         this.currentUser = currentUser;
     }
 
-    public User getCurrentUser() {
+    public Guest getCurrentUser() {
         return currentUser;
     }
 
-    public void putCurrentUser(User currentUser) {
+
+    public void putCurrentUser(Guest currentUser) {
         this.currentUser = currentUser;
     }
 }

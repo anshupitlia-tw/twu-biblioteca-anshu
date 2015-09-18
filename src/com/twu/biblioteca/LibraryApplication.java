@@ -6,12 +6,14 @@ public class LibraryApplication {
     private Messages messages;
     private MainMenu mainMenu;
     private Parser parser;
+    private Session session;
 
-    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu, Parser parser) {
+    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu, Parser parser, Session session) {
         this.userInterface = userInterface;
         this.messages = messages;
         this.mainMenu = mainMenu;
         this.parser = parser;
+        this.session = session;
     }
 
     public void start() {
@@ -25,6 +27,8 @@ public class LibraryApplication {
     public void controlUserChoice() {
         String choice;
         do {
+            setMainMenu();
+            setParser();
             listMainMenu();
             choice = getUserChoice();
             executeMenu(choice);
@@ -38,5 +42,13 @@ public class LibraryApplication {
     public void executeMenu(String choice) {
         MenuItem assignedMenuItem = parser.assignADelegateMenu(choice);
         assignedMenuItem.execute();
+    }
+
+    private void setMainMenu() {
+        mainMenu = session.getCurrentUser().getMainMenu(session);
+    }
+
+    private void setParser() {
+        parser = new ParserFactory().establishParser(session);
     }
 }

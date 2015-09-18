@@ -16,7 +16,7 @@ public class CheckoutBookMenuItemTest {
         LoginCaller loginCaller = mock(LoginCaller.class);
         CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
 
-        when(loginCaller.authenticate()).thenReturn(true);
+        when(loginCaller.callLoginViewForUser()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Karenina");
         when(library.checkOutBook("Anna Karenina")).thenReturn(true);
@@ -34,7 +34,7 @@ public class CheckoutBookMenuItemTest {
         LoginCaller loginCaller = mock(LoginCaller.class);
         CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
 
-        when(loginCaller.authenticate()).thenReturn(true);
+        when(loginCaller.callLoginViewForUser()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Anna Kerenina");
         when(library.checkOutBook("Anna Kerenina")).thenReturn(false);

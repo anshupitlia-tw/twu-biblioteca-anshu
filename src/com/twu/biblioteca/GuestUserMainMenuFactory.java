@@ -2,15 +2,14 @@ package com.twu.biblioteca;
 
 import java.util.LinkedHashMap;
 
-public class MainMenuFactory {
+public class GuestUserMainMenuFactory {
 
-    public MainMenu establishMainMenu() {
+    public MainMenu establishMainMenu(Session session) {
         LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
         Messages messages = new MessageFactory().establishMessages();
-        Library library = new LibraryFactory().establishLibrary();
+        Library library = new LibraryFactory().establishLibrary(session);
         Users users = new UsersFactory().establishUsers();
         UserInterface userInterface = new UserInterfaceFactory().establishUserInterface();
-        Session session = new SessionFactory().createNullSession();
 
         ListBooksMenuItem listBooksMenuItem = new ListBooksMenuItem(messages.getUXMessage("list_books"), userInterface, library);
         QuitMenuItem quitMenuItem = new QuitMenuItem(messages.getUXMessage("quit_option"));

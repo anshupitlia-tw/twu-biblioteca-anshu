@@ -7,12 +7,12 @@ import static org.junit.Assert.assertEquals;
 public class LogoutMenuItemTest {
 
     @Test
-    public void shouldLogoutAUser() {
+    public void shouldLogoutAUserAndMakeHimAGuest() {
         Session session = new Session(new User(new UserCredentials("1234", "1234")));
-        LogoutMenuItem logoutMenuItem = new LogoutMenuItem("Logo", session);
+        LogoutMenuItem logoutMenuItem = new LogoutMenuItem("Logout", session);
 
         logoutMenuItem.execute();
 
-        assertEquals(null, session.getCurrentUser());
+        assertEquals(Guest.class, session.getCurrentUser().getClass());
     }
 }

@@ -11,14 +11,29 @@ public class LoginCaller {
         this.userInterface = userInterface;
     }
 
-    public boolean authenticate() {
-        if (session.getCurrentUser() != null) {
+    public boolean callLoginViewForUser() {
+        if (session.getCurrentUser() instanceof User) {
             return true;
         }
         else {
             userInterface.printOnOutputStream("You need to login first");
             loginMenuItem.execute();
-            if (session.getCurrentUser() != null) {
+            if (session.getCurrentUser() instanceof  User) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public boolean callLoginViewForLibrarian() {
+        if (session.getCurrentUser() instanceof Librarian) {
+            return true;
+        }
+        else {
+            userInterface.printOnOutputStream("You need to login first");
+            loginMenuItem.execute();
+            if (session.getCurrentUser() instanceof Librarian) {
                 return true;
             } else {
                 userInterface.printOnOutputStream("Invalid Credentials");

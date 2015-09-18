@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class User {
+public class User extends Guest{
     private UserCredentials userCredentials;
 
     User(UserCredentials userCredentials) {
@@ -12,5 +12,14 @@ public class User {
             return true;
         else
             return false;
+    }
+
+    public String getLibraryNumber() {
+        return userCredentials.getLibraryNumber();
+    }
+
+    @Override
+    public MainMenu getMainMenu(Session session) {
+        return new LoggedInUserMainMenuFactory().establishMainMenu(session);
     }
 }

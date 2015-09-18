@@ -1,3 +1,4 @@
+
 package com.twu.biblioteca;
 
 import org.junit.Test;
@@ -8,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class MainMenuFactoryTest {
+public class GuestUserMainMenuFactoryTest {
 
     @Test
     public void shouldCreateMenuListProperly() {
@@ -20,6 +21,7 @@ public class MainMenuFactoryTest {
         ListMoviesMenuItem listMoviesMenuItem = mock(ListMoviesMenuItem.class);
         CheckoutMovieMenuItem checkoutMovieMenuItem = mock(CheckoutMovieMenuItem.class);
         LoginMenuItem loginMenuItem = mock(LoginMenuItem.class);
+        Session session = mock(Session.class);
 
         when(listBooksMenuItem.getName()).thenReturn("List Books");
         when(quitMenuItem.getName()).thenReturn("Quit");
@@ -38,36 +40,43 @@ public class MainMenuFactoryTest {
         mainMenuList.put("7", loginMenuItem);
         MainMenu mainMenu = new MainMenu(mainMenuList);
 
-        assertEquals(mainMenu.getListOfMenuForDisplay(), new MainMenuFactory().establishMainMenu().getListOfMenuForDisplay());
+        assertEquals(mainMenu.getListOfMenuForDisplay(), new GuestUserMainMenuFactory().establishMainMenu(session).getListOfMenuForDisplay());
     }
 
     @Test
     public void shouldHaveAMenuForListingBooks() {
-        assertEquals(ListBooksMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("1").getClass());
+        Session session = mock(Session.class);
+        assertEquals(ListBooksMenuItem.class, new GuestUserMainMenuFactory().establishMainMenu(session).getMenu("1").getClass());
     }
 
     @Test
     public void shouldHaveAMenuForQuitting() {
-        assertEquals(QuitMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("2").getClass());
+        Session session = mock(Session.class);
+        assertEquals(QuitMenuItem.class, new GuestUserMainMenuFactory().establishMainMenu(session).getMenu("2").getClass());
     }
 
     @Test
     public void shouldHaveAMenuForCheckingOutABook() {
-        assertEquals(CheckoutBookMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("3").getClass());
+        Session session = mock(Session.class);
+        assertEquals(CheckoutBookMenuItem.class, new GuestUserMainMenuFactory().establishMainMenu(session).getMenu("3").getClass());
     }
 
     @Test
     public void shouldHaveAMenuForReturningABook() {
-        assertEquals(ReturnBookMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("4").getClass());
+        Session session = mock(Session.class);
+        assertEquals(ReturnBookMenuItem.class, new GuestUserMainMenuFactory().establishMainMenu(session).getMenu("4").getClass());
     }
 
     @Test
     public void shouldHaveAMenuForListingMovies() {
-       assertEquals(ListMoviesMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("5").getClass());
+        Session session = mock(Session.class);
+        assertEquals(ListMoviesMenuItem.class, new GuestUserMainMenuFactory().establishMainMenu(session).getMenu("5").getClass());
     }
 
     @Test
     public void shouldHaveAMenuForCheckingOutAMovie() {
-        assertEquals(CheckoutMovieMenuItem.class, new MainMenuFactory().establishMainMenu().getMenu("6").getClass());
+        Session session = mock(Session.class);
+        assertEquals(CheckoutMovieMenuItem.class, new GuestUserMainMenuFactory().establishMainMenu(session).getMenu("6").getClass());
     }
 }
+

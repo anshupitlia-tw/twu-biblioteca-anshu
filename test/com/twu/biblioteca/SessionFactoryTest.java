@@ -7,9 +7,9 @@ import static org.junit.Assert.assertEquals;
 public class SessionFactoryTest {
 
     @Test
-    public void shouldInitiallyCreateSessionWithANullUser() {
+    public void shouldInitiallyCreateSessionWithAGuestUser() {
         SessionFactory sessionFactory = new SessionFactory();
 
-        assertEquals(null, sessionFactory.createNullSession().getCurrentUser());
+        assertEquals(Guest.class, sessionFactory.createGuestSession().getCurrentUser().getClass());
     }
 }

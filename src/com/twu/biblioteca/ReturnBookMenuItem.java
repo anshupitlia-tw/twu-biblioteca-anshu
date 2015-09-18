@@ -17,7 +17,7 @@ public class ReturnBookMenuItem extends MenuItem {
     }
     @Override
     public void execute() {
-        if (loginCaller.authenticate()) {
+        if (loginCaller.callLoginViewForUser()) {
             userInterface.printOnOutputStream(messages.getUXMessage("enter_book_name"));
             bookName = userInterface.getChoiceFromUser();
             if (library.returnBook(bookName)) {
