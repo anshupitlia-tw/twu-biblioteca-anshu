@@ -21,7 +21,7 @@ public class User extends Guest{
     }
 
     public String getLibraryNumber() {
-        return userCredentials.getLibraryNumber();
+        return userCredentials.getLibraryNumberForDisplay();
     }
 
     public String getUserDetailsInDisplayableFormat() {
@@ -34,6 +34,11 @@ public class User extends Guest{
     public boolean equals(Object that) {
         User thatUser = (User)that;
         return this.getLibraryNumber().equals(thatUser.getLibraryNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return userCredentials.getLibraryNumberForDisplay().hashCode();
     }
 
     @Override

@@ -17,7 +17,14 @@ public class UserCredentials {
         return false;
     }
 
-    public String getLibraryNumber() {
+    @Override
+    public int hashCode() {
+        int result = libraryNumber.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
+    }
+
+    public String getLibraryNumberForDisplay() {
         return libraryNumber;
     }
 }
