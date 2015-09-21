@@ -23,11 +23,17 @@ public class Movie {
         return movieDetails.toString();
     }
 
-    public void checkOut() {
-        isAvailable = false;
+    public boolean checkOut() {
+        if (isAvailable) {
+            isAvailable = false;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean match(String movieName) {
-        return name.equals(movieName);
+        return name.toLowerCase().equals(movieName.toLowerCase());
     }
 }
