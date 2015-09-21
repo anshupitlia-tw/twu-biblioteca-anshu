@@ -16,7 +16,7 @@ public class CheckedOutBookDetailsMenuItemTest {
         LoginCaller loginCaller = mock(LoginCaller.class);
         when(loginCaller.callLoginViewForLibrarian()).thenReturn(true);
         when(library.getCheckedOutBookDetailsForDisplay()).thenReturn("Book1 bib-0001");
-        com.twu.biblioteca.menu_items.CheckedOutBookDetailsMenuItem checkedOutBookDetailsMenuItem = new com.twu.biblioteca.menu_items.CheckedOutBookDetailsMenuItem("Checked Out Book Details", userInterface, library, loginCaller);
+        CheckedOutBookDetailsMenuItem checkedOutBookDetailsMenuItem = new CheckedOutBookDetailsMenuItem("Checked Out Book Details", userInterface, library, loginCaller);
 
         checkedOutBookDetailsMenuItem.execute();
         verify(userInterface, times(1)).printOnOutputStream("Book1 bib-0001");

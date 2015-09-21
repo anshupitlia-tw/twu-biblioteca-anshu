@@ -1,5 +1,8 @@
 package com.twu.biblioteca.menu_items;
 
+import com.twu.biblioteca.authentication.*;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.user_interface.UserInterface;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -10,30 +13,31 @@ public class LoginMenuItemTest {
 
     @Test
     public void shouldBeAbleToLoginAUserAndStoreThatInSessionAsCurrentUser() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
-        com.twu.biblioteca.menu_items.LoginMenuItem loginMenuItem = new com.twu.biblioteca.menu_items.LoginMenuItem("Login", userInterface, users, session, messages);
-        com.twu.biblioteca.authentication.UserCredentials userCredentials = new com.twu.biblioteca.authentication.UserCredentials("bib-0001", "password");
-        com.twu.biblioteca.authentication.Guest user = new com.twu.biblioteca.authentication.User(userCredentials, "", "", "");
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        Session session = mock(Session.class);
+        LoginMenuItem loginMenuItem = new LoginMenuItem("Login", userInterface, users, session, messages);
+        UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
+        Guest user = new User(userCredentials, "", "", "");
         when(messages.getUXMessage("enter_library_number")).thenReturn("Enter library number");
         when(messages.getUXMessage("enter_password")).thenReturn("Enter password");
         when(userInterface.getChoiceFromUser()).thenReturn("bib-0001").thenReturn("password");
         when(users.login(userCredentials)).thenReturn(user);
         loginMenuItem.execute();
+
         verify(session).putCurrentUser(user);
     }
 
     @Test
     public void shouldNotBeAbleToLoginAGuestUserAndMarkInvalidCredentialsIfThatCase() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
-        com.twu.biblioteca.menu_items.LoginMenuItem loginMenuItem = new com.twu.biblioteca.menu_items.LoginMenuItem("Login", userInterface, users, session, messages);
-        com.twu.biblioteca.authentication.UserCredentials userCredentials = new com.twu.biblioteca.authentication.UserCredentials("bib-0001", "password");
-        com.twu.biblioteca.authentication.Guest user = new com.twu.biblioteca.authentication.Guest();
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        Session session = mock(Session.class);
+        LoginMenuItem loginMenuItem = new LoginMenuItem("Login", userInterface, users, session, messages);
+        UserCredentials userCredentials = new UserCredentials("bib-0001", "password");
+        Guest user = new Guest();
         when(messages.getUXMessage("enter_library_number")).thenReturn("Enter library number");
         when(messages.getUXMessage("enter_password")).thenReturn("Enter password");
         when(userInterface.getChoiceFromUser()).thenReturn("bib-0001").thenReturn("password");

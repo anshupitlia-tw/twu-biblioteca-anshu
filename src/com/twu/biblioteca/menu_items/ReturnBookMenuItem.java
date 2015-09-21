@@ -1,14 +1,19 @@
 package com.twu.biblioteca.menu_items;
 
+import com.twu.biblioteca.helpers.LoginCaller;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.user_interface.UserInterface;
+
 public class ReturnBookMenuItem extends MenuItem {
 
-    private com.twu.biblioteca.models.Library library;
+    private Library library;
     private String bookName;
-    private com.twu.biblioteca.user_interface.UserInterface userInterface;
-    private com.twu.biblioteca.helpers.Messages messages;
-    private com.twu.biblioteca.helpers.LoginCaller loginCaller;
+    private UserInterface userInterface;
+    private Messages messages;
+    private LoginCaller loginCaller;
 
-    public ReturnBookMenuItem(String name, com.twu.biblioteca.models.Library library, com.twu.biblioteca.user_interface.UserInterface userInterface, com.twu.biblioteca.helpers.LoginCaller loginCaller, com.twu.biblioteca.helpers.Messages messages) {
+    public ReturnBookMenuItem(String name, Library library, UserInterface userInterface, LoginCaller loginCaller, Messages messages) {
         this.name = name;
         this.library = library;
         this.userInterface = userInterface;

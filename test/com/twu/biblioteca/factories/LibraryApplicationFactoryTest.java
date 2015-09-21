@@ -1,6 +1,14 @@
 
 package com.twu.biblioteca.factories;
 
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.authentication.User;
+import com.twu.biblioteca.authentication.Users;
+import com.twu.biblioteca.controller.LibraryApplication;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.main_menu.MainMenu;
+import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.user_interface.UserInterface;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -11,20 +19,20 @@ public class LibraryApplicationFactoryTest {
 
     @Test
     public void shouldCreateALibraryApplication() {
-        com.twu.biblioteca.factories.LibraryApplicationFactory libraryApplicationFactory = new com.twu.biblioteca.factories.LibraryApplicationFactory();
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
-        com.twu.biblioteca.main_menu.MainMenu mainMenu = mock(com.twu.biblioteca.main_menu.MainMenu.class);
-        com.twu.biblioteca.authentication.User user = mock(com.twu.biblioteca.authentication.User.class);
-        com.twu.biblioteca.models.Library library = mock(com.twu.biblioteca.models.Library.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
+        LibraryApplicationFactory libraryApplicationFactory = new LibraryApplicationFactory();
+        Session session = mock(Session.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        User user = mock(User.class);
+        Library library = mock(Library.class);
+        Messages messages = mock(Messages.class);
+        Users users = mock(Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
 
 
         when(session.getCurrentUser()).thenReturn(user);
         when(user.getMainMenu(session, library, messages, users, userInterface)).thenReturn(mainMenu);
 
-        assertEquals(com.twu.biblioteca.controller.LibraryApplication.class, libraryApplicationFactory.getTheEstablishedLibraryApplication(session).getClass());
+        assertEquals(LibraryApplication.class, libraryApplicationFactory.getTheEstablishedLibraryApplication(session).getClass());
     }
 }
 

@@ -1,6 +1,12 @@
 package com.twu.biblioteca.controller;
 
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.authentication.Users;
+import com.twu.biblioteca.factories.ParserFactory;
+import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.main_menu.MainMenu;
+import com.twu.biblioteca.menu_items.MenuItem;
+import com.twu.biblioteca.models.Library;
 import com.twu.biblioteca.parser.Parser;
 import com.twu.biblioteca.user_interface.UserInterface;
 
@@ -14,7 +20,7 @@ public class LibraryApplication {
     private com.twu.biblioteca.models.Library library;
     private com.twu.biblioteca.authentication.Users users;
 
-    public LibraryApplication(UserInterface userInterface, com.twu.biblioteca.helpers.Messages messages, MainMenu mainMenu, Parser parser, com.twu.biblioteca.authentication.Session session, com.twu.biblioteca.models.Library library, com.twu.biblioteca.authentication.Users users) {
+    public LibraryApplication(UserInterface userInterface, Messages messages, MainMenu mainMenu, Parser parser, Session session, Library library, Users users) {
         this.userInterface = userInterface;
         this.messages = messages;
         this.mainMenu = mainMenu;
@@ -48,7 +54,7 @@ public class LibraryApplication {
     }
 
     public void executeMenu(String choice) {
-        com.twu.biblioteca.menu_items.MenuItem assignedMenuItem = parser.assignADelegateMenu(choice);
+        MenuItem assignedMenuItem = parser.assignADelegateMenu(choice);
         assignedMenuItem.execute();
     }
 
@@ -57,6 +63,6 @@ public class LibraryApplication {
     }
 
     private void setParser() {
-        parser = new com.twu.biblioteca.factories.ParserFactory().establishParser(mainMenu);
+        parser = new ParserFactory().establishParser(mainMenu);
     }
 }

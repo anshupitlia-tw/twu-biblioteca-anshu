@@ -1,6 +1,14 @@
 
 package com.twu.biblioteca.controller;
 
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.authentication.Users;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.main_menu.MainMenu;
+import com.twu.biblioteca.menu_items.ListBooksMenuItem;
+import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.parser.Parser;
+import com.twu.biblioteca.user_interface.UserInterface;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
@@ -15,17 +23,17 @@ public class LibraryApplicationTest {
 
     @Test
     public void shouldStartWithAWelcomeMessageAndPrintItOnTheUserInterface() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.main_menu.MainMenu mainMenu = mock(com.twu.biblioteca.main_menu.MainMenu.class);
-        com.twu.biblioteca.parser.Parser parser = mock(com.twu.biblioteca.parser.Parser.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
-        com.twu.biblioteca.models.Library library = mock(com.twu.biblioteca.models.Library.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
+        Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
         when(messages.getUXMessage("welcome_message")).thenReturn("Welcome! Biblioteca at your service");
 
-        com.twu.biblioteca.controller.LibraryApplication libraryApplication = new com.twu.biblioteca.controller.LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
         libraryApplication.start();
 
         verify(userInterface, times(1)).printOnOutputStream("Welcome! Biblioteca at your service");
@@ -33,15 +41,15 @@ public class LibraryApplicationTest {
 
     @Test
     public void shouldDisplayTheMainMenuList() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.main_menu.MainMenu mainMenu = mock(com.twu.biblioteca.main_menu.MainMenu.class);
-        com.twu.biblioteca.parser.Parser parser = mock(com.twu.biblioteca.parser.Parser.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
-        com.twu.biblioteca.models.Library library = mock(com.twu.biblioteca.models.Library.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
+        Session session = mock(Session.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
-        com.twu.biblioteca.controller.LibraryApplication libraryApplication = new com.twu.biblioteca.controller.LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
         when(mainMenu.getListOfMenuForDisplay()).thenReturn("1. List Books");
 
         libraryApplication.listMainMenu();
@@ -51,17 +59,17 @@ public class LibraryApplicationTest {
 
     @Test
     public void shouldAssignAValidDelegateMenuWithTheHelpOfParserAndExecuteIt() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.main_menu.MainMenu mainMenu = mock(com.twu.biblioteca.main_menu.MainMenu.class);
-        com.twu.biblioteca.parser.Parser parser = mock(com.twu.biblioteca.parser.Parser.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
+        Session session = mock(Session.class);
 
-        com.twu.biblioteca.models.Library library = mock(com.twu.biblioteca.models.Library.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
-        com.twu.biblioteca.controller.LibraryApplication libraryApplication = new com.twu.biblioteca.controller.LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
-        com.twu.biblioteca.menu_items.ListBooksMenuItem listBooksMenu = mock(com.twu.biblioteca.menu_items.ListBooksMenuItem.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
+        ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
         when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenu);
         libraryApplication.executeMenu("1");
 
@@ -71,17 +79,17 @@ public class LibraryApplicationTest {
 
     @Test
     public void shouldGetChoiceAndAskForExecution() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = mock(com.twu.biblioteca.user_interface.UserInterface.class);
-        com.twu.biblioteca.helpers.Messages messages = mock(com.twu.biblioteca.helpers.Messages.class);
-        com.twu.biblioteca.main_menu.MainMenu mainMenu = mock(com.twu.biblioteca.main_menu.MainMenu.class);
-        com.twu.biblioteca.parser.Parser parser = mock(com.twu.biblioteca.parser.Parser.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
+        UserInterface userInterface = mock(UserInterface.class);
+        Messages messages = mock(Messages.class);
+        MainMenu mainMenu = mock(MainMenu.class);
+        Parser parser = mock(Parser.class);
+        Session session = mock(Session.class);
 
-        com.twu.biblioteca.models.Library library = mock(com.twu.biblioteca.models.Library.class);
-        com.twu.biblioteca.authentication.Users users = mock(com.twu.biblioteca.authentication.Users.class);
+        Library library = mock(Library.class);
+        Users users = mock(Users.class);
 
-        com.twu.biblioteca.controller.LibraryApplication libraryApplication = new com.twu.biblioteca.controller.LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
-        com.twu.biblioteca.menu_items.ListBooksMenuItem listBooksMenu = mock(com.twu.biblioteca.menu_items.ListBooksMenuItem.class);
+        LibraryApplication libraryApplication = new LibraryApplication(userInterface, messages, mainMenu, parser, session, library, users);
+        ListBooksMenuItem listBooksMenu = mock(ListBooksMenuItem.class);
 
         when(userInterface.getChoiceFromUser()).thenReturn("1");
         when(parser.assignADelegateMenu("1")).thenReturn(listBooksMenu);

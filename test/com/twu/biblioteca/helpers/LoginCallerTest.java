@@ -1,5 +1,7 @@
 package com.twu.biblioteca.helpers;
 
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.menu_items.LoginMenuItem;
 import com.twu.biblioteca.user_interface.UserInterface;
 import org.junit.Test;
 
@@ -10,11 +12,11 @@ public class LoginCallerTest {
 
     @Test
     public void shouldCallLoginIfTheUserIsNotLoggedIn() {
-        com.twu.biblioteca.menu_items.LoginMenuItem loginMenuItem  = mock(com.twu.biblioteca.menu_items.LoginMenuItem.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
+        LoginMenuItem loginMenuItem  = mock(LoginMenuItem.class);
+        Session session = mock(Session.class);
         UserInterface userInterface = mock(UserInterface.class);
 
-        com.twu.biblioteca.helpers.LoginCaller loginCaller = new com.twu.biblioteca.helpers.LoginCaller(loginMenuItem, session, userInterface);
+        LoginCaller loginCaller = new LoginCaller(loginMenuItem, session, userInterface);
         loginCaller.callLoginViewForUser();
 
         verify(loginMenuItem).execute();
@@ -22,11 +24,11 @@ public class LoginCallerTest {
 
     @Test
     public void shouldCallLoginIfTheLibrarianIsNotLoggedIn() {
-        com.twu.biblioteca.menu_items.LoginMenuItem loginMenuItem  = mock(com.twu.biblioteca.menu_items.LoginMenuItem.class);
-        com.twu.biblioteca.authentication.Session session = mock(com.twu.biblioteca.authentication.Session.class);
+        LoginMenuItem loginMenuItem  = mock(LoginMenuItem.class);
+        Session session = mock(Session.class);
         UserInterface userInterface = mock(UserInterface.class);
 
-        com.twu.biblioteca.helpers.LoginCaller loginCaller = new com.twu.biblioteca.helpers.LoginCaller(loginMenuItem, session, userInterface);
+        LoginCaller loginCaller = new LoginCaller(loginMenuItem, session, userInterface);
         loginCaller.callLoginViewForLibrarian();
 
         verify(loginMenuItem).execute();

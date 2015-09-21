@@ -39,140 +39,140 @@ public class MessageFactoryTest {
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForWelcome() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("welcome_message"), messages.getUXMessage("welcome_message"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForListingBooks() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("list_books"), messages.getUXMessage("list_books"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForAskingAUserToSelectAValidOption() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("select_a_valid_option"), messages.getUXMessage("select_a_valid_option"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForQuittingOption() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("quit_option"), messages.getUXMessage("quit_option"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForCheckoutABookOption() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("checkout_book"), messages.getUXMessage("checkout_book"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForReturningABookOption() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("return_book"), messages.getUXMessage("return_book"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForSuccessfulCheckout() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("successful_checkout"), messages.getUXMessage("successful_checkout"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForUnsuccessfulCheckout() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("unsuccessful_checkout"), messages.getUXMessage("unsuccessful_checkout"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForAskingTheUserToEnterTheBookName() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("enter_book_name"), messages.getUXMessage("enter_book_name"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForSuccessfulReturn() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("successful_return"), messages.getUXMessage("successful_return"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForUnsuccessfulReturn() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("unsuccessful_return"), messages.getUXMessage("unsuccessful_return"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForListingMovies() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("list_movies"), messages.getUXMessage("list_movies"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForAskingToEnterMovieName() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("enter_movie_name"), messages.getUXMessage("enter_movie_name"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForMenuToCheckOutAMovie() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("checkout_movie"), messages.getUXMessage("checkout_movie"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForAskingTheUserToEnterLibraryNumber() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("enter_library_number"), messages.getUXMessage("enter_library_number"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForAskingTheUserToEnterPassword() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("enter_password"), messages.getUXMessage("enter_password"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForLogin() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("login"), messages.getUXMessage("login"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForViewingDetails() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("view_user_profile"), messages.getUXMessage("view_user_profile"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForSuccessfulCheckoutOfMovie() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("successful_checkout_movie"), messages.getUXMessage("successful_checkout_movie"));
     }
 
     @Test
     public void shouldCreateMessagesAndHaveTheSameMessageForUnsuccessfulCheckoutOfMovie() {
-        com.twu.biblioteca.factories.MessageFactory messageFactory = new com.twu.biblioteca.factories.MessageFactory();
+        MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("unsuccessful_checkout_movie"), messages.getUXMessage("unsuccessful_checkout_movie"));
     }

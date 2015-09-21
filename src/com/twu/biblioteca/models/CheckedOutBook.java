@@ -2,7 +2,7 @@ package com.twu.biblioteca.models;
 
 import com.twu.biblioteca.authentication.User;
 
-public class CheckedOutBook extends com.twu.biblioteca.models.Book {
+public class CheckedOutBook extends Book {
 
     private User checkedOutBy;
 
@@ -11,7 +11,7 @@ public class CheckedOutBook extends com.twu.biblioteca.models.Book {
         this.checkedOutBy = checkedOutBy;
     }
 
-    public CheckedOutBook(com.twu.biblioteca.models.Book book, User checkedOutBy) {
+    public CheckedOutBook(Book book, User checkedOutBy) {
         super(book);
         this.checkedOutBy = checkedOutBy;
     }

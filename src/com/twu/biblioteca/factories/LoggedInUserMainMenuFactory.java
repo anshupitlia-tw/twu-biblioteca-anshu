@@ -1,23 +1,32 @@
 
 package com.twu.biblioteca.factories;
 
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.authentication.Users;
+import com.twu.biblioteca.helpers.LoginCaller;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.main_menu.MainMenu;
+import com.twu.biblioteca.menu_items.*;
+import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.user_interface.UserInterface;
+
 import java.util.LinkedHashMap;
 
 public class LoggedInUserMainMenuFactory {
-    public com.twu.biblioteca.main_menu.MainMenu establishMainMenu(com.twu.biblioteca.authentication.Session session, com.twu.biblioteca.models.Library library, com.twu.biblioteca.helpers.Messages messages, com.twu.biblioteca.authentication.Users users, com.twu.biblioteca.user_interface.UserInterface userInterface) {
-        LinkedHashMap<String, com.twu.biblioteca.menu_items.MenuItem> mainMenuList = new LinkedHashMap<>();
+    public MainMenu establishMainMenu(Session session, Library library, Messages messages, Users users, UserInterface userInterface) {
+        LinkedHashMap<String, MenuItem> mainMenuList = new LinkedHashMap<>();
 
-        com.twu.biblioteca.menu_items.ListBooksMenuItem listBooksMenuItem = new com.twu.biblioteca.menu_items.ListBooksMenuItem(messages.getUXMessage("list_books"), userInterface, library);
-        com.twu.biblioteca.menu_items.QuitMenuItem quitMenuItem = new com.twu.biblioteca.menu_items.QuitMenuItem(messages.getUXMessage("quit_option"));
-        com.twu.biblioteca.menu_items.ListMoviesMenuItem listMoviesMenuItem = new com.twu.biblioteca.menu_items.ListMoviesMenuItem(messages.getUXMessage("list_movies"), userInterface, library);
-        com.twu.biblioteca.menu_items.CheckoutMovieMenuItem checkoutMovieMenuItem = new com.twu.biblioteca.menu_items.CheckoutMovieMenuItem(messages.getUXMessage("checkout_movie"), library, userInterface, messages);
-        com.twu.biblioteca.menu_items.LoginMenuItem loginMenuItem = new com.twu.biblioteca.menu_items.LoginMenuItem(messages.getUXMessage("login"), userInterface, users, session, messages);
-        com.twu.biblioteca.menu_items.LogoutMenuItem logoutMenuItem = new com.twu.biblioteca.menu_items.LogoutMenuItem(messages.getUXMessage("logout"), session);
-        com.twu.biblioteca.helpers.LoginCaller loginCaller = new com.twu.biblioteca.helpers.LoginCaller(loginMenuItem, session, userInterface);
+        ListBooksMenuItem listBooksMenuItem = new ListBooksMenuItem(messages.getUXMessage("list_books"), userInterface, library);
+        QuitMenuItem quitMenuItem = new QuitMenuItem(messages.getUXMessage("quit_option"));
+        ListMoviesMenuItem listMoviesMenuItem = new ListMoviesMenuItem(messages.getUXMessage("list_movies"), userInterface, library);
+        CheckoutMovieMenuItem checkoutMovieMenuItem = new CheckoutMovieMenuItem(messages.getUXMessage("checkout_movie"), library, userInterface, messages);
+        LoginMenuItem loginMenuItem = new LoginMenuItem(messages.getUXMessage("login"), userInterface, users, session, messages);
+        LogoutMenuItem logoutMenuItem = new LogoutMenuItem(messages.getUXMessage("logout"), session);
+        LoginCaller loginCaller = new LoginCaller(loginMenuItem, session, userInterface);
 
-        com.twu.biblioteca.menu_items.CheckoutBookMenuItem checkoutBookMenuItem = new com.twu.biblioteca.menu_items.CheckoutBookMenuItem(messages.getUXMessage("checkout_book"), library, userInterface, loginCaller, messages);
-        com.twu.biblioteca.menu_items.ReturnBookMenuItem returnBookMenuItem = new com.twu.biblioteca.menu_items.ReturnBookMenuItem(messages.getUXMessage("return_book"),library, userInterface, loginCaller, messages);
-        com.twu.biblioteca.menu_items.UserDetailsMenuItem userDetailsMenuItem = new com.twu.biblioteca.menu_items.UserDetailsMenuItem(messages.getUXMessage("view_user_profile"), session, userInterface, loginCaller);
+        CheckoutBookMenuItem checkoutBookMenuItem = new CheckoutBookMenuItem(messages.getUXMessage("checkout_book"), library, userInterface, loginCaller, messages);
+        ReturnBookMenuItem returnBookMenuItem = new ReturnBookMenuItem(messages.getUXMessage("return_book"),library, userInterface, loginCaller, messages);
+        UserDetailsMenuItem userDetailsMenuItem = new UserDetailsMenuItem(messages.getUXMessage("view_user_profile"), session, userInterface, loginCaller);
 
         mainMenuList.put("1", listBooksMenuItem);
         mainMenuList.put("2", quitMenuItem);
@@ -27,7 +36,7 @@ public class LoggedInUserMainMenuFactory {
         mainMenuList.put("6", checkoutMovieMenuItem);
         mainMenuList.put("7", logoutMenuItem);
         mainMenuList.put("8", userDetailsMenuItem);
-        com.twu.biblioteca.main_menu.MainMenu mainMenu = new com.twu.biblioteca.main_menu.MainMenu(mainMenuList);
+        MainMenu mainMenu = new MainMenu(mainMenuList);
         return mainMenu;
     }
 }

@@ -14,7 +14,7 @@ public class CheckoutMovieMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        com.twu.biblioteca.menu_items.CheckoutMovieMenuItem checkoutMovieMenuItem = new com.twu.biblioteca.menu_items.CheckoutMovieMenuItem("Checkout A Movie",library, userInterface, messages);
+        CheckoutMovieMenuItem checkoutMovieMenuItem = new com.twu.biblioteca.menu_items.CheckoutMovieMenuItem("Checkout A Movie",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_movie_name")).thenReturn("Enter Movie Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Titanic");
@@ -29,7 +29,7 @@ public class CheckoutMovieMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        com.twu.biblioteca.menu_items.CheckoutMovieMenuItem checkoutMovieMenuItem = new com.twu.biblioteca.menu_items.CheckoutMovieMenuItem("Checkout A Movie",library, userInterface, messages);
+        CheckoutMovieMenuItem checkoutMovieMenuItem = new CheckoutMovieMenuItem("Checkout A Movie",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_movie_name")).thenReturn("Enter Movie Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Titanic");
@@ -45,7 +45,7 @@ public class CheckoutMovieMenuItemTest {
         Library library = mock(Library.class);
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        com.twu.biblioteca.menu_items.CheckoutMovieMenuItem checkoutMovieMenuItem = new com.twu.biblioteca.menu_items.CheckoutMovieMenuItem("Checkout A Movie",library, userInterface, messages);
+        CheckoutMovieMenuItem checkoutMovieMenuItem = new CheckoutMovieMenuItem("Checkout A Movie",library, userInterface, messages);
 
         when(messages.getUXMessage("enter_movie_name")).thenReturn("Enter Movie Name");
         when(userInterface.getChoiceFromUser()).thenReturn("Titanic");

@@ -1,10 +1,17 @@
 
 package com.twu.biblioteca.factories;
 
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.authentication.Users;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.main_menu.MainMenu;
+import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.user_interface.UserInterface;
+
 import java.util.LinkedHashMap;
 
 public class LibrarianMainMenuFactory {
-    public com.twu.biblioteca.main_menu.MainMenu establishMainMenu(com.twu.biblioteca.authentication.Session session, com.twu.biblioteca.models.Library library, com.twu.biblioteca.helpers.Messages messages, com.twu.biblioteca.authentication.Users users, com.twu.biblioteca.user_interface.UserInterface userInterface) {
+    public MainMenu establishMainMenu(Session session, Library library, Messages messages, Users users, UserInterface userInterface) {
         LinkedHashMap<String, com.twu.biblioteca.menu_items.MenuItem> mainMenuList = new LinkedHashMap<>();
 
         com.twu.biblioteca.menu_items.ListBooksMenuItem listBooksMenuItem = new com.twu.biblioteca.menu_items.ListBooksMenuItem(messages.getUXMessage("list_books"), userInterface, library);

@@ -30,6 +30,6 @@ public class UsersFactoryTest {
         usersList.add(new Librarian(new UserCredentials("lib-0001", "password1"), "Librarian 1", "lib1@mailprovider.com", "9876543210"));
         usersList.add(new Librarian(new UserCredentials("lib-0002", "password2"), "Librarian 2", "lib2@mailprovider.com", "1234567890"));
         Users users = new Users(usersList);
-        assertEquals(users.getClass(), new com.twu.biblioteca.factories.UsersFactory().establishUsers().getClass());
+        assertEquals(users.getClass(), new UsersFactory().establishUsers().getClass());
     }
 }

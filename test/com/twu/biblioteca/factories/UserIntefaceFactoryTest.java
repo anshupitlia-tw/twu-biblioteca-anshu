@@ -9,7 +9,7 @@ public class UserIntefaceFactoryTest {
 
     @Test
     public void shouldCreateUserInterface() {
-        com.twu.biblioteca.factories.UserInterfaceFactory userInterfaceFactory = new com.twu.biblioteca.factories.UserInterfaceFactory();
+        UserInterfaceFactory userInterfaceFactory = new UserInterfaceFactory();
 
         assertEquals(UserInterface.class, userInterfaceFactory.establishUserInterface().getClass());
     }

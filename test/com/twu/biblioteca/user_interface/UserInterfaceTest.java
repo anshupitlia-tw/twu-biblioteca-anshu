@@ -28,7 +28,7 @@ public class UserInterfaceTest {
 
     @Test
     public void shouldBeAbleToPrintAMessageGivenToIt() {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = new com.twu.biblioteca.user_interface.UserInterface(System.in, System.out, System.err);
+        UserInterface userInterface = new UserInterface(System.in, System.out, System.err);
         userInterface.printOnOutputStream("Welcome!");
 
         assertEquals("Welcome!\n", outContent.toString());
@@ -39,7 +39,7 @@ public class UserInterfaceTest {
         String userChoice = "Anna Karenina";
         ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
         System.setIn(inContent);
-        com.twu.biblioteca.user_interface.UserInterface userInterface = new com.twu.biblioteca.user_interface.UserInterface(System.in, System.out, System.err);
+        UserInterface userInterface = new UserInterface(System.in, System.out, System.err);
 
         assertEquals("Anna Karenina", userInterface.getChoiceFromUser());
     }
@@ -49,14 +49,14 @@ public class UserInterfaceTest {
         String userChoice = "2";
         ByteArrayInputStream inContent = new ByteArrayInputStream(userChoice.getBytes());
         System.setIn(inContent);
-        com.twu.biblioteca.user_interface.UserInterface userInterface = new com.twu.biblioteca.user_interface.UserInterface(System.in, System.out, System.err);
+        UserInterface userInterface = new UserInterface(System.in, System.out, System.err);
 
         assertEquals("2", userInterface.getChoiceFromUser());
     }
 
     @Test
     public void shouldLogErrorToErrorStream() throws IOException {
-        com.twu.biblioteca.user_interface.UserInterface userInterface = spy(new com.twu.biblioteca.user_interface.UserInterface(System.in, System.out, System.err));
+        UserInterface userInterface = spy(new UserInterface(System.in, System.out, System.err));
 
         BufferedReader mockBufferedReader = mock(BufferedReader.class);
         doReturn(mockBufferedReader).when(userInterface).getBufferedReader();

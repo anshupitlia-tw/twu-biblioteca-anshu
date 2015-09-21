@@ -1,13 +1,18 @@
 package com.twu.biblioteca.menu_items;
 
-public class UserDetailsMenuItem extends MenuItem {
-    private com.twu.biblioteca.authentication.User user;
-    private com.twu.biblioteca.user_interface.UserInterface userInterface;
-    private com.twu.biblioteca.helpers.LoginCaller loginCaller;
+import com.twu.biblioteca.authentication.Session;
+import com.twu.biblioteca.authentication.User;
+import com.twu.biblioteca.helpers.LoginCaller;
+import com.twu.biblioteca.user_interface.UserInterface;
 
-    public UserDetailsMenuItem(String name, com.twu.biblioteca.authentication.Session session, com.twu.biblioteca.user_interface.UserInterface userInterface, com.twu.biblioteca.helpers.LoginCaller loginCaller) {
+public class UserDetailsMenuItem extends MenuItem {
+    private User user;
+    private UserInterface userInterface;
+    private LoginCaller loginCaller;
+
+    public UserDetailsMenuItem(String name, Session session, UserInterface userInterface, LoginCaller loginCaller) {
         this.name = name;
-        this.user = (com.twu.biblioteca.authentication.User)session.getCurrentUser();
+        this.user = (User)session.getCurrentUser();
         this.userInterface = userInterface;
         this.loginCaller = loginCaller;
     }

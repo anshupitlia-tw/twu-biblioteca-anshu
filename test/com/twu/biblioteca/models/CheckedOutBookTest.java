@@ -12,7 +12,7 @@ public class CheckedOutBookTest {
     @Test
     public void shouldNotDisplayItselfInTheListOfAvailableBooks() {
         User checkedOutByUser = mock(User.class);
-        com.twu.biblioteca.models.CheckedOutBook checkedOutBook = new com.twu.biblioteca.models.CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
+        CheckedOutBook checkedOutBook = new CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
 
         assertEquals("", checkedOutBook.getAvailableBookDetailsForDisplay());
     }
@@ -20,7 +20,7 @@ public class CheckedOutBookTest {
     @Test
     public void shouldNotBeAbleToGetCheckedOut() {
         User checkedOutByUser = mock(User.class);
-        com.twu.biblioteca.models.CheckedOutBook checkedOutBook = new com.twu.biblioteca.models.CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
+        CheckedOutBook checkedOutBook = new CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
 
         assertEquals(false, checkedOutBook.canBeCheckedOut());
     }
@@ -28,7 +28,7 @@ public class CheckedOutBookTest {
     @Test
     public void shouldBeAbleToGetReturnedIfCheckedOutBySameUser() {
         User checkedOutByUser = mock(User.class);
-        com.twu.biblioteca.models.CheckedOutBook checkedOutBook = new com.twu.biblioteca.models.CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
+        CheckedOutBook checkedOutBook = new CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
 
         assertEquals(true, checkedOutBook.canBeReturned(checkedOutByUser));
     }
@@ -37,7 +37,7 @@ public class CheckedOutBookTest {
     public void shouldNotBeAbleToGetReturnedIfCheckedOutByDifferentUser() {
         User checkedOutByUser = mock(User.class);
         User returnedByUser = mock(User.class);
-        com.twu.biblioteca.models.CheckedOutBook checkedOutBook = new com.twu.biblioteca.models.CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
+        CheckedOutBook checkedOutBook = new CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
 
         assertEquals(false, checkedOutBook.canBeReturned(returnedByUser));
     }
@@ -46,7 +46,7 @@ public class CheckedOutBookTest {
     public void shouldProvideTitleAndCheckedOutByUsersLibraryNumberInDisplayableFormat() {
         User checkedOutByUser = mock(User.class);
         when(checkedOutByUser.getLibraryNumber()).thenReturn("bib-0001");
-        com.twu.biblioteca.models.CheckedOutBook checkedOutBook = new com.twu.biblioteca.models.CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
+        CheckedOutBook checkedOutBook = new CheckedOutBook("Book1", "Author1", (short)1991, checkedOutByUser);
 
         StringBuilder stringBuilder = new StringBuilder().append(String.format("%-40s%-40s\n", "Book1", "bib-0001"));
         String expectedString =  stringBuilder.toString();

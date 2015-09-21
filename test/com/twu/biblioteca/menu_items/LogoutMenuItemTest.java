@@ -13,7 +13,7 @@ public class LogoutMenuItemTest {
     @Test
     public void shouldLogoutAUserAndMakeHimAGuest() {
         Session session = new Session(new User(new UserCredentials("1234", "1234"), "", "", ""));
-        com.twu.biblioteca.menu_items.LogoutMenuItem logoutMenuItem = new com.twu.biblioteca.menu_items.LogoutMenuItem("Logout", session);
+        LogoutMenuItem logoutMenuItem = new LogoutMenuItem("Logout", session);
 
         logoutMenuItem.execute();
 

@@ -12,7 +12,7 @@ public class QuitMenuItemTest {
     @Test
     public void shouldQuitTheApplicationOnExecute() {
         exit.expectSystemExitWithStatus(0);
-        com.twu.biblioteca.menu_items.QuitMenuItem quitMenu =  new com.twu.biblioteca.menu_items.QuitMenuItem("Quit");
+        QuitMenuItem quitMenu =  new QuitMenuItem("Quit");
         quitMenu.execute();
     }
 }

@@ -12,7 +12,7 @@ public class ListMoviesMenuItemTest {
         UserInterface userInterface = mock(UserInterface.class);
         Library library = mock(Library.class);
 
-        com.twu.biblioteca.menu_items.ListMoviesMenuItem listMoviesMenuItem = new com.twu.biblioteca.menu_items.ListMoviesMenuItem("List Movies", userInterface, library);
+        ListMoviesMenuItem listMoviesMenuItem = new ListMoviesMenuItem("List Movies", userInterface, library);
         when(library.getMovieListForDisplay()).thenReturn("Some List");
         listMoviesMenuItem.execute();
         verify(userInterface, times(1)).printOnOutputStream("Some List");

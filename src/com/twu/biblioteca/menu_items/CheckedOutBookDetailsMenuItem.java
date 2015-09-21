@@ -1,11 +1,15 @@
 package com.twu.biblioteca.menu_items;
 
-public class CheckedOutBookDetailsMenuItem extends MenuItem {
-    private com.twu.biblioteca.user_interface.UserInterface userInterface;
-    private com.twu.biblioteca.models.Library library;
-    private com.twu.biblioteca.helpers.LoginCaller loginCaller;
+import com.twu.biblioteca.helpers.LoginCaller;
+import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.user_interface.UserInterface;
 
-    public CheckedOutBookDetailsMenuItem(String name, com.twu.biblioteca.user_interface.UserInterface userInterface, com.twu.biblioteca.models.Library library, com.twu.biblioteca.helpers.LoginCaller loginCaller) {
+public class CheckedOutBookDetailsMenuItem extends MenuItem {
+    private UserInterface userInterface;
+    private Library library;
+    private LoginCaller loginCaller;
+
+    public CheckedOutBookDetailsMenuItem(String name, UserInterface userInterface, Library library, LoginCaller loginCaller) {
         this.name = name;
         this.userInterface = userInterface;
         this.library = library;

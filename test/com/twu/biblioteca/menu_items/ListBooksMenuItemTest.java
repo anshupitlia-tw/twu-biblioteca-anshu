@@ -14,7 +14,7 @@ public class ListBooksMenuItemTest {
         UserInterface userInterface = mock(UserInterface.class);
         Library library = mock(Library.class);
 
-        com.twu.biblioteca.menu_items.ListBooksMenuItem listBooksMenu = new com.twu.biblioteca.menu_items.ListBooksMenuItem("List Books", userInterface, library);
+        ListBooksMenuItem listBooksMenu = new ListBooksMenuItem("List Books", userInterface, library);
         when(library.getAvailableBookListForDisplay()).thenReturn("Some List");
         listBooksMenu.execute();
         verify(userInterface, times(1)).printOnOutputStream("Some List");

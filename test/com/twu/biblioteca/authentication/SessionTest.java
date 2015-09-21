@@ -8,8 +8,8 @@ public class SessionTest {
 
     @Test
     public void shouldBeAbleToGiveTheCurrentlyLoggedInUser() {
-        com.twu.biblioteca.authentication.User currentUser = new com.twu.biblioteca.authentication.User(new com.twu.biblioteca.authentication.UserCredentials("bib-0001", "password"), "", "", "");
-        com.twu.biblioteca.authentication.Session session = new com.twu.biblioteca.authentication.Session(currentUser);
+        User currentUser = new User(new UserCredentials("bib-0001", "password"), "", "", "");
+        Session session = new Session(currentUser);
 
         assertEquals(currentUser, session.getCurrentUser());
     }

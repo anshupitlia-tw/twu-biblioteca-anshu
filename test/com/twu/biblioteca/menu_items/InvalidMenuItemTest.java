@@ -12,7 +12,7 @@ public class InvalidMenuItemTest {
     public void shouldPrintTheMessageToSelectAValidOptionOnTheUserInterfaceWhenItIsExecuting() {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
-        com.twu.biblioteca.menu_items.InvalidMenuItem invalidMenu = new com.twu.biblioteca.menu_items.InvalidMenuItem(userInterface, messages);
+        InvalidMenuItem invalidMenu = new InvalidMenuItem(userInterface, messages);
         when(messages.getUXMessage("select_a_valid_option")).thenReturn("Select a valid option!");
 
         invalidMenu.execute();

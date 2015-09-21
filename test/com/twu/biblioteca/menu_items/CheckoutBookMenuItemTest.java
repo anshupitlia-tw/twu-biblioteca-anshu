@@ -18,7 +18,7 @@ public class CheckoutBookMenuItemTest {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         LoginCaller loginCaller = mock(LoginCaller.class);
-        com.twu.biblioteca.menu_items.CheckoutBookMenuItem checkoutBook = new com.twu.biblioteca.menu_items.CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
+        CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
 
         when(loginCaller.callLoginViewForUser()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");
@@ -36,7 +36,7 @@ public class CheckoutBookMenuItemTest {
         UserInterface userInterface = mock(UserInterface.class);
         Messages messages = mock(Messages.class);
         LoginCaller loginCaller = mock(LoginCaller.class);
-        com.twu.biblioteca.menu_items.CheckoutBookMenuItem checkoutBook = new com.twu.biblioteca.menu_items.CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
+        CheckoutBookMenuItem checkoutBook = new CheckoutBookMenuItem("Checkout A Book",library, userInterface, loginCaller, messages);
 
         when(loginCaller.callLoginViewForUser()).thenReturn(true);
         when(messages.getUXMessage("enter_book_name")).thenReturn("Enter the Book Name");

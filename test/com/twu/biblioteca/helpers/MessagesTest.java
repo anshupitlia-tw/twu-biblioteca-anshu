@@ -11,7 +11,7 @@ public class MessagesTest {
     public void shouldGiveCorrectUXMessage() {
         HashMap<String, String> testMessages = new HashMap<>();
         testMessages.put("welcome_message", "Welcome! Biblioteca at your service");
-        com.twu.biblioteca.helpers.Messages messages = new com.twu.biblioteca.helpers.Messages(testMessages);
+        Messages messages = new Messages(testMessages);
 
         assertEquals("Welcome! Biblioteca at your service", messages.getUXMessage("welcome_message"));
     }
@@ -20,7 +20,7 @@ public class MessagesTest {
     public void shouldGiveNoUXMessageWhenIncorrectMessage() {
         HashMap<String, String> testMessages = new HashMap<>();
         testMessages.put("welcome_message", "Welcome! Biblioteca at your service");
-        com.twu.biblioteca.helpers.Messages messages = new com.twu.biblioteca.helpers.Messages(testMessages);
+        Messages messages = new Messages(testMessages);
 
         assertEquals(null, messages.getUXMessage("no_message"));
     }

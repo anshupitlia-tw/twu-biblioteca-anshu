@@ -9,7 +9,7 @@ public class SessionFactoryTest {
 
     @Test
     public void shouldInitiallyCreateSessionWithAGuestUser() {
-        com.twu.biblioteca.factories.SessionFactory sessionFactory = new com.twu.biblioteca.factories.SessionFactory();
+        SessionFactory sessionFactory = new SessionFactory();
 
         assertEquals(Guest.class, sessionFactory.createGuestSession().getCurrentUser().getClass());
     }
