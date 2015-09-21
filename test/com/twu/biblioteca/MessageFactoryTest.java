@@ -31,6 +31,8 @@ public class MessageFactoryTest {
         setUpMessages.put("enter_password", "Enter Password");
         setUpMessages.put("login", "Login");
         setUpMessages.put("view_user_profile", "View My Profile");
+        setUpMessages.put("successful_checkout_movie", "Thank you! Enjoy the movie");
+        setUpMessages.put("unsuccessful_checkout_movie", "That movie is not available. Please select a different movie, or fix the spelling error");
         messages = new Messages(setUpMessages);
     }
 
@@ -158,6 +160,20 @@ public class MessageFactoryTest {
         MessageFactory messageFactory = new MessageFactory();
 
         assertEquals(messageFactory.establishMessages().getUXMessage("view_user_profile"), messages.getUXMessage("view_user_profile"));
+    }
+
+    @Test
+    public void shouldCreateMessagesAndHaveTheSameMessageForSuccessfulCheckoutOfMovie() {
+        MessageFactory messageFactory = new MessageFactory();
+
+        assertEquals(messageFactory.establishMessages().getUXMessage("successful_checkout_movie"), messages.getUXMessage("successful_checkout_movie"));
+    }
+
+    @Test
+    public void shouldCreateMessagesAndHaveTheSameMessageForUnsuccessfulCheckoutOfMovie() {
+        MessageFactory messageFactory = new MessageFactory();
+
+        assertEquals(messageFactory.establishMessages().getUXMessage("unsuccessful_checkout_movie"), messages.getUXMessage("unsuccessful_checkout_movie"));
     }
 }
 

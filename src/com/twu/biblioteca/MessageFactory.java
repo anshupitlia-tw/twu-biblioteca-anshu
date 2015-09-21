@@ -26,6 +26,9 @@ public class MessageFactory{
         setUpMessages.put("login", "Login");
         setUpMessages.put("logout", "Logout");
         setUpMessages.put("view_user_profile", "View My Profile");
+        setUpMessages.put("successful_checkout_movie", "Thank you! Enjoy the movie");
+        setUpMessages.put("unsuccessful_checkout_movie", "That movie is not available. Please select a different movie, or fix the spelling error");
+
         messages = new Messages(setUpMessages);
         return messages;
     }
