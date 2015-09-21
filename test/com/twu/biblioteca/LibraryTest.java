@@ -218,4 +218,31 @@ public class LibraryTest {
 
         assertEquals(expectedList.toString(), library.getCheckedOutBookDetailsForDisplay());
     }
+
+    @Test
+    public void shouldBeAbleToCheckOutAnAvailableMovie() {
+        List<Book> booksList = mock(List.class);
+        List<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie("Titanic", (short) 1997, "James Cameron", RATING.EIGHT));
+        movieList.add(new Movie("Vertigo", (short) 1958, "Alfred Hitchcock", RATING.NINE));
+        Session session = mock(Session.class);
+
+        Library library = new Library(booksList,  movieList, session);
+
+        assertEquals(true, library.checkOutMovie("Titanic"));
+    }
+
+    @Test
+    public void shouldNotBeAbleToCheckOutAnUnavailableMovie() {
+        List<Book> booksList = mock(List.class);
+        List<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie("Titanic", (short) 1997, "James Cameron", RATING.EIGHT));
+        movieList.add(new Movie("Vertigo", (short) 1958, "Alfred Hitchcock", RATING.NINE));
+        Session session = mock(Session.class);
+
+        Library library = new Library(booksList,  movieList, session);
+        library.checkOutMovie("Titanic");
+
+        assertEquals(false, library.checkOutMovie("Titanic"));
+    }
 }

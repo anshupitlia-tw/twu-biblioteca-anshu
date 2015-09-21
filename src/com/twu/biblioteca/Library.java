@@ -75,11 +75,12 @@ public class Library {
         return false;
     }
 
-    public void checkOutMovie(String movieName) {
+    public boolean checkOutMovie(String movieName) {
         for (Movie movie: movies) {
-            if(movie.match(movieName)) {
-                movie.checkOut();
+            if (movie.match(movieName)) {
+                return movie.checkOut();
             }
         }
+        return false;
     }
 }
