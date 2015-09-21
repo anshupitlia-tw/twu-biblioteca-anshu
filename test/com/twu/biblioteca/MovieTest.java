@@ -24,6 +24,28 @@ public class MovieTest {
     }
 
     @Test
+    public void shouldReturnTrueIfMovieCheckedOut() {
+        Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
+
+        assertEquals(true, movie.checkOut());
+    }
+
+    @Test
+    public void shouldReturnFalseIfMovieNotCheckedOut() {
+        Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
+        movie.checkOut();
+
+        assertEquals(false, movie.checkOut());
+    }
+
+    @Test
+    public void shouldBeAbleToMatchAMovieNameGivenInAnyCase() {
+        Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
+
+        assertEquals(true, movie.match("titanic"));
+    }
+
+    @Test
     public void shouldBeAbleToMatchAMovieNameWithItself() {
         Movie movie = new Movie("Titanic", (short)1997, "James Cameron", RATING.EIGHT);
 

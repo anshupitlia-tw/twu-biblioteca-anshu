@@ -17,6 +17,10 @@ public class CheckoutMovieMenuItem extends MenuItem{
     public void execute() {
         userInterface.printOnOutputStream(messages.getUXMessage("enter_movie_name"));
         movieName = userInterface.getChoiceFromUser();
-        library.checkOutMovie(movieName);
+        if (library.checkOutMovie(movieName)) {
+            userInterface.printOnOutputStream(messages.getUXMessage("successful_checkout_movie"));
+        } else {
+            userInterface.printOnOutputStream(messages.getUXMessage("unsuccessful_checkout_movie"));
+        }
     }
 }
