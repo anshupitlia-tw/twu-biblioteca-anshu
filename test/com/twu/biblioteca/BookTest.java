@@ -44,4 +44,11 @@ public class BookTest {
 
         assertEquals(true, book.canBeCheckedOut());
     }
+
+    @Test
+    public void shouldMatchBookNameGivenInAnyCase() {
+        Book book = new AvailableBook("Anna Karenina", "Leo Tolstoy", (short) 1878 );
+
+        assertEquals(true, book.match("anna karenina"));
+    }
 }

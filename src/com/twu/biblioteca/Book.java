@@ -19,7 +19,7 @@ public abstract class Book {
     public abstract String getAvailableBookDetailsForDisplay();
 
     public boolean match(String bookName) {
-        return title.equals(bookName);
+        return title.toLowerCase().equals(bookName.toLowerCase());
     }
 
     public abstract boolean canBeCheckedOut();
